@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FAQ | Fusion & Form</title>
+
+    <style>
+        /* ============================= */
+        /* General Styling */
+        /* ============================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f7f5f1;
+            color: #202020;
+        }
+
+        /* ============================= */
+        /* Hero Section */
+        /* ============================= */
+
+        .hero {
+            min-height: 65vh;
+            background-image: url("https://images.unsplash.com/photo-1581092160607-ee22731d8c4f?w=1600");
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.62);
+        }
+
+        /* ============================= */
+        /* Navigation */
+        /* ============================= */
+
+        nav {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            padding: 28px 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 48px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #c9824b;
+        }
+
+        nav a.active {
+            color: #c9824b;
+            border-bottom: 2px solid #c9824b;
+            padding-bottom: 6px;
+        }
+
+        /* ============================= */
+        /* Hero Text */
+        /* ============================= */
+
+        .hero-text {
+            position: relative;
+            z-index: 5;
+            min-height: 48vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 40px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(42px, 7vw, 76px);
+            letter-spacing: 3px;
+        }
+
+        .hero-text h2 {
+            margin-top: 15px;
+            font-size: 25px;
+            font-weight: normal;
+        }
+
+        .hero-text p {
+            max-width: 680px;
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* ============================= */
+        /* FAQ Introduction */
+        /* ============================= */
+
+        .faq-intro {
+            max-width: 850px;
+            margin: auto;
+            padding: 80px 25px 35px;
+            text-align: center;
+        }
+
+        .faq-intro h2 {
+            margin-bottom: 15px;
+            font-size: 38px;
+        }
+
+        .faq-intro p {
+            color: #666;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* ============================= */
+        /* Category Buttons */
+        /* ============================= */
+
+        .faq-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding: 20px 20px 60px;
+        }
+
+        .faq-categories a {
+            padding: 12px 21px;
+            color: #202020;
+            background: white;
+            border: 1px solid #d4d0ca;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .faq-categories a:hover {
+            color: white;
+            background: #b87333;
+            border-color: #b87333;
+            transform: translateY(-2px);
+        }
+
+        /* ============================= */
+        /* FAQ Layout */
+        /* ============================= */
+
+        .faq-section {
+            max-width: 950px;
+            margin: auto;
+            padding: 0 25px 90px;
+        }
+
+        .faq-group {
+            margin-bottom: 65px;
+            scroll-margin-top: 30px;
+        }
+
+        .faq-group-header {
+            margin-bottom: 25px;
+        }
+
+        .faq-group-header span {
+            color: #b87333;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .faq-group-header h2 {
+            margin-top: 8px;
+            font-size: 32px;
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        /* ============================= */
+        /* Accordion Questions */
+        /* ============================= */
+
+        .faq-item {
+            overflow: hidden;
+            background: white;
+            border: 1px solid #e3dfd9;
+            border-radius: 13px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.09);
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 23px 25px;
+            color: #202020;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .faq-icon {
+            min-width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background: #b87333;
+            border-radius: 50%;
+            font-size: 22px;
+            font-weight: normal;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 25px 24px;
+            color: #666;
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+        .faq-answer-content a {
+            color: #9d5725;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .faq-answer-content a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================= */
+        /* Contact Banner */
+        /* ============================= */
+
+        .contact-banner {
+            margin: 0 7% 90px;
+            padding: 65px 25px;
+            color: white;
+            background: #202020;
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .contact-banner h2 {
+            margin-bottom: 15px;
+            font-size: 35px;
+        }
+
+        .contact-banner p {
+            max-width: 650px;
+            margin: auto;
+            color: #d4d4d4;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .contact-banner-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 27px;
+        }
+
+        .contact-banner a {
+            display: inline-block;
+            padding: 14px 27px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .primary-button {
+            color: white;
+            background: #b87333;
+        }
+
+        .primary-button:hover {
+            background: #d08a50;
+            transform: translateY(-2px);
+        }
+
+        .secondary-button {
+            color: white;
+            border: 1px solid white;
+        }
+
+        .secondary-button:hover {
+            color: #202020;
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        /* ============================= */
+        /* Footer */
+        /* ============================= */
+
+        footer {
+            padding: 55px 20px;
+            color: white;
+            background: #111;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        footer p {
+            margin-top: 12px;
+            color: #bbb;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #c9824b;
+        }
+
+        /* ============================= */
+        /* Mobile Styling */
+        /* ============================= */
+
+        @media (max-width: 700px) {
+            nav ul {
+                gap: 20px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            .faq-intro h2 {
+                font-size: 32px;
+            }
+
+            .faq-group-header h2 {
+                font-size: 28px;
+            }
+
+            .faq-question {
+                padding: 20px;
+                font-size: 16px;
+            }
+
+            .faq-answer-content {
+                padding: 0 20px 22px;
+            }
+
+            .contact-banner {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero and Navigation -->
+
+    <header class="hero">
+
+        <div class="overlay"></div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="customorders.html">Custom Orders</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a class="active" href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-text">
+
+            <h1>FAQ</h1>
+
+            <h2>Everything you need to know.</h2>
+
+            <p>
+                Find answers about our products, custom-order process,
+                materials, pricing, shipping, and turnaround times.
+            </p>
+
+        </div>
+
+    </header>
+
+    <!-- Introduction -->
+
+    <section class="faq-intro">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <p>
+            Select a category or open any question below. For questions
+            about a specific design, contact us or submit a custom-order request.
+        </p>
+
+    </section>
+
+    <!-- Category Navigation -->
+
+    <div class="faq-categories">
+        <a href="#orders">Orders</a>
+        <a href="#custom">Custom Designs</a>
+        <a href="#materials">Materials</a>
+        <a href="#shipping">Pickup & Shipping</a>
+        <a href="#care">Product Care</a>
+    </div>
+
+    <!-- FAQ Questions -->
+
+    <main class="faq-section">
+
+        <!-- Orders -->
+
+        <section class="faq-group" id="orders">
+
+            <div class="faq-group-header">
+                <span>Ordering Information</span>
+                <h2>Products and Orders</h2>
+            </div>
+
+            <div class="faq-list">
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        How long does an order take?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Most standard products are completed within three
+                            to seven business days. Larger, personalized, or
+                            complex orders may require additional time. You will
+                            receive an estimated completion date before your
+                            order is confirmed.
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        How much do products cost?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Pricing depends on the product size, printing time,
+                            material usage, customization, and quantity. Small
+                            products such as keychains may begin around $10,
+                            while larger or custom products are priced individually.
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Can I order more than one item?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes. We accept individual, bulk, event, team, and
+                            business orders. Larger quantities may qualify for
+                            adjusted pricing depending on the design and deadline.
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Can I cancel or change my order?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Contact us as quickly as possible. Changes may be
+                            possible before printing begins. Personalized items
+                            generally cannot be canceled or changed after
+                            production has started.
+                        </div>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- Custom Orders -->
+
+        <section class="faq-group" id="custom">
+
+            <div class="faq-group-header">
+                <span>Personalized Creations</span>
+                <h2>Custom Designs</h2>
+            </div>
+
+            <div class="faq-list">
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Do you accept completely custom ideas?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes. You can submit a description, measurements,
+                            sketches, photographs, or reference links through
+                            our <a href="customorders.html">custom-order page</a>.
+                            We will review the idea and determine whether it can
+                            be designed and printed successfully.
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Can I provide my own 3D model?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes. Common file types include STL, 3MF, OBJ, and
+                            STEP files. The model may need to be inspected or
+                            adjusted before printing to make sure it is strong,
+                            properly sized, and printable.
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Can you design a model for me?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Design services may be available depending on the
+                            complexity of the project. Design time is separate
+                            from printing costs and will be included in your quote.
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Can I choose the color and size?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes. Most products can be customized by color,
+                            dimensions, text, font, and quantity. Available
+                            options depend on the product and the filament
+                            currently in stock.
+                        </div>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- Materials -->
+
+        <section class="faq-group" id="materials">
+
+            <div class="faq-group-header">
+                <span>Printing Information</span>
+                <h2>Materials and Quality</h2>
+            </div>
+
+            <div class="faq-list">
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        What material do you use?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Most products are printed using Elegoo PLA+.
+                            PLA+ provides good surface quality, strength, and
+                            detail for decorative products, accessories,
+                            personalized gifts, and many functional items.
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Are 3D-printed products perfectly smooth?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            3D-printed products are built in thin layers, so
+                            small layer lines may be visible. This is a normal
+                            part of the manufacturing process. Products are
+                            inspected before delivery, but minor surface
+                            variations may still be present.
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Are your products heat resistant?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            PLA+ can soften or deform when exposed to high
+                            temperatures. Do not leave products inside a hot
+                            vehicle, near an oven, directly against a heater,
+                            or close to an open flame.
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Are your products food safe?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Unless a product is specifically described as food
+                            safe, it should not be used for direct food contact.
+                            The layered surface of a 3D print can be difficult
+                            to clean completely.
+                        </div>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- Pickup and Shipping -->
+
+        <section class="faq-group" id="shipping">
+
+            <div class="faq-group-header">
+                <span>Receiving Your Order</span>
+                <h2>Pickup and Shipping</h2>
+            </div>
+
+            <div class="faq-list">
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Do you offer local pickup?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Local pickup may be available by arrangement.
+                            Pickup details should only be confirmed after the
+                            order is completed and ready.
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Do you ship orders?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Shipping options may be available depending on the
+                            product size, destination, and packaging requirements.
+                            Shipping costs are calculated separately from the
+                            product price.
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        What happens if my order arrives damaged?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Contact us promptly with photographs of the product
+                            and packaging. We will review the situation and
+                            determine the appropriate replacement or resolution.
+                        </div>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- Product Care -->
+
+        <section class="faq-group" id="care">
+
+            <div class="faq-group-header">
+                <span>Keeping Products in Good Condition</span>
+                <h2>Product Care</h2>
+            </div>
+
+            <div class="faq-list">
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        How should I clean my product?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Use a soft cloth with cool or lukewarm water.
+                            Avoid dishwashers, boiling water, harsh chemicals,
+                            rough brushes, and prolonged soaking.
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        Can I leave my product outside?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Most PLA+ products are intended for indoor use.
+                            Direct sunlight, moisture, freezing conditions,
+                            and heat can weaken, fade, or deform the material.
+                        </div>
+                    </div>
+
+                </article>
+
+                <article class="faq-item">
+
+                    <button class="faq-question" type="button">
+                        What if my product breaks?
+                        <span class="faq-icon">+</span>
+                    </button>
+
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Contact us with a photograph and explanation of what
+                            happened. Replacement options depend on the product,
+                            when it was purchased, and whether the damage resulted
+                            from a printing issue or improper use.
+                        </div>
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Contact Banner -->
+
+    <section class="contact-banner">
+
+        <h2>Still Have a Question?</h2>
+
+        <p>
+            Send us a message for help with an existing product, custom
+            project, bulk order, pricing question, or design idea.
+        </p>
+
+        <div class="contact-banner-buttons">
+
+            <a class="primary-button" href="contact.html">
+                Contact Us
+            </a>
+
+            <a class="secondary-button" href="customorders.html">
+                Request a Custom Order
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <h2>Fusion & FORM</h2>
+
+        <p>Where Ideas Take Form.</p>
+
+        <div class="footer-links">
+            <a href="shop.html">Shop</a>
+            <a href="customorders.html">Custom Orders</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+
+        <p>© 2026 Fusion & Form</p>
+
+    </footer>
+
+    <!-- FAQ Accordion and Background Slideshow -->
+
+    <script>
+        /*
+            FAQ accordion:
+            Opens the selected question and closes any other open question.
+        */
+
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach(function (item) {
+            const question = item.querySelector(".faq-question");
+            const answer = item.querySelector(".faq-answer");
+
+            question.addEventListener("click", function () {
+                const isOpen = item.classList.contains("open");
+
+                faqItems.forEach(function (otherItem) {
+                    otherItem.classList.remove("open");
+
+                    const otherAnswer =
+                        otherItem.querySelector(".faq-answer");
+
+                    otherAnswer.style.maxHeight = null;
+                });
+
+                if (!isOpen) {
+                    item.classList.add("open");
+                    answer.style.maxHeight =
+                        answer.scrollHeight + "px";
+                }
+            });
+        });
+
+        /*
+            Hero background slideshow.
+        */
+
+        const hero = document.querySelector(".hero");
+
+        const images = [
+            "https://images.unsplash.com/photo-1581092160607-ee22731d8c4f?w=1600",
+            "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600",
+            "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600"
+        ];
+
+        let currentImage = 0;
+
+        setInterval(function () {
+            currentImage++;
+
+            if (currentImage >= images.length) {
+                currentImage = 0;
+            }
+
+            hero.style.backgroundImage =
+                "url('" + images[currentImage] + "')";
+        }, 10000);
+    </script>
+
+</body>
+
+</html>

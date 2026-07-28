@@ -1,0 +1,984 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact | Fusion & Form</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f7f5f1;
+            color: #202020;
+        }
+
+        /* ============================= */
+        /* Hero Section */
+        /* ============================= */
+
+        .hero {
+            min-height: 65vh;
+            background-image: url("https://images.unsplash.com/photo-1581092160607-ee22731d8c4f?w=1600");
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        /* ============================= */
+        /* Navigation */
+        /* ============================= */
+
+        nav {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            padding: 28px 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 48px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #c9824b;
+        }
+
+        nav a.active {
+            color: #c9824b;
+            border-bottom: 2px solid #c9824b;
+            padding-bottom: 6px;
+        }
+
+        /* ============================= */
+        /* Hero Text */
+        /* ============================= */
+
+        .hero-text {
+            position: relative;
+            z-index: 5;
+            min-height: 48vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 40px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(42px, 7vw, 76px);
+            letter-spacing: 3px;
+        }
+
+        .hero-text h2 {
+            margin-top: 15px;
+            font-size: 25px;
+            font-weight: normal;
+        }
+
+        .hero-text p {
+            max-width: 680px;
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* ============================= */
+        /* Contact Introduction */
+        /* ============================= */
+
+        .contact-intro {
+            max-width: 850px;
+            margin: auto;
+            padding: 80px 25px 35px;
+            text-align: center;
+        }
+
+        .contact-intro h2 {
+            margin-bottom: 15px;
+            font-size: 38px;
+        }
+
+        .contact-intro p {
+            color: #666;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* ============================= */
+        /* Contact Cards */
+        /* ============================= */
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: auto;
+            padding: 25px 25px 70px;
+        }
+
+        .contact-card {
+            padding: 35px 25px;
+            background: white;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+            transition: 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.13);
+        }
+
+        .contact-icon {
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background: #b87333;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .contact-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .contact-card a {
+            display: inline-block;
+            margin-top: 14px;
+            color: #9d5725;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================= */
+        /* Main Contact Section */
+        /* ============================= */
+
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            max-width: 1150px;
+            margin: 0 auto 90px;
+            padding: 25px;
+        }
+
+        .contact-info {
+            padding: 40px;
+            color: white;
+            background: #202020;
+            border-radius: 18px;
+        }
+
+        .contact-info h2 {
+            margin-bottom: 18px;
+            font-size: 32px;
+        }
+
+        .contact-info > p {
+            margin-bottom: 28px;
+            color: #d4d4d4;
+            line-height: 1.7;
+        }
+
+        .info-item {
+            margin-bottom: 25px;
+        }
+
+        .info-item h3 {
+            margin-bottom: 8px;
+            color: #c9824b;
+            font-size: 18px;
+        }
+
+        .info-item p {
+            color: #d4d4d4;
+            line-height: 1.6;
+        }
+
+        .info-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .info-item a:hover {
+            color: #c9824b;
+        }
+
+        /* ============================= */
+        /* Contact Form */
+        /* ============================= */
+
+        .form-container {
+            padding: 40px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.09);
+        }
+
+        .form-container h2 {
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .form-container > p {
+            margin-bottom: 30px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-family: inherit;
+            font-size: 15px;
+        }
+
+        .form-group textarea {
+            min-height: 155px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #b87333;
+            box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.12);
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            color: white;
+            background: #b87333;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #915524;
+            transform: translateY(-2px);
+        }
+
+        .form-note {
+            margin-top: 15px;
+            color: #777;
+            font-size: 13px;
+            text-align: center;
+        }
+
+
+        .form-status {
+            display: none;
+            margin-top: 16px;
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .form-status.success {
+            display: block;
+            color: #245c35;
+            background: #e8f6ec;
+            border: 1px solid #9dcea9;
+        }
+
+        .form-status.error {
+            display: block;
+            color: #8a2929;
+            background: #fdecec;
+            border: 1px solid #e2aaaa;
+        }
+
+        .submit-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+            transform: none;
+        }
+
+        /* ============================= */
+        /* FAQ Banner */
+        /* ============================= */
+
+        .faq-banner {
+            margin: 0 7% 90px;
+            padding: 60px 25px;
+            color: white;
+            background: #b87333;
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .faq-banner h2 {
+            margin-bottom: 15px;
+            font-size: 34px;
+        }
+
+        .faq-banner p {
+            max-width: 650px;
+            margin: auto;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .faq-banner a {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 27px;
+            color: #202020;
+            background: white;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .faq-banner a:hover {
+            background: #f3eee8;
+            transform: scale(1.04);
+        }
+
+        /* ============================= */
+        /* Footer */
+        /* ============================= */
+
+        footer {
+            padding: 55px 20px;
+            color: white;
+            background: #111;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        footer p {
+            margin-top: 12px;
+            color: #bbb;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #c9824b;
+        }
+
+        /* ============================= */
+        /* Mobile Styling */
+        /* ============================= */
+
+        @media (max-width: 850px) {
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            nav ul {
+                gap: 20px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .contact-info,
+            .form-container {
+                padding: 28px 22px;
+            }
+
+            .faq-banner {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero and Navigation -->
+
+    <header class="hero">
+
+        <div class="overlay"></div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="customorders.html">Custom Orders</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a class="active" href="contact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-text">
+            <h1>CONTACT US</h1>
+
+            <h2>Questions, ideas, or custom requests?</h2>
+
+            <p>
+                Reach out to Fusion & Form and we will help you find the
+                right product or bring your custom idea to life.
+            </p>
+        </div>
+
+    </header>
+
+    <!-- Contact Introduction -->
+
+    <section class="contact-intro">
+
+        <h2>Let’s Start a Conversation</h2>
+
+        <p>
+            Contact us about products, custom designs, order updates,
+            bulk requests, business projects, or general questions.
+        </p>
+
+    </section>
+
+    <!-- Contact Cards -->
+
+    <section class="contact-cards">
+
+        <article class="contact-card">
+
+            <div class="contact-icon">@</div>
+
+            <h3>Email</h3>
+
+            <p>
+                Send us a message and we will respond as soon as possible.
+            </p>
+
+            <a href="mailto:your-email@example.com">
+                your-email@example.com
+            </a>
+
+        </article>
+
+        <article class="contact-card">
+
+            <div class="contact-icon">IG</div>
+
+            <h3>Instagram</h3>
+
+            <p>
+                Follow our work, recent prints, and product updates.
+            </p>
+
+            <a href="#" target="_blank">
+                @Fusionandform
+            </a>
+
+        </article>
+
+        <article class="contact-card">
+
+            <div class="contact-icon">TT</div>
+
+            <h3>TikTok</h3>
+
+            <p>
+                Watch behind-the-scenes printing and design videos.
+            </p>
+
+            <a href="#" target="_blank">
+                @Fusionandform
+            </a>
+
+        </article>
+
+        <article class="contact-card">
+
+            <div class="contact-icon">HRS</div>
+
+            <h3>Response Time</h3>
+
+            <p>
+                Most messages receive a response within one to two business days.
+            </p>
+
+        </article>
+
+    </section>
+
+    <!-- Contact Information and Form -->
+
+    <section class="contact-section">
+
+        <aside class="contact-info">
+
+            <h2>Contact Information</h2>
+
+            <p>
+                Use the form or contact us directly through email or social media.
+            </p>
+
+            <div class="info-item">
+
+                <h3>Email</h3>
+
+                <p>
+                    <a href="mailto:your-email@example.com">
+                        your-email@example.com
+                    </a>
+                </p>
+
+            </div>
+
+            <div class="info-item">
+
+                <h3>Business Hours</h3>
+
+                <p>
+                    Monday–Friday: 4:00 PM–8:00 PM
+                </p>
+
+                <p>
+                    Saturday–Sunday: Limited availability
+                </p>
+
+            </div>
+
+            <div class="info-item">
+
+                <h3>Service Area</h3>
+
+                <p>
+                    Local pickup and shipping options can be discussed
+                    before an order is confirmed.
+                </p>
+
+            </div>
+
+            <div class="info-item">
+
+                <h3>Custom Orders</h3>
+
+                <p>
+                    For detailed custom projects, use our custom-order page
+                    so you can provide dimensions, quantity, colors, and references.
+                </p>
+
+            </div>
+
+        </aside>
+
+        <div class="form-container">
+
+            <h2>Send Us a Message</h2>
+
+            <p>
+                Complete the form below and tell us how we can help.
+            </p>
+
+            <form id="contactForm">
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Optional">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topic">Message Topic</label>
+
+                        <select id="topic" name="topic" required>
+
+                            <option value="">Select a topic</option>
+                            <option value="general-question">
+                                General Question
+                            </option>
+                            <option value="product-question">
+                                Product Question
+                            </option>
+                            <option value="custom-order">
+                                Custom Order
+                            </option>
+                            <option value="order-update">
+                                Order Update
+                            </option>
+                            <option value="bulk-order">
+                                Bulk or Business Order
+                            </option>
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+
+                    <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        placeholder="What is your message about?"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Type your message here..."
+                        required></textarea>
+                </div>
+
+                <button class="submit-button" type="submit">
+                    Send Message
+                </button>
+
+                <p class="form-note">
+                    Submitting this form sends your message directly to
+                    Fusion &amp; Form.
+                </p>
+
+                <div
+                    id="formStatus"
+                    class="form-status"
+                    role="status"
+                    aria-live="polite">
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- FAQ Banner -->
+
+    <section class="faq-banner">
+
+        <h2>Looking for a Quick Answer?</h2>
+
+        <p>
+            Visit our FAQ page for information about custom orders,
+            materials, turnaround times, shipping, and product care.
+        </p>
+
+        <a href="faq.html">View Frequently Asked Questions</a>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <h2>FUSION &amp; FORM</h2>
+
+        <p>Where Ideas Take Form.</p>
+
+        <div class="footer-links">
+            <a href="shop.html">Shop</a>
+            <a href="customorders.html">Custom Orders</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+
+        <p>© 2026 Fusion & Form</p>
+
+    </footer>
+
+
+    <!-- EmailJS Browser SDK -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+        const EMAILJS_SERVICE_ID = "service_zkkh9xa";
+        const EMAILJS_TEMPLATE_ID = "template_xblqmbl";
+        const EMAILJS_PUBLIC_KEY = "pUxVbrlR9HW3QqrTw";
+
+        emailjs.init({
+            publicKey: EMAILJS_PUBLIC_KEY
+        });
+
+        const contactForm =
+            document.getElementById("contactForm");
+
+        const submitButton =
+            contactForm.querySelector(".submit-button");
+
+        const formStatus =
+            document.getElementById("formStatus");
+
+        contactForm.addEventListener(
+            "submit",
+            async function (event) {
+                event.preventDefault();
+
+                if (!contactForm.checkValidity()) {
+                    contactForm.reportValidity();
+                    return;
+                }
+
+                const originalButtonText =
+                    submitButton.textContent;
+
+                submitButton.disabled = true;
+                submitButton.textContent = "Sending...";
+
+                formStatus.className = "form-status";
+                formStatus.textContent = "";
+
+                const topicSelect =
+                    document.getElementById("topic");
+
+                const topicText =
+                    topicSelect.options[
+                        topicSelect.selectedIndex
+                    ].text;
+
+                const subject =
+                    document.getElementById("subject").value.trim();
+
+                const message =
+                    document.getElementById("message").value.trim();
+
+                const templateParams = {
+                    customer_name:
+                        document.getElementById("name").value.trim(),
+
+                    customer_email:
+                        document.getElementById("email").value.trim(),
+
+                    customer_phone:
+                        document.getElementById("phone").value.trim() ||
+                        "Not provided",
+
+                    product:
+                        "Contact Form — " + topicText,
+
+                    quantity:
+                        "Not applicable",
+
+                    color:
+                        "Not applicable",
+
+                    dimensions:
+                        "Not applicable",
+
+                    deadline:
+                        "Not applicable",
+
+                    budget:
+                        "Not applicable",
+
+                    reference:
+                        "Not provided",
+
+                    description:
+                        "Subject: " + subject + "\n\n" +
+                        "Topic: " + topicText + "\n\n" +
+                        "Message:\n" + message,
+
+                    reply_to:
+                        document.getElementById("email").value.trim()
+                };
+
+                try {
+                    await emailjs.send(
+                        EMAILJS_SERVICE_ID,
+                        EMAILJS_TEMPLATE_ID,
+                        templateParams
+                    );
+
+                    formStatus.className =
+                        "form-status success";
+
+                    formStatus.textContent =
+                        "Your message was sent successfully. " +
+                        "Fusion & Form will respond as soon as possible.";
+
+                    contactForm.reset();
+
+                    formStatus.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+                } catch (error) {
+                    console.error(
+                        "EmailJS contact submission failed:",
+                        error
+                    );
+
+                    formStatus.className =
+                        "form-status error";
+
+                    formStatus.textContent =
+                        "Your message could not be sent. Please check your " +
+                        "connection and try again.";
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent =
+                        originalButtonText;
+                }
+            }
+        );
+    </script>
+
+    <!-- Background Slideshow -->
+
+    <script>
+        const hero = document.querySelector(".hero");
+
+        const images = [
+            "https://images.unsplash.com/photo-1581092160607-ee22731d8c4f?w=1600",
+            "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600",
+            "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600"
+        ];
+
+        let currentImage = 0;
+
+        setInterval(function () {
+            currentImage++;
+
+            if (currentImage >= images.length) {
+                currentImage = 0;
+            }
+
+            hero.style.backgroundImage =
+                "url('" + images[currentImage] + "')";
+        }, 10000);
+    </script>
+
+</body>
+
+</html>
+

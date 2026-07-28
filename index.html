@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Fusion & Form | Where Ideas Take Form</title>
+
+    <style>
+        /* ============================= */
+        /* General Website Styling */
+        /* ============================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f7f5f1;
+            color: #202020;
+        }
+
+        /* ============================= */
+        /* Hero Section */
+        /* ============================= */
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            background-image:
+                url("https://images.unsplash.com/photo-1581092160607-ee22731d8c4f?w=1600");
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.58);
+        }
+
+        /* ============================= */
+        /* Navigation */
+        /* ============================= */
+
+        nav {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            padding: 28px 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 48px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #c9824b;
+        }
+
+        nav a.active {
+            color: #c9824b;
+            border-bottom: 2px solid #c9824b;
+            padding-bottom: 6px;
+        }
+
+        /* ============================= */
+        /* Hero Content */
+        /* ============================= */
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            min-height: calc(100vh - 90px);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            padding: 40px 20px 110px;
+
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(52px, 9vw, 100px);
+            letter-spacing: 6px;
+            line-height: 1;
+        }
+
+        .hero-content h2 {
+            margin-top: 18px;
+            font-size: clamp(22px, 3vw, 30px);
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+
+        .hero-content p {
+            max-width: 700px;
+            margin-top: 24px;
+            color: #eeeeee;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* ============================= */
+        /* Hero Buttons */
+        /* ============================= */
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 35px;
+        }
+
+        .primary-button,
+        .secondary-button {
+            display: inline-block;
+            min-width: 165px;
+            padding: 16px 32px;
+
+            border-radius: 8px;
+            text-decoration: none;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition:
+                transform 0.3s ease,
+                background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .primary-button {
+            color: white;
+            background: #b87333;
+            border: 2px solid #b87333;
+        }
+
+        .primary-button:hover {
+            background: #915524;
+            border-color: #915524;
+            transform: translateY(-3px);
+        }
+
+        .secondary-button {
+            color: white;
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .secondary-button:hover {
+            color: #202020;
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        /* ============================= */
+        /* Scroll Indicator */
+        /* ============================= */
+
+        .scroll-link {
+            position: absolute;
+            z-index: 6;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .scroll-arrow {
+            display: block;
+            margin-top: 8px;
+            font-size: 24px;
+            animation: bounce 1.6s infinite;
+        }
+
+        @keyframes bounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(8px);
+            }
+        }
+
+        /* ============================= */
+        /* Section Introduction */
+        /* ============================= */
+
+        .section-intro {
+            max-width: 820px;
+            margin: auto;
+            padding: 85px 25px 35px;
+            text-align: center;
+        }
+
+        .section-intro span {
+            color: #b87333;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-intro h2 {
+            margin-top: 10px;
+            margin-bottom: 16px;
+            font-size: 40px;
+        }
+
+        .section-intro p {
+            color: #666;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* ============================= */
+        /* Categories */
+        /* ============================= */
+
+        .category-section {
+            padding: 15px 7% 95px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+
+            gap: 26px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .category-card {
+            position: relative;
+            min-height: 350px;
+            overflow: hidden;
+            border-radius: 18px;
+            text-decoration: none;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+        }
+
+        .category-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.78),
+                    rgba(0, 0, 0, 0.08)
+                );
+        }
+
+        .category-card:hover img {
+            transform: scale(1.07);
+        }
+
+        .category-content {
+            position: absolute;
+            z-index: 2;
+            left: 25px;
+            right: 25px;
+            bottom: 25px;
+            color: white;
+        }
+
+        .category-content h3 {
+            margin-bottom: 8px;
+            font-size: 27px;
+        }
+
+        .category-content p {
+            color: #e4e4e4;
+            line-height: 1.5;
+        }
+
+        /* ============================= */
+        /* Why Choose Us */
+        /* ============================= */
+
+        .why-section {
+            padding: 90px 7%;
+            color: white;
+            background: #202020;
+        }
+
+        .why-heading {
+            max-width: 750px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .why-heading span {
+            color: #c9824b;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .why-heading h2 {
+            margin-top: 10px;
+            font-size: 40px;
+        }
+
+        .why-heading p {
+            margin-top: 18px;
+            color: #cfcfcf;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 26px;
+            max-width: 1150px;
+            margin: 50px auto 0;
+        }
+
+        .why-card {
+            padding: 34px 25px;
+            background: #2c2c2c;
+            border: 1px solid #3c3c3c;
+            border-radius: 15px;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-6px);
+            border-color: #b87333;
+        }
+
+        .why-number {
+            width: 52px;
+            height: 52px;
+            margin: 0 auto 19px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: #b87333;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        .why-card h3 {
+            margin-bottom: 12px;
+            font-size: 21px;
+        }
+
+        .why-card p {
+            color: #cfcfcf;
+            line-height: 1.65;
+        }
+
+        /* ============================= */
+        /* Featured Products */
+        /* ============================= */
+
+        .products-section {
+            padding: 85px 7% 100px;
+        }
+
+        .products-heading {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .products-heading span {
+            color: #b87333;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .products-heading h2 {
+            margin-top: 10px;
+            font-size: 40px;
+        }
+
+        .products-heading p {
+            margin-top: 16px;
+            color: #666;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+
+            gap: 28px;
+            max-width: 1150px;
+            margin: 45px auto 0;
+        }
+
+        .product-card {
+            overflow: hidden;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
+            transition: 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 32px rgba(0, 0, 0, 0.14);
+        }
+
+        .product-card img {
+            display: block;
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 24px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .product-info p {
+            min-height: 52px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .price {
+            display: block;
+            margin-top: 17px;
+            color: #9d5725;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .product-link {
+            display: inline-block;
+            margin-top: 18px;
+            color: #9d5725;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .product-link:hover {
+            text-decoration: underline;
+        }
+
+        .view-shop {
+            margin-top: 42px;
+            text-align: center;
+        }
+
+        .view-shop a {
+            display: inline-block;
+            padding: 15px 29px;
+            color: white;
+            background: #b87333;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .view-shop a:hover {
+            background: #915524;
+            transform: translateY(-3px);
+        }
+
+        /* ============================= */
+        /* Reviews */
+        /* ============================= */
+
+        .reviews-section {
+            padding: 90px 7%;
+            background: #ece8e2;
+        }
+
+        .reviews-heading {
+            text-align: center;
+        }
+
+        .reviews-heading span {
+            color: #b87333;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .reviews-heading h2 {
+            margin-top: 10px;
+            font-size: 40px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 25px;
+            max-width: 1100px;
+            margin: 45px auto 0;
+        }
+
+        .review-card {
+            padding: 32px 27px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.07);
+        }
+
+        .stars {
+            color: #b87333;
+            font-size: 20px;
+            letter-spacing: 3px;
+        }
+
+        .review-card p {
+            margin-top: 16px;
+            color: #555;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .review-card h3 {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        /* ============================= */
+        /* Custom Order Banner */
+        /* ============================= */
+
+        .custom-banner {
+            margin: 90px 7%;
+            padding: 70px 25px;
+            color: white;
+            background: #b87333;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .custom-banner h2 {
+            margin-bottom: 16px;
+            font-size: 38px;
+        }
+
+        .custom-banner p {
+            max-width: 700px;
+            margin: auto;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .custom-banner a {
+            display: inline-block;
+            margin-top: 27px;
+            padding: 15px 29px;
+
+            color: #202020;
+            background: white;
+            border-radius: 8px;
+
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .custom-banner a:hover {
+            background: #f2eee9;
+            transform: translateY(-3px);
+        }
+
+        /* ============================= */
+        /* Footer */
+        /* ============================= */
+
+        footer {
+            padding: 58px 20px;
+            color: white;
+            background: #111;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        footer p {
+            margin-top: 12px;
+            color: #bbb;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 22px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #c9824b;
+        }
+
+        /* ============================= */
+        /* Mobile Styling */
+        /* ============================= */
+
+        @media (max-width: 700px) {
+            nav ul {
+                gap: 19px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            .hero-content {
+                padding-bottom: 100px;
+            }
+
+            .hero-content h1 {
+                letter-spacing: 3px;
+            }
+
+            .hero-buttons {
+                width: 100%;
+            }
+
+            .primary-button,
+            .secondary-button {
+                width: min(100%, 280px);
+            }
+
+            .section-intro h2,
+            .why-heading h2,
+            .products-heading h2,
+            .reviews-heading h2,
+            .custom-banner h2 {
+                font-size: 32px;
+            }
+
+            .custom-banner {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero and Navigation -->
+
+    <header class="hero">
+
+        <div class="overlay"></div>
+
+        <nav>
+            <ul>
+                <li>
+                    <a class="active" href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="shop.html">
+                        Shop
+                    </a>
+                </li>
+
+                <li>
+                    <a href="customorders.html">
+                        Custom Orders
+                    </a>
+                </li>
+
+                <li>
+                    <a href="about.html">
+                        About
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        Contact
+                    </a>
+                </li>
+
+                <li>
+                    <a href="faq.html">
+                        FAQ
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="hero-content">
+
+            <h1>Fusion & FORM</h1>
+
+            <h2>Where Ideas Take Form.</h2>
+
+            <p>
+                Custom 3D-printed products created through thoughtful
+                design, precision printing, and careful craftsmanship.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="shop.html"
+                    class="primary-button">
+
+                    Shop Now
+                </a>
+
+                <a
+                    href="customorders.html"
+                    class="secondary-button">
+
+                    Custom Order
+                </a>
+
+            </div>
+
+        </div>
+
+        <a class="scroll-link" href="#categories">
+            Explore
+            <span class="scroll-arrow">↓</span>
+        </a>
+
+    </header>
+
+    <!-- Categories Introduction -->
+
+    <section class="section-intro" id="categories">
+
+        <span>Explore Our Work</span>
+
+        <h2>Made for Your Space, Style, and Ideas</h2>
+
+        <p>
+            Browse personalized products, practical accessories,
+            decorative pieces, gifts, and completely custom creations.
+        </p>
+
+    </section>
+
+    <!-- Categories -->
+
+    <section class="category-section">
+
+        <div class="category-grid">
+
+            <a
+                class="category-card"
+                href="shop.html#keychains">
+
+                <img
+                    src="C:\Users\mattg\OneDrive\Desktop\forge and form\images\slideshows\keychain-portrain.png"
+                    alt="Custom 3D printed keychains">
+
+                <div class="category-content">
+                    <h3>Keychains</h3>
+
+                    <p>
+                        Personalized names, initials, logos, and designs.
+                    </p>
+                </div>
+
+            </a>
+
+            <a
+                class="category-card"
+                href="shop.html#decor">
+
+                <img
+                    src="C:\Users\mattg\OneDrive\Desktop\forge and form\images\slideshows\planter-portrait.png"
+                    alt="3D printed home decorations">
+
+                <div class="category-content">
+                    <h3>Home Décor</h3>
+
+                    <p>
+                        Modern pieces designed to add personality to a room.
+                    </p>
+                </div>
+
+            </a>
+
+            <a
+                class="category-card"
+                href="shop.html#desk">
+
+                <img
+                    src="C:\Users\mattg\OneDrive\Desktop\forge and form\images\slideshows\organizer-portrait.png"
+                    alt="3D printed desk accessories">
+
+                <div class="category-content">
+                    <h3>Desk Accessories</h3>
+
+                    <p>
+                        Organizers, stands, holders, and useful workspace tools.
+                    </p>
+                </div>
+
+            </a>
+
+            <a
+                class="category-card"
+                href="customorders.html">
+
+                <img
+                    src="C:\Users\mattg\OneDrive\Desktop\forge and form\images\slideshows\custom-creation.png"
+                    alt="Custom 3D printed creations">
+
+                <div class="category-content">
+                    <h3>Custom Creations</h3>
+
+                    <p>
+                        Share your concept and receive a personalized quote.
+                    </p>
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Why Choose Us -->
+
+    <section class="why-section">
+
+        <div class="why-heading">
+
+            <span>Why Fusion & Form</span>
+
+            <h2>Designed with Purpose</h2>
+
+            <p>
+                We combine modern design, dependable materials, and
+                careful production to create products that feel personal.
+            </p>
+
+        </div>
+
+        <div class="why-grid">
+
+            <article class="why-card">
+
+                <div class="why-number">01</div>
+
+                <h3>Personalized Designs</h3>
+
+                <p>
+                    Choose your colors, wording, dimensions, and other
+                    details to make the product your own.
+                </p>
+
+            </article>
+
+            <article class="why-card">
+
+                <div class="why-number">02</div>
+
+                <h3>Quality Materials</h3>
+
+                <p>
+                    Our products are primarily created using dependable
+                    Elegoo PLA+ filament.
+                </p>
+
+            </article>
+
+            <article class="why-card">
+
+                <div class="why-number">03</div>
+
+                <h3>Careful Inspection</h3>
+
+                <p>
+                    Every item is checked before pickup or shipping to
+                    make sure it meets our quality expectations.
+                </p>
+
+            </article>
+
+            <article class="why-card">
+
+                <div class="why-number">04</div>
+
+                <h3>Creative Solutions</h3>
+
+                <p>
+                    We use design and engineering skills to transform
+                    challenging ideas into physical products.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    
+    <!-- Custom Order Banner -->
+
+    <section class="custom-banner">
+
+        <h2>Have Something Different in Mind?</h2>
+
+        <p>
+            Send us your idea, measurements, preferred colors, and
+            reference images. We will review your project and provide
+            a personalized quote.
+        </p>
+
+        <a href="customorders.html">
+            Start a Custom Order
+        </a>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <h2>Fusion & FORM</h2>
+
+        <p>Where Ideas Take Form.</p>
+
+        <div class="footer-links">
+
+            <a href="shop.html">
+                Shop
+            </a>
+
+            <a href="customorders.html">
+                Custom Orders
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <a href="faq.html">
+                FAQ
+            </a>
+
+        </div>
+
+        <p>© 2026 Fusion & Form</p>
+
+    </footer>
+
+    <!-- Hero Background Slideshow -->
+
+    <script>
+        const hero = document.querySelector(".hero");
+
+        const images = [
+            "https://images.unsplash.com/photo-1581092160607-ee22731d8c4f?w=1600",
+
+            "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600",
+
+            "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600"
+        ];
+
+        let currentImage = 0;
+
+        setInterval(function () {
+            currentImage++;
+
+            if (currentImage >= images.length) {
+                currentImage = 0;
+            }
+
+            hero.style.backgroundImage =
+                "url('" + images[currentImage] + "')";
+        }, 10000);
+    </script>
+
+</body>
+
+</html>

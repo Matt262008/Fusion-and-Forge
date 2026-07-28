@@ -1,0 +1,2798 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Home Decor | Fusion & Form</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #202020;
+            background: #f7f5f1;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        /* Navigation */
+
+        .site-header {
+            padding: 24px 20px;
+            background: #171717;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 42px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #c9824b;
+        }
+
+        nav a.active {
+            color: #c9824b;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #c9824b;
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 58vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 25px;
+            color: white;
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.64),
+                    rgba(0, 0, 0, 0.64)
+                ),
+                url("https://images.unsplash.com/photo-1618220179428-22790b461013?w=1600");
+            background-position: center;
+            background-size: cover;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content span {
+            color: #d28a50;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hero-content h1 {
+            margin-top: 12px;
+            font-size: clamp(44px, 7vw, 76px);
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            margin-top: 20px;
+            color: #eeeeee;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* Breadcrumb */
+
+        .breadcrumb {
+            max-width: 1250px;
+            margin: auto;
+            padding: 28px 25px 0;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: #9d5725;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Introduction */
+
+        .intro {
+            max-width: 850px;
+            margin: auto;
+            padding: 75px 25px 45px;
+            text-align: center;
+        }
+
+        .intro span {
+            color: #b87333;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .intro h2 {
+            margin-top: 10px;
+            font-size: 42px;
+        }
+
+        .intro p {
+            margin-top: 17px;
+            color: #666;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* Product Navigation */
+
+        .product-navigation {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 0 25px 70px;
+        }
+
+        .product-navigation a {
+            padding: 14px 24px;
+            color: #202020;
+            background: white;
+            border: 2px solid #b87333;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .product-navigation a:hover {
+            color: white;
+            background: #b87333;
+            transform: translateY(-2px);
+        }
+
+        /* Product Sections */
+
+        .product-section {
+            padding: 80px 25px;
+        }
+
+        .product-section.alt {
+            background: #ece8e2;
+        }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 55px;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        /* Gallery */
+
+        .gallery {
+            min-width: 0;
+        }
+
+        .main-image-container {
+            position: relative;
+            overflow: hidden;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-image {
+            width: 100%;
+            height: 560px;
+            display: block;
+            object-fit: cover;
+            transition: opacity 0.25s ease;
+        }
+
+        .image-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 9px 15px;
+            color: white;
+            background: #b87333;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .thumbnail {
+            overflow: hidden;
+            padding: 0;
+            background: white;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: #b87333;
+            transform: translateY(-3px);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100px;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Product Information */
+
+        .product-info {
+            align-self: start;
+        }
+
+        .product-label {
+            color: #b87333;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .product-info h2 {
+            margin-top: 10px;
+            font-size: clamp(38px, 5vw, 56px);
+            line-height: 1.05;
+        }
+
+        .price {
+            display: block;
+            margin-top: 20px;
+            color: #9d5725;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .product-description {
+            margin-top: 20px;
+            color: #666;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 25px;
+            padding: 22px;
+            background: #eee9e2;
+            border-radius: 14px;
+        }
+
+        .alt .feature-list {
+            background: white;
+        }
+
+        .feature-item {
+            color: #555;
+            font-size: 15px;
+        }
+
+        .feature-item::before {
+            content: "✓";
+            margin-right: 8px;
+            color: #b87333;
+            font-weight: bold;
+        }
+
+        /* Forms */
+
+        .product-form {
+            margin-top: 32px;
+            padding: 30px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .product-form h3 {
+            margin-bottom: 8px;
+            font-size: 27px;
+        }
+
+        .form-description {
+            margin-bottom: 25px;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label,
+        .group-label {
+            display: block;
+            margin-bottom: 9px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            color: #202020;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .form-group textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #b87333;
+            box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.13);
+        }
+
+        /* Color Options */
+
+        .color-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .color-choice input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .color-choice label {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 10px 13px;
+            background: #f6f3ee;
+            border: 2px solid transparent;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .color-choice input:checked + label {
+            border-color: #b87333;
+            background: #fff7f0;
+        }
+
+        .color-circle {
+            width: 23px;
+            height: 23px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+        }
+
+        .black {
+            background: #171717;
+        }
+
+        .white {
+            background: white;
+        }
+
+        .gray {
+            background: #777;
+        }
+
+        .cream {
+            background: #e8dcc8;
+        }
+
+        .terracotta {
+            background: #b85c3f;
+        }
+
+        .green {
+            background: #587a55;
+        }
+
+        .blue {
+            background: #4d7397;
+        }
+
+        .purple {
+            background: #76598f;
+        }
+
+        /* Style Choices */
+
+        .style-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .style-choice input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .style-choice label {
+            display: block;
+            padding: 15px;
+            background: #f6f3ee;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            transition: 0.2s ease;
+        }
+
+        .style-choice input:checked + label {
+            color: #9d5725;
+            background: #fff7f0;
+            border-color: #b87333;
+        }
+
+        /* Quantity */
+
+        .quantity-control {
+            display: inline-flex;
+            align-items: center;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .quantity-button {
+            width: 46px;
+            height: 46px;
+            color: #202020;
+            background: #eee9e2;
+            border: none;
+            cursor: pointer;
+            font-size: 21px;
+            transition: 0.2s ease;
+        }
+
+        .quantity-button:hover {
+            color: white;
+            background: #b87333;
+        }
+
+        .quantity-input {
+            width: 60px;
+            height: 46px;
+            border: none;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .quantity-input:focus {
+            outline: none;
+        }
+
+        /* Price Summary */
+
+        .price-summary {
+            margin-top: 26px;
+            padding: 20px;
+            background: #202020;
+            border-radius: 12px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            color: #ddd;
+        }
+
+        .summary-row + .summary-row {
+            margin-top: 12px;
+        }
+
+        .summary-total {
+            padding-top: 15px;
+            border-top: 1px solid #444;
+            color: white;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .order-button {
+            width: 100%;
+            margin-top: 22px;
+            padding: 17px 25px;
+            color: white;
+            background: #b87333;
+            border: none;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .order-button:hover {
+            background: #915524;
+            transform: translateY(-2px);
+        }
+
+        .form-note {
+            margin-top: 13px;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+
+        .shipping-only {
+            display: none;
+        }
+
+        .form-status {
+            display: none;
+            margin-top: 16px;
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .form-status.success {
+            display: block;
+            color: #245c35;
+            background: #e8f6ec;
+            border: 1px solid #9dcea9;
+        }
+
+        .form-status.error {
+            display: block;
+            color: #8a2929;
+            background: #fdecec;
+            border: 1px solid #e2aaaa;
+        }
+
+        .order-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+            transform: none;
+        }
+
+        /* Details Section */
+
+        .details-section {
+            padding: 90px 7%;
+            color: white;
+            background: #202020;
+        }
+
+        .details-heading {
+            max-width: 760px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .details-heading span {
+            color: #c9824b;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .details-heading h2 {
+            margin-top: 10px;
+            font-size: 40px;
+        }
+
+        .details-heading p {
+            margin-top: 16px;
+            color: #cccccc;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 45px auto 0;
+        }
+
+        .detail-card {
+            padding: 32px 25px;
+            background: #2b2b2b;
+            border: 1px solid #3c3c3c;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .detail-icon {
+            width: 58px;
+            height: 58px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 18px;
+            color: white;
+            background: #b87333;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        .detail-card h3 {
+            margin-bottom: 11px;
+            font-size: 21px;
+        }
+
+        .detail-card p {
+            color: #ccc;
+            line-height: 1.65;
+        }
+
+        /* Safety Banner */
+
+        .safety-banner {
+            max-width: 1100px;
+            margin: 80px auto;
+            padding: 40px;
+            background: #fff7f0;
+            border-left: 6px solid #b87333;
+            border-radius: 12px;
+        }
+
+        .safety-banner h2 {
+            font-size: 28px;
+        }
+
+        .safety-banner p {
+            margin-top: 12px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+
+        footer {
+            padding: 56px 20px;
+            color: white;
+            background: #111;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        footer p {
+            margin-top: 12px;
+            color: #bbb;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 22px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #c9824b;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 950px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+
+            .main-image {
+                height: 520px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            nav ul {
+                gap: 19px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            .intro h2,
+            .details-heading h2 {
+                font-size: 32px;
+            }
+
+            .main-image {
+                height: 400px;
+            }
+
+            .thumbnail img {
+                height: 80px;
+            }
+
+            .feature-list,
+            .style-options {
+                grid-template-columns: 1fr;
+            }
+
+            .product-form {
+                padding: 24px 20px;
+            }
+
+            .safety-banner {
+                margin: 60px 20px;
+                padding: 30px 24px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .thumbnail-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <header class="site-header">
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+
+                <li>
+                    <a class="active" href="shop.html">Shop</a>
+                </li>
+
+                <li>
+                    <a href="customorders.html">Custom Orders</a>
+                </li>
+
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+
+                <li>
+                    <a href="contact.html">Contact</a>
+                </li>
+
+                <li>
+                    <a href="faq.html">FAQ</a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- Hero -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span>Fusion & Form Home Collection</span>
+
+            <h1>Modern Home Decor</h1>
+
+            <p>
+                Add a personalized, functional, and modern touch to your
+                space with 3D-printed decor made in your preferred style.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Breadcrumb -->
+
+    <div class="breadcrumb">
+
+        <a href="index.html">Home</a>
+        &nbsp;/&nbsp;
+
+        <a href="shop.html">Shop</a>
+        &nbsp;/&nbsp;
+
+        Home Decor
+
+    </div>
+
+    <!-- Intro -->
+
+    <section class="intro">
+
+        <span>Choose a Product</span>
+
+        <h2>Decor Designed for Your Space</h2>
+
+        <p>
+            Select a modern planter or decorative candle holder below.
+            Each product can be customized with different colors, sizes,
+            styles, and quantities.
+        </p>
+
+    </section>
+
+    <div class="product-navigation">
+
+        <a href="#modern-planter">
+            Modern Planter
+        </a>
+
+        <a href="#candle-holder">
+            Decorative Candle Holder
+        </a>
+
+    </div>
+
+    <!-- Modern Planter -->
+
+    <section
+        class="product-section"
+        id="modern-planter">
+
+        <div class="product-container">
+
+            <section class="gallery">
+
+                <div class="main-image-container">
+
+                    <img
+                        class="main-image"
+                        id="planterMainImage"
+                        src="https://placehold.co/900x900?text=Modern+Planter"
+                        alt="Modern 3D-printed planter">
+
+                    <span class="image-badge">
+                        Modern Design
+                    </span>
+
+                </div>
+
+                <div class="thumbnail-grid">
+
+                    <button
+                        class="thumbnail planter-thumbnail active"
+                        type="button"
+                        data-image="https://placehold.co/900x900?text=Modern+Planter">
+
+                        <img
+                            src="https://placehold.co/250x250?text=Front"
+                            alt="Planter front view">
+
+                    </button>
+
+                    <button
+                        class="thumbnail planter-thumbnail"
+                        type="button"
+                        data-image="https://placehold.co/900x900?text=Planter+Side+View">
+
+                        <img
+                            src="https://placehold.co/250x250?text=Side"
+                            alt="Planter side view">
+
+                    </button>
+
+                    <button
+                        class="thumbnail planter-thumbnail"
+                        type="button"
+                        data-image="https://placehold.co/900x900?text=Planter+With+Plant">
+
+                        <img
+                            src="https://placehold.co/250x250?text=In+Use"
+                            alt="Planter with plant">
+
+                    </button>
+
+                    <button
+                        class="thumbnail planter-thumbnail"
+                        type="button"
+                        data-image="https://placehold.co/900x900?text=Planter+Colors">
+
+                        <img
+                            src="https://placehold.co/250x250?text=Colors"
+                            alt="Planter colors">
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <section class="product-info">
+
+                <span class="product-label">
+                    Fusion & Form Home Collection
+                </span>
+
+                <h2>Modern Planter</h2>
+
+                <span class="price">
+                    Starting at $20.00
+                </span>
+
+                <p class="product-description">
+                    A clean, modern planter designed for desks, shelves,
+                    windowsills, and living spaces. Select the size, color,
+                    texture, drainage style, and quantity that fits your space.
+                </p>
+
+                <div class="feature-list">
+
+                    <div class="feature-item">
+                        Multiple sizes
+                    </div>
+
+                    <div class="feature-item">
+                        Optional drainage
+                    </div>
+
+                    <div class="feature-item">
+                        Modern textures
+                    </div>
+
+                    <div class="feature-item">
+                        Made to order
+                    </div>
+
+                </div>
+
+                <form
+                    class="product-form"
+                    id="planterForm">
+
+                    <h3>Customize Your Planter</h3>
+
+                    <p class="form-description">
+                        Choose your options and submit your order request. We will review it
+                        and email you a secure Stripe payment link.
+                    </p>
+
+                    <div class="form-group">
+
+                        <label for="planterSize">
+                            Planter size
+                        </label>
+
+                        <select
+                            id="planterSize"
+                            name="planterSize">
+
+                            <option
+                                value="Small"
+                                data-price="20">
+
+                                Small — $20.00
+                            </option>
+
+                            <option
+                                value="Medium"
+                                data-price="22">
+
+                                Medium — $18.00
+                            </option>
+
+                            <option
+                                value="Large"
+                                data-price="24">
+
+                                Large — $24.00
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <span class="group-label">
+                            Planter style
+                        </span>
+
+                        <div class="style-options">
+
+                            <div class="style-choice">
+
+                                <input
+                                    type="radio"
+                                    id="smoothPlanter"
+                                    name="planterStyle"
+                                    value="Smooth"
+                                    data-extra="0"
+                                    checked>
+
+                                <label for="smoothPlanter">
+                                    Smooth
+                                </label>
+
+                            </div>
+
+                            <div class="style-choice">
+
+                                <input
+                                    type="radio"
+                                    id="ribbedPlanter"
+                                    name="planterStyle"
+                                    value="Ribbed"
+                                    data-extra="0">
+
+                                <label for="ribbedPlanter">
+                                    Ribbed
+                                </label>
+
+                            </div>
+
+                            <div class="style-choice">
+
+                                <input
+                                    type="radio"
+                                    id="geometricPlanter"
+                                    name="planterStyle"
+                                    value="Geometric"
+                                    data-custom="false">
+
+                                <label for="geometricPlanter">
+                                    Geometric
+                                </label>
+
+                            </div>
+
+                            <div class="style-choice">
+
+                                <input
+                                    type="radio"
+                                    id="twistedPlanter"
+                                    name="planterStyle"
+                                    value="Twisted"
+                                    data-extra="0">
+
+                                <label for="twistedPlanter">
+                                    Twisted
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="drainageOption">
+                            Drainage option
+                        </label>
+
+                        <select
+                            id="drainageOption"
+                            name="drainageOption">
+
+                            <option value="No Drainage Hole">
+                                No drainage hole
+                            </option>
+
+                            <option value="Drainage Hole">
+                                Drainage hole
+                            </option>
+
+                            <option value="Drainage Hole and Tray">
+                                Drainage hole with tray
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <span class="group-label">
+                            Color
+                        </span>
+
+                        <div class="color-options">
+
+                            <div class="color-choice">
+
+                                <input
+                                    type="radio"
+                                    id="planterBlack"
+                                    name="planterColor"
+                                    value="Black"
+                                    checked>
+
+                                <label for="planterBlack">
+                                    <span class="color-circle black"></span>
+                                    Black
+                                </label>
+
+                            </div>
+
+                            <div class="color-choice">
+
+                                <input
+                                    type="radio"
+                                    id="planterWhite"
+                                    name="planterColor"
+                                    value="White">
+
+                                <label for="planterWhite">
+                                    <span class="color-circle white"></span>
+                                    White
+                                </label>
+
+                            </div>
+
+                            <div class="color-choice">
+
+                                <input
+                                    type="radio"
+                                    id="planterCream"
+                                    name="planterColor"
+                                    value="Cream">
+
+                                <label for="planterCream">
+                                    <span class="color-circle cream"></span>
+                                    Cream
+                                </label>
+
+                            </div>
+
+                            <div class="color-choice">
+
+                                <input
+                                    type="radio"
+                                    id="planterTerracotta"
+                                    name="planterColor"
+                                    value="Terracotta">
+
+                                <label for="planterTerracotta">
+                                    <span class="color-circle terracotta"></span>
+                                    Terracotta
+                                </label>
+
+                            </div>
+
+                            <div class="color-choice">
+
+                                <input
+                                    type="radio"
+                                    id="planterGreen"
+                                    name="planterColor"
+                                    value="Green">
+
+                                <label for="planterGreen">
+                                    <span class="color-circle green"></span>
+                                    Green
+                                </label>
+
+                            </div>
+
+                            <div class="color-choice">
+
+                                <input
+                                    type="radio"
+                                    id="planterBlue"
+                                    name="planterColor"
+                                    value="Blue">
+
+                                <label for="planterBlue">
+                                    <span class="color-circle blue"></span>
+                                    Blue
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="planterCustomerName">
+                            Full name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="planterCustomerName"
+                            name="planterCustomerName"
+                            placeholder="Enter your full name"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="planterCustomerEmail">
+                            Email address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="planterCustomerEmail"
+                            name="planterCustomerEmail"
+                            placeholder="Enter your email"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="planterCustomerPhone">
+                            Phone number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="planterCustomerPhone"
+                            name="planterCustomerPhone"
+                            placeholder="Optional">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="planterFulfillment">
+                            Pickup or shipping
+                        </label>
+
+                        <select
+                            id="planterFulfillment"
+                            name="planterFulfillment"
+                            required>
+
+                            <option value="Local Pickup">
+                                Local pickup
+                            </option>
+
+                            <option value="Shipping">
+                                Shipping
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div
+                        class="form-group shipping-only"
+                        id="planterShippingGroup">
+
+                        <label for="planterShippingAddress">
+                            Shipping address
+                        </label>
+
+                        <textarea
+                            id="planterShippingAddress"
+                            name="planterShippingAddress"
+                            placeholder="Street, city, state, and ZIP code"></textarea>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="planterQuantity">
+                            Quantity
+                        </label>
+
+                        <div class="quantity-control">
+
+                            <button
+                                class="quantity-button"
+                                id="decreasePlanter"
+                                type="button">
+
+                                −
+                            </button>
+
+                            <input
+                                class="quantity-input"
+                                id="planterQuantity"
+                                name="planterQuantity"
+                                type="number"
+                                min="1"
+                                max="20"
+                                value="1">
+
+                            <button
+                                class="quantity-button"
+                                id="increasePlanter"
+                                type="button">
+
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="planterNotes">
+                            Special notes
+                        </label>
+
+                        <textarea
+                            id="planterNotes"
+                            name="planterNotes"
+                            placeholder="Add measurements, color requests, plant type, or other details."></textarea>
+
+                    </div>
+
+                    <div class="price-summary">
+
+                        <div class="summary-row">
+
+                            <span>Price per planter</span>
+
+                            <span id="planterUnitPrice">
+                                $20.00
+                            </span>
+
+                        </div>
+
+                        <div class="summary-row">
+
+                            <span>Quantity</span>
+
+                            <span id="planterSummaryQuantity">
+                                1
+                            </span>
+
+                        </div>
+
+                        <div class="summary-row summary-total">
+
+                            <span>Estimated total</span>
+
+                            <span id="planterTotal">
+                                $20.00
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="order-button"
+                        type="submit">
+
+                        Submit Planter Order
+                    </button>
+
+                    <p class="form-note">
+                        Payment is not collected here. We will review your request
+                        and email you a secure Stripe payment link.
+                    </p>
+
+                    <div
+                        id="planterFormStatus"
+                        class="form-status"
+                        role="status"
+                        aria-live="polite">
+                    </div>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </section>
+
+    <!-- Candle Holder -->
+
+    <section
+        class="product-section alt"
+        id="candle-holder">
+
+        <div class="product-container">
+
+            <section class="gallery">
+
+                <div class="main-image-container">
+
+                    <img
+                        class="main-image"
+                        id="candleMainImage"
+                        src="https://placehold.co/900x900?text=Decorative+Candle+Holder"
+                        alt="Decorative 3D-printed candle holder">
+
+                    <span class="image-badge">
+                        Decorative Accent
+                    </span>
+
+                </div>
+
+                <div class="thumbnail-grid">
+
+                    <button
+                        class="thumbnail candle-thumbnail active"
+                        type="button"
+                        data-image="https://placehold.co/900x900?text=Decorative+Candle+Holder">
+
+                        <img
+                            src="https://placehold.co/250x250?text=Front"
+                            alt="Candle holder front view">
+
+                    </button>
+
+                    <button
+                        class="thumbnail candle-thumbnail"
+                        type="button"
+                        data-image="https://placehold.co/900x900?text=Candle+Holder+Side">
+
+                        <img
+                            src="https://placehold.co/250x250?text=Side"
+                            alt="Candle holder side view">
+
+                    </button>
+
+                    <button
+                        class="thumbnail candle-thumbnail"
+                        type="button"
+                        data-image="https://placehold.co/900x900?text=Candle+Holder+With+LED">
+
+                        <img
+                            src="https://placehold.co/250x250?text=With+LED"
+                            alt="Candle holder with LED candle">
+
+                    </button>
+
+                    <button
+                        class="thumbnail candle-thumbnail"
+                        type="button"
+                        data-image="https://placehold.co/900x900?text=Candle+Holder+Colors">
+
+                        <img
+                            src="https://placehold.co/250x250?text=Colors"
+                            alt="Candle holder colors">
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <section class="product-info">
+
+                <span class="product-label">
+                    Fusion & Form Home Collection
+                </span>
+
+                <h2>Decorative Candle Holder</h2>
+
+                <span class="price">
+                    Starting at $16.00
+                </span>
+
+                <p class="product-description">
+                    A decorative 3D-printed holder designed for flameless
+                    LED candles. Choose the pattern, size, color, and quantity
+                    to match your room, event, or seasonal decor.
+                </p>
+
+                <div class="feature-list">
+
+                    <div class="feature-item">
+                        Decorative patterns
+                    </div>
+
+                    <div class="feature-item">
+                        LED candle compatible
+                    </div>
+
+                    <div class="feature-item">
+                        Multiple sizes
+                    </div>
+
+                    <div class="feature-item">
+                        Made to order
+                    </div>
+
+                </div>
+
+                <form
+                    class="product-form"
+                    id="candleForm">
+
+                    <h3>Customize Your Candle Holder</h3>
+
+                    <p class="form-description">
+                        Select the pattern, candle option, color, size, and quantity you want.
+                    </p>
+
+                    <div class="form-group">
+
+                        <label for="candleSize">
+                            Holder size
+                        </label>
+
+                        <select
+                            id="candleSize"
+                            name="candleSize">
+
+                            <option
+                                value="Small"
+                                data-price="16">
+
+                                Small — $16.00
+                            </option>
+
+                            <option
+                                value="Medium"
+                                data-price="18">
+
+                                Medium — $22.00
+                            </option>
+
+                            <option
+                                value="Large"
+                                data-price="20">
+
+                                Large — $20.00
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <span class="group-label">
+                            Pattern
+                        </span>
+
+                        <div class="style-options">
+
+                            <div class="style-choice">
+
+                                <input
+                                    type="radio"
+                                    id="geometricCandle"
+                                    name="candlePattern"
+                                    value="Geometric"
+                                    data-extra="0"
+                                    checked>
+
+                                <label for="geometricCandle">
+                                    Geometric
+                                </label>
+
+                            </div>
+
+                            <div class="style-choice">
+
+                                <input
+                                    type="radio"
+                                    id="diamondCandle"
+                                    name="candlePattern"
+                                    value="Diamond"
+                                    data-custom="false">
+
+                                <label for="diamondCandle">
+                                    Diamond
+                                </label>
+
+                            </div>
+
+                            <div class="style-choice">
+
+                                <input
+                                    type="radio"
+                                    id="floralCandle"
+                                    name="candlePattern"
+                                    value="Floral"
+                                    data-custom="false">
+
+                                <label for="floralCandle">
+                                    Floral
+                                </label>
+
+                            </div>
+
+                            <div class="style-choice">
+
+                                <input
+                                    type="radio"
+                                    id="customCandle"
+                                    name="candlePattern"
+                                    value="Custom Pattern"
+                                    data-custom="true">
+
+                                <label for="customCandle">
+                                    Custom Pattern
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="candleType">
+                            Candle type
+                        </label>
+
+                        <select
+                            id="candleType"
+                            name="candleType">
+
+                            <option value="Small LED Tea Light" data-extra="1">
+                                Small LED tea light
+                            </option>
+
+                            <option value="Standard LED Tea Light" data-extra="1">
+                                Standard LED tea light
+                            </option>
+
+                            <option value="LED Pillar Candle" data-extra="1">
+                                LED pillar candle
+                            </option>
+
+                            <option value="Holder Only" data-extra="0">
+                                Holder only
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <span class="group-label">
+                            Color
+                        </span>
+
+                        <div class="color-options">
+
+                            <div class="color-choice">
+
+                                <input
+                                    type="radio"
+                                    id="candleBlack"
+                                    name="candleColor"
+                                    value="Black"
+                                    checked>
+
+                                <label for="candleBlack">
+                                    <span class="color-circle black"></span>
+                                    Black
+                                </label>
+
+                            </div>
+
+                            <div class="color-choice">
+
+                                <input
+                                    type="radio"
+                                    id="candleWhite"
+                                    name="candleColor"
+                                    value="White">
+
+                                <label for="candleWhite">
+                                    <span class="color-circle white"></span>
+                                    White
+                                </label>
+
+                            </div>
+
+                            <div class="color-choice">
+
+                                <input
+                                    type="radio"
+                                    id="candleCream"
+                                    name="candleColor"
+                                    value="Cream">
+
+                                <label for="candleCream">
+                                    <span class="color-circle cream"></span>
+                                    Cream
+                                </label>
+
+                            </div>
+
+                            <div class="color-choice">
+
+                                <input
+                                    type="radio"
+                                    id="candleGray"
+                                    name="candleColor"
+                                    value="Gray">
+
+                                <label for="candleGray">
+                                    <span class="color-circle gray"></span>
+                                    Gray
+                                </label>
+
+                            </div>
+
+                            <div class="color-choice">
+
+                                <input
+                                    type="radio"
+                                    id="candleBlue"
+                                    name="candleColor"
+                                    value="Blue">
+
+                                <label for="candleBlue">
+                                    <span class="color-circle blue"></span>
+                                    Blue
+                                </label>
+
+                            </div>
+
+                            <div class="color-choice">
+
+                                <input
+                                    type="radio"
+                                    id="candlePurple"
+                                    name="candleColor"
+                                    value="Purple">
+
+                                <label for="candlePurple">
+                                    <span class="color-circle purple"></span>
+                                    Purple
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="candleCustomerName">
+                            Full name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="candleCustomerName"
+                            name="candleCustomerName"
+                            placeholder="Enter your full name"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="candleCustomerEmail">
+                            Email address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="candleCustomerEmail"
+                            name="candleCustomerEmail"
+                            placeholder="Enter your email"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="candleCustomerPhone">
+                            Phone number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="candleCustomerPhone"
+                            name="candleCustomerPhone"
+                            placeholder="Optional">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="candleFulfillment">
+                            Pickup or shipping
+                        </label>
+
+                        <select
+                            id="candleFulfillment"
+                            name="candleFulfillment"
+                            required>
+
+                            <option value="Local Pickup">
+                                Local pickup
+                            </option>
+
+                            <option value="Shipping">
+                                Shipping
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div
+                        class="form-group shipping-only"
+                        id="candleShippingGroup">
+
+                        <label for="candleShippingAddress">
+                            Shipping address
+                        </label>
+
+                        <textarea
+                            id="candleShippingAddress"
+                            name="candleShippingAddress"
+                            placeholder="Street, city, state, and ZIP code"></textarea>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="candleQuantity">
+                            Quantity
+                        </label>
+
+                        <div class="quantity-control">
+
+                            <button
+                                class="quantity-button"
+                                id="decreaseCandle"
+                                type="button">
+
+                                −
+                            </button>
+
+                            <input
+                                class="quantity-input"
+                                id="candleQuantity"
+                                name="candleQuantity"
+                                type="number"
+                                min="1"
+                                max="20"
+                                value="1">
+
+                            <button
+                                class="quantity-button"
+                                id="increaseCandle"
+                                type="button">
+
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="candleNotes">
+                            Special notes
+                        </label>
+
+                        <textarea
+                            id="candleNotes"
+                            name="candleNotes"
+                            placeholder="Mention pattern ideas, event colors, candle measurements, or other requests."></textarea>
+
+                    </div>
+
+                    <div class="price-summary">
+
+                        <div class="summary-row">
+
+                            <span>Price per holder</span>
+
+                            <span id="candleUnitPrice">
+                                $16.00
+                            </span>
+
+                        </div>
+
+                        <div class="summary-row">
+
+                            <span>Quantity</span>
+
+                            <span id="candleSummaryQuantity">
+                                1
+                            </span>
+
+                        </div>
+
+                        <div class="summary-row summary-total">
+
+                            <span>Estimated total</span>
+
+                            <span id="candleTotal">
+                                $16.00
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="order-button"
+                        type="submit">
+
+                        Submit Candle Holder Order
+                    </button>
+
+                    <p class="form-note">
+                        Payment is not collected here. We will review your request
+                        and email you a secure Stripe payment link.
+                    </p>
+
+                    <div
+                        id="candleFormStatus"
+                        class="form-status"
+                        role="status"
+                        aria-live="polite">
+                    </div>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </section>
+
+    <!-- Details -->
+
+    <section class="details-section">
+
+        <div class="details-heading">
+
+            <span>Home Decor Details</span>
+
+            <h2>Designed with Style and Function</h2>
+
+            <p>
+                Each item is printed to order, inspected for quality,
+                and created using your selected product options.
+            </p>
+
+        </div>
+
+        <div class="details-grid">
+
+            <article class="detail-card">
+
+                <div class="detail-icon">
+                    PLA+
+                </div>
+
+                <h3>Quality Material</h3>
+
+                <p>
+                    Printed using PLA+ filament for clean details and
+                    dependable indoor use.
+                </p>
+
+            </article>
+
+            <article class="detail-card">
+
+                <div class="detail-icon">
+                    3–8
+                </div>
+
+                <h3>Production Time</h3>
+
+                <p>
+                    Most home decor orders are completed within three
+                    to eight business days.
+                </p>
+
+            </article>
+
+            <article class="detail-card">
+
+                <div class="detail-icon">
+                    100%
+                </div>
+
+                <h3>Made to Order</h3>
+
+                <p>
+                    Your item is created using the size, color, style,
+                    and quantity you select.
+                </p>
+
+            </article>
+
+            <article class="detail-card">
+
+                <div class="detail-icon">
+                    QC
+                </div>
+
+                <h3>Quality Checked</h3>
+
+                <p>
+                    Every product is inspected before pickup or shipping.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- Safety Notice -->
+
+    <section class="safety-banner">
+
+        <h2>Candle Holder Safety</h2>
+
+        <p>
+            Decorative 3D-printed candle holders should only be used with
+            flameless LED candles. Do not use real candles, open flames,
+            hot wax, or other heat-producing objects inside PLA products.
+        </p>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <h2>FUSION &amp; FORM</h2>
+
+        <p>Where Ideas Take Form.</p>
+
+        <div class="footer-links">
+
+            <a href="shop.html">
+                Shop
+            </a>
+
+            <a href="customorders.html">
+                Custom Orders
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <a href="faq.html">
+                FAQ
+            </a>
+
+        </div>
+
+        <p>© 2026 Fusion & Form</p>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+        /*
+            Planter gallery
+        */
+
+        const planterMainImage =
+            document.getElementById("planterMainImage");
+
+        const planterThumbnails =
+            document.querySelectorAll(".planter-thumbnail");
+
+        planterThumbnails.forEach(function (thumbnail) {
+            thumbnail.addEventListener("click", function () {
+                planterThumbnails.forEach(function (item) {
+                    item.classList.remove("active");
+                });
+
+                thumbnail.classList.add("active");
+
+                planterMainImage.style.opacity = "0.4";
+
+                setTimeout(function () {
+                    planterMainImage.src =
+                        thumbnail.dataset.image;
+
+                    planterMainImage.style.opacity = "1";
+                }, 180);
+            });
+        });
+
+        /*
+            Candle gallery
+        */
+
+        const candleMainImage =
+            document.getElementById("candleMainImage");
+
+        const candleThumbnails =
+            document.querySelectorAll(".candle-thumbnail");
+
+        candleThumbnails.forEach(function (thumbnail) {
+            thumbnail.addEventListener("click", function () {
+                candleThumbnails.forEach(function (item) {
+                    item.classList.remove("active");
+                });
+
+                thumbnail.classList.add("active");
+
+                candleMainImage.style.opacity = "0.4";
+
+                setTimeout(function () {
+                    candleMainImage.src =
+                        thumbnail.dataset.image;
+
+                    candleMainImage.style.opacity = "1";
+                }, 180);
+            });
+        });
+
+        /*
+            Planter price calculator
+        */
+
+        const planterSize =
+            document.getElementById("planterSize");
+
+        const planterQuantity =
+            document.getElementById("planterQuantity");
+
+        const planterUnitPrice =
+            document.getElementById("planterUnitPrice");
+
+        const planterSummaryQuantity =
+            document.getElementById(
+                "planterSummaryQuantity"
+            );
+
+        const planterTotal =
+            document.getElementById("planterTotal");
+
+        const decreasePlanter =
+            document.getElementById("decreasePlanter");
+
+        const increasePlanter =
+            document.getElementById("increasePlanter");
+
+        const planterStyles =
+            document.querySelectorAll(
+                'input[name="planterStyle"]'
+            );
+
+        function updatePlanterPrice() {
+            let quantity =
+                Number(planterQuantity.value);
+
+            if (
+                Number.isNaN(quantity) ||
+                quantity < 1
+            ) {
+                quantity = 1;
+            }
+
+            if (quantity > 20) {
+                quantity = 20;
+            }
+
+            planterQuantity.value = quantity;
+
+            const selectedSize =
+                planterSize.options[
+                    planterSize.selectedIndex
+                ];
+
+            const currentPrice =
+                Number(selectedSize.dataset.price);
+
+            const total =
+                currentPrice * quantity;
+
+            planterUnitPrice.textContent =
+                "$" + currentPrice.toFixed(2);
+
+            planterSummaryQuantity.textContent =
+                quantity;
+
+            planterTotal.textContent =
+                "$" + total.toFixed(2);
+        }
+
+        decreasePlanter.addEventListener(
+            "click",
+            function () {
+                if (Number(planterQuantity.value) > 1) {
+                    planterQuantity.value =
+                        Number(planterQuantity.value) - 1;
+
+                    updatePlanterPrice();
+                }
+            }
+        );
+
+        increasePlanter.addEventListener(
+            "click",
+            function () {
+                if (Number(planterQuantity.value) < 20) {
+                    planterQuantity.value =
+                        Number(planterQuantity.value) + 1;
+
+                    updatePlanterPrice();
+                }
+            }
+        );
+
+        planterQuantity.addEventListener(
+            "input",
+            updatePlanterPrice
+        );
+
+        planterSize.addEventListener(
+            "change",
+            updatePlanterPrice
+        );
+
+        planterStyles.forEach(function (style) {
+            style.addEventListener(
+                "change",
+                updatePlanterPrice
+            );
+        });
+
+        /*
+            Candle holder price calculator
+        */
+
+        const candleSize =
+            document.getElementById("candleSize");
+
+        const candleQuantity =
+            document.getElementById("candleQuantity");
+
+        const candleUnitPrice =
+            document.getElementById("candleUnitPrice");
+
+        const candleSummaryQuantity =
+            document.getElementById(
+                "candleSummaryQuantity"
+            );
+
+        const candleTotal =
+            document.getElementById("candleTotal");
+
+        const decreaseCandle =
+            document.getElementById("decreaseCandle");
+
+        const increaseCandle =
+            document.getElementById("increaseCandle");
+
+        const candlePatterns =
+            document.querySelectorAll(
+                'input[name="candlePattern"]'
+            );
+
+        const candleType =
+            document.getElementById("candleType");
+
+        function updateCandlePrice() {
+            let quantity =
+                Number(candleQuantity.value);
+
+            if (
+                Number.isNaN(quantity) ||
+                quantity < 1
+            ) {
+                quantity = 1;
+            }
+
+            if (quantity > 20) {
+                quantity = 20;
+            }
+
+            candleQuantity.value = quantity;
+
+            const selectedSize =
+                candleSize.options[
+                    candleSize.selectedIndex
+                ];
+
+            const selectedPattern =
+                document.querySelector(
+                    'input[name="candlePattern"]:checked'
+                );
+
+            const selectedCandleType =
+                candleType.options[
+                    candleType.selectedIndex
+                ];
+
+            const holderPrice =
+                selectedPattern.dataset.custom === "true"
+                    ? 22
+                    : Number(selectedSize.dataset.price);
+
+            const candleExtra =
+                Number(selectedCandleType.dataset.extra);
+
+            const currentPrice =
+                holderPrice + candleExtra;
+
+            const total =
+                currentPrice * quantity;
+
+            candleUnitPrice.textContent =
+                "$" + currentPrice.toFixed(2);
+
+            candleSummaryQuantity.textContent =
+                quantity;
+
+            candleTotal.textContent =
+                "$" + total.toFixed(2);
+        }
+
+        decreaseCandle.addEventListener(
+            "click",
+            function () {
+                if (Number(candleQuantity.value) > 1) {
+                    candleQuantity.value =
+                        Number(candleQuantity.value) - 1;
+
+                    updateCandlePrice();
+                }
+            }
+        );
+
+        increaseCandle.addEventListener(
+            "click",
+            function () {
+                if (Number(candleQuantity.value) < 20) {
+                    candleQuantity.value =
+                        Number(candleQuantity.value) + 1;
+
+                    updateCandlePrice();
+                }
+            }
+        );
+
+        candleQuantity.addEventListener(
+            "input",
+            updateCandlePrice
+        );
+
+        candleSize.addEventListener(
+            "change",
+            updateCandlePrice
+        );
+
+        candleType.addEventListener(
+            "change",
+            updateCandlePrice
+        );
+
+        candlePatterns.forEach(function (pattern) {
+            pattern.addEventListener(
+                "change",
+                updateCandlePrice
+            );
+        });
+
+        /*
+            EmailJS order submission
+        */
+
+        emailjs.init({
+            publicKey: "pUxVbrlR9HW3QqrTw"
+        });
+
+        const planterForm =
+            document.getElementById("planterForm");
+
+        const planterFulfillment =
+            document.getElementById("planterFulfillment");
+
+        const planterShippingGroup =
+            document.getElementById("planterShippingGroup");
+
+        const planterShippingAddress =
+            document.getElementById("planterShippingAddress");
+
+        const planterOrderButton =
+            planterForm.querySelector(".order-button");
+
+        const planterFormStatus =
+            document.getElementById("planterFormStatus");
+
+        function updatePlanterShipping() {
+            const isShipping =
+                planterFulfillment.value === "Shipping";
+
+            planterShippingGroup.style.display =
+                isShipping ? "block" : "none";
+
+            planterShippingAddress.required =
+                isShipping;
+
+            if (!isShipping) {
+                planterShippingAddress.value = "";
+            }
+        }
+
+        planterFulfillment.addEventListener(
+            "change",
+            updatePlanterShipping
+        );
+
+        planterForm.addEventListener(
+            "submit",
+            async function (event) {
+                event.preventDefault();
+
+                updatePlanterShipping();
+
+                if (!planterForm.checkValidity()) {
+                    planterForm.reportValidity();
+                    return;
+                }
+
+                const selectedStyle =
+                    document.querySelector(
+                        'input[name="planterStyle"]:checked'
+                    ).value;
+
+                const selectedColor =
+                    document.querySelector(
+                        'input[name="planterColor"]:checked'
+                    ).value;
+
+                const originalButtonText =
+                    planterOrderButton.textContent;
+
+                planterOrderButton.disabled = true;
+                planterOrderButton.textContent = "Sending...";
+
+                planterFormStatus.className = "form-status";
+                planterFormStatus.textContent = "";
+
+                const address =
+                    planterFulfillment.value === "Shipping"
+                        ? planterShippingAddress.value.trim()
+                        : "Local pickup";
+
+                const templateParams = {
+                    customer_name:
+                        document.getElementById("planterCustomerName").value.trim(),
+
+                    customer_email:
+                        document.getElementById("planterCustomerEmail").value.trim(),
+
+                    customer_phone:
+                        document.getElementById("planterCustomerPhone").value.trim() ||
+                        "Not provided",
+
+                    product:
+                        "Modern Planter",
+
+                    quantity:
+                        planterQuantity.value,
+
+                    color:
+                        selectedColor,
+
+                    dimensions:
+                        "Size: " + planterSize.value +
+                        "\nStyle: " + selectedStyle +
+                        "\nDrainage: " +
+                        document.getElementById("drainageOption").value,
+
+                    deadline:
+                        "Not provided",
+
+                    budget:
+                        "Estimated total: " +
+                        planterTotal.textContent,
+
+                    reference:
+                        "Not provided",
+
+                    description:
+                        "Fulfillment: " +
+                        planterFulfillment.value +
+                        "\nShipping address: " +
+                        address +
+                        "\nSpecial notes: " +
+                        (document.getElementById("planterNotes").value.trim() ||
+                        "None") +
+                        "\n\nPayment status: Pending — send Stripe payment link after review.",
+
+                    reply_to:
+                        document.getElementById("planterCustomerEmail").value.trim()
+                };
+
+                try {
+                    await emailjs.send(
+                        "service_zkkh9xa",
+                        "template_xblqmbl",
+                        templateParams
+                    );
+
+                    planterFormStatus.className =
+                        "form-status success";
+
+                    planterFormStatus.textContent =
+                        "Your planter order was sent successfully. " +
+                        "We will review it and email you a secure Stripe payment link.";
+
+                    planterForm.reset();
+                    planterQuantity.value = 1;
+                    updatePlanterPrice();
+                    updatePlanterShipping();
+                } catch (error) {
+                    console.error(
+                        "EmailJS planter submission failed:",
+                        error
+                    );
+
+                    planterFormStatus.className =
+                        "form-status error";
+
+                    planterFormStatus.textContent =
+                        "Your order could not be sent. Please check your connection and try again.";
+                } finally {
+                    planterOrderButton.disabled = false;
+                    planterOrderButton.textContent =
+                        originalButtonText;
+                }
+            }
+        );
+
+        const candleForm =
+            document.getElementById("candleForm");
+
+        const candleFulfillment =
+            document.getElementById("candleFulfillment");
+
+        const candleShippingGroup =
+            document.getElementById("candleShippingGroup");
+
+        const candleShippingAddress =
+            document.getElementById("candleShippingAddress");
+
+        const candleOrderButton =
+            candleForm.querySelector(".order-button");
+
+        const candleFormStatus =
+            document.getElementById("candleFormStatus");
+
+        function updateCandleShipping() {
+            const isShipping =
+                candleFulfillment.value === "Shipping";
+
+            candleShippingGroup.style.display =
+                isShipping ? "block" : "none";
+
+            candleShippingAddress.required =
+                isShipping;
+
+            if (!isShipping) {
+                candleShippingAddress.value = "";
+            }
+        }
+
+        candleFulfillment.addEventListener(
+            "change",
+            updateCandleShipping
+        );
+
+        candleForm.addEventListener(
+            "submit",
+            async function (event) {
+                event.preventDefault();
+
+                updateCandleShipping();
+
+                if (!candleForm.checkValidity()) {
+                    candleForm.reportValidity();
+                    return;
+                }
+
+                const selectedPattern =
+                    document.querySelector(
+                        'input[name="candlePattern"]:checked'
+                    ).value;
+
+                const selectedColor =
+                    document.querySelector(
+                        'input[name="candleColor"]:checked'
+                    ).value;
+
+                const originalButtonText =
+                    candleOrderButton.textContent;
+
+                candleOrderButton.disabled = true;
+                candleOrderButton.textContent = "Sending...";
+
+                candleFormStatus.className = "form-status";
+                candleFormStatus.textContent = "";
+
+                const address =
+                    candleFulfillment.value === "Shipping"
+                        ? candleShippingAddress.value.trim()
+                        : "Local pickup";
+
+                const templateParams = {
+                    customer_name:
+                        document.getElementById("candleCustomerName").value.trim(),
+
+                    customer_email:
+                        document.getElementById("candleCustomerEmail").value.trim(),
+
+                    customer_phone:
+                        document.getElementById("candleCustomerPhone").value.trim() ||
+                        "Not provided",
+
+                    product:
+                        "Decorative Candle Holder",
+
+                    quantity:
+                        candleQuantity.value,
+
+                    color:
+                        selectedColor,
+
+                    dimensions:
+                        "Size: " + candleSize.value +
+                        "\nPattern: " + selectedPattern +
+                        "\nCandle option: " +
+                        candleType.value,
+
+                    deadline:
+                        "Not provided",
+
+                    budget:
+                        "Estimated total: " +
+                        candleTotal.textContent,
+
+                    reference:
+                        "Not provided",
+
+                    description:
+                        "Fulfillment: " +
+                        candleFulfillment.value +
+                        "\nShipping address: " +
+                        address +
+                        "\nSpecial notes: " +
+                        (document.getElementById("candleNotes").value.trim() ||
+                        "None") +
+                        "\n\nPayment status: Pending — send Stripe payment link after review.",
+
+                    reply_to:
+                        document.getElementById("candleCustomerEmail").value.trim()
+                };
+
+                try {
+                    await emailjs.send(
+                        "service_zkkh9xa",
+                        "template_xblqmbl",
+                        templateParams
+                    );
+
+                    candleFormStatus.className =
+                        "form-status success";
+
+                    candleFormStatus.textContent =
+                        "Your candle holder order was sent successfully. " +
+                        "We will review it and email you a secure Stripe payment link.";
+
+                    candleForm.reset();
+                    candleQuantity.value = 1;
+                    updateCandlePrice();
+                    updateCandleShipping();
+                } catch (error) {
+                    console.error(
+                        "EmailJS candle holder submission failed:",
+                        error
+                    );
+
+                    candleFormStatus.className =
+                        "form-status error";
+
+                    candleFormStatus.textContent =
+                        "Your order could not be sent. Please check your connection and try again.";
+                } finally {
+                    candleOrderButton.disabled = false;
+                    candleOrderButton.textContent =
+                        originalButtonText;
+                }
+            }
+        );
+
+        updatePlanterPrice();
+        updateCandlePrice();
+        updatePlanterShipping();
+        updateCandleShipping();
+    </script>
+
+</body>
+
+</html>

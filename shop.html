@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shop | Fusion & Form</title>
+
+    <style>
+        /* ============================= */
+        /* General Website Styling */
+        /* ============================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f7f5f1;
+            color: #202020;
+        }
+
+        /* ============================= */
+        /* Hero Section */
+        /* ============================= */
+
+        .hero {
+            min-height: 65vh;
+            background-image: url("https://images.unsplash.com/photo-1581092160607-ee22731d8c4f?w=1600");
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.58);
+        }
+
+        /* ============================= */
+        /* Navigation */
+        /* ============================= */
+
+        nav {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            padding: 28px 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 48px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #c9824b;
+        }
+
+        nav a.active {
+            color: #c9824b;
+            border-bottom: 2px solid #c9824b;
+            padding-bottom: 6px;
+        }
+
+        /* ============================= */
+        /* Hero Text */
+        /* ============================= */
+
+        .hero-text {
+            position: relative;
+            z-index: 5;
+            min-height: 48vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 40px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(48px, 8vw, 82px);
+            letter-spacing: 4px;
+        }
+
+        .hero-text h2 {
+            margin-top: 14px;
+            font-size: 25px;
+            font-weight: normal;
+        }
+
+        .hero-text p {
+            max-width: 650px;
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* ============================= */
+        /* Shop Introduction */
+        /* ============================= */
+
+        .shop-intro {
+            max-width: 900px;
+            margin: auto;
+            padding: 75px 25px 35px;
+            text-align: center;
+        }
+
+        .shop-intro h2 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .shop-intro p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        /* ============================= */
+        /* Category Buttons */
+        /* ============================= */
+
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding: 20px 20px 45px;
+        }
+
+        .category-buttons a {
+            padding: 12px 22px;
+            color: #202020;
+            background: white;
+            border: 1px solid #d4d0ca;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .category-buttons a:hover {
+            color: white;
+            background: #b87333;
+            border-color: #b87333;
+            transform: translateY(-2px);
+        }
+
+        /* ============================= */
+        /* Product Grid */
+        /* ============================= */
+
+        .products-section {
+            padding: 35px 7% 90px;
+        }
+
+        .products-section h2 {
+            margin-bottom: 38px;
+            text-align: center;
+            font-size: 34px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 28px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .product-card {
+            overflow: hidden;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+        }
+
+        .product-card img {
+            display: block;
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 24px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 21px;
+        }
+
+        .product-info p {
+            min-height: 48px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .price {
+            display: block;
+            margin-top: 16px;
+            color: #9d5725;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .product-button {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 12px 22px;
+            color: white;
+            background: #b87333;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .product-button:hover {
+            background: #915524;
+            transform: scale(1.03);
+        }
+
+        /* ============================= */
+        /* Custom Order Banner */
+        /* ============================= */
+
+        .custom-banner {
+            margin: 0 7% 90px;
+            padding: 60px 25px;
+            color: white;
+            background: #202020;
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .custom-banner h2 {
+            margin-bottom: 15px;
+            font-size: 34px;
+        }
+
+        .custom-banner p {
+            max-width: 650px;
+            margin: auto;
+            color: #d8d8d8;
+            line-height: 1.6;
+        }
+
+        .custom-banner a {
+            display: inline-block;
+            margin-top: 26px;
+            padding: 14px 27px;
+            color: white;
+            background: #b87333;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .custom-banner a:hover {
+            background: #d08a50;
+            transform: scale(1.04);
+        }
+
+        /* ============================= */
+        /* Footer */
+        /* ============================= */
+
+        footer {
+            padding: 55px 20px;
+            color: white;
+            background: #111;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        footer p {
+            margin-top: 12px;
+            color: #bbb;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #c9824b;
+        }
+
+        /* ============================= */
+        /* Mobile Styling */
+        /* ============================= */
+
+        @media (max-width: 700px) {
+            nav ul {
+                gap: 20px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            .hero-text h1 {
+                letter-spacing: 2px;
+            }
+
+            .products-section {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .custom-banner {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero and Navigation -->
+
+    <header class="hero">
+
+        <div class="overlay"></div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active" href="shop.html">Shop</a></li>
+                <li><a href="customorders.html">Custom Orders</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-text">
+            <h1>SHOP</h1>
+
+            <h2>Designed with precision. Made for you.</h2>
+
+            <p>
+                Explore personalized keychains, home decorations,
+                desk accessories, gifts, and unique creations.
+            </p>
+        </div>
+
+    </header>
+
+    <!-- Shop Introduction -->
+
+    <section class="shop-intro">
+        <h2>Explore Our Creations</h2>
+
+        <p>
+            Every item is carefully printed and finished by Fusion & Form.
+            Choose an existing product or request something completely custom.
+        </p>
+    </section>
+
+    <!-- Category Links -->
+
+    <div class="category-buttons">
+        <a href="#keychains">Keychains</a>
+        <a href="#decor">Home Decor</a>
+        <a href="#desk">Desk Accessories</a>
+        <a href="#candles">Candles</a>
+        <a href="custom-versions.html">Custom Creations</a>
+    </div>
+
+    <!-- Products -->
+
+    <main class="products-section">
+
+        <h2>Featured Products</h2>
+
+        <div class="product-grid">
+
+            <article class="product-card" id="keychains">
+
+                <img
+                    src="C:\Users\mattg\OneDrive\Desktop\forge and form\images\slideshows\keychain-portrain.png"
+                    alt="Custom name keychain">
+
+                <div class="product-info">
+                    <h3>Custom Name Keychain</h3>
+
+                    <p>
+                        Choose your name, preferred color, and font style.
+                    </p>
+
+                    <span class="price">Starting at $10</span>
+
+                    <a class="product-button" href="customkeychain.html">
+                        View Keychain
+                    </a>
+                </div>
+
+            </article>
+
+            <article class="product-card">
+
+                <img
+                    src="C:\Users\mattg\OneDrive\Desktop\forge and form\images\slideshows\car-keychain.png"
+                    alt="Personalized initial keychain">
+
+                <div class="product-info">
+                    <h3> Keychains </h3>
+
+                    <p>
+                        A simple personalized keychain featuring your choice of design.
+                    </p>
+
+                    <span class="price">Starting at $8</span>
+
+                    <a class="product-button" href="keychain.html">
+                        View Keychain
+                    </a>
+                </div>
+
+            </article>
+
+            <article class="product-card" id="decor">
+
+                <img
+                    src="C:\Users\mattg\OneDrive\Desktop\forge and form\images\slideshows\planter-portrait.png"
+                    alt="Modern 3D printed planter">
+
+                <div class="product-info">
+                    <h3>Modern Planter</h3>
+
+                    <p>
+                        A clean decorative planter available in multiple colors.
+                    </p>
+
+                    <span class="price">Starting at $25</span>
+
+                    <a class="product-button" href="homedecor.html#modern-planter">
+                        View Planter
+                    </a>
+                </div>
+
+            </article>
+
+            <article class="product-card">
+
+                <img
+                    src="C:\Users\mattg\OneDrive\Desktop\forge and form\images\slideshows\name-tag.png"
+                    alt="Custom 3D printed name sign">
+
+                <div class="product-info">
+                    <h3>Custom Name Sign</h3>
+
+                    <p>
+                        Personalized signs for bedrooms, desks, and gifts.
+                    </p>
+
+                    <span class="price">Starting at $20</span>
+
+                    <a class="product-button" href="custom-name.html">
+                        View Name Sign
+                    </a>
+                </div>
+
+            </article>
+
+            <article class="product-card" id="desk">
+
+                <img
+                    src="C:\Users\mattg\OneDrive\Desktop\forge and form\images\slideshows\phone-holder.png"
+                    alt="3D printed phone stand">
+
+                <div class="product-info">
+                    <h3>Phone Stand</h3>
+
+                    <p>
+                        A compact stand designed for desks and nightstands.
+                    </p>
+
+                    <span class="price">Starting at $15</span>
+
+                    <a class="product-button" href="phone-stand.html">
+                        View Phone Stand
+                    </a>
+                </div>
+
+            </article>
+
+            <article class="product-card">
+
+                <img
+                    src="C:\Users\mattg\OneDrive\Desktop\forge and form\images\slideshows\organizer-portrait.png"
+                    alt="3D printed desk organizer">
+
+                <div class="product-info">
+                    <h3>Desk Organizer</h3>
+
+                    <p>
+                        Keep pens, tools, cables, and small items organized.
+                    </p>
+
+                    <span class="price">Starting at $20</span>
+
+                    <a class="product-button" href="desk-organizers.html">
+                        View Organizer
+                    </a>
+                </div>
+
+            </article>
+
+            <article class="product-card" id="candles">
+
+                <img
+                    src="C:\Users\mattg\OneDrive\Desktop\forge and form\images\slideshows\candle.png"
+                    alt="Decorative candle holder">
+
+                <div class="product-info">
+                    <h3>Decorative Candle Holder</h3>
+
+                    <p>
+                        A decorative holder designed to complement your space.
+                    </p>
+
+                    <span class="price">Starting at $20</span>
+
+                    <a class="product-button" href="homedecor.html#candle-holder">
+                        View Candle Holder
+                    </a>
+                </div>
+
+            </article>
+
+            <article class="product-card">
+
+                <img
+                    src="C:\Users\mattg\OneDrive\Desktop\forge and form\images\slideshows\custom-creation.png"
+                    alt="Custom 3D printed creation">
+
+                <div class="product-info">
+                    <h3>Custom Creation</h3>
+
+                    <p>
+                        Submit your idea and receive a personalized quote.
+                    </p>
+
+                    <span class="price">Quote Required</span>
+
+                    <a class="product-button" href="customorders.html">
+                        Start a Custom Creation
+                    </a>
+                </div>
+
+            </article>
+
+        </div>
+
+    </main>
+
+    <!-- Custom Order Banner -->
+
+    <section class="custom-banner">
+
+        <h2>Have a Different Idea?</h2>
+
+        <p>
+            Describe what you want, choose your colors, and send us any
+            reference pictures. We will review your idea and provide a quote.
+        </p>
+
+        <a href="customorders.html">Start a Custom Order</a>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <h2>Fusion & FORM</h2>
+
+        <p>Where Ideas Take Form.</p>
+
+        <div class="footer-links">
+            <a href="shop.html">Shop</a>
+            <a href="custom-orders.html">Custom Orders</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+
+        <p>© 2026 Fusion & Form</p>
+
+    </footer>
+
+    <!-- Background Slideshow -->
+
+    <script>
+    const hero = document.querySelector(".hero");
+
+    const images = [
+        "./images/slideshows/car-keychain.png"
+        
+    ];
+
+    let currentImage = 0;
+
+    function changeHeroImage() {
+        hero.style.backgroundImage = `url("${images[currentImage]}")`;
+        currentImage = (currentImage + 1) % images.length;
+    }
+
+    changeHeroImage();
+    setInterval(changeHeroImage, 5000);
+</script>
+
+</body>
+
+</html>
