@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shop | Fusion & Form</title>
+
+    <style>
+        /* ============================= */
+        /* General Website Styling */
+        /* ============================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f7f5f1;
+            color: #202020;
+        }
+
+        /* ============================= */
+        /* Hero Section */
+        /* ============================= */
+
+        .hero {
+            min-height: 65vh;
+            background-image: url("./images/slideshows/car-keychain.png");
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.58);
+        }
+
+        /* ============================= */
+        /* Navigation */
+        /* ============================= */
+
+        nav {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            padding: 28px 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 48px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #c9824b;
+        }
+
+        nav a.active {
+            color: #c9824b;
+            border-bottom: 2px solid #c9824b;
+            padding-bottom: 6px;
+        }
+
+        /* ============================= */
+        /* Hero Text */
+        /* ============================= */
+
+        .hero-text {
+            position: relative;
+            z-index: 5;
+            min-height: 48vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 40px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(48px, 8vw, 82px);
+            letter-spacing: 4px;
+        }
+
+        .hero-text h2 {
+            margin-top: 14px;
+            font-size: 25px;
+            font-weight: normal;
+        }
+
+        .hero-text p {
+            max-width: 650px;
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* ============================= */
+        /* Shop Introduction */
+        /* ============================= */
+
+        .shop-intro {
+            max-width: 900px;
+            margin: auto;
+            padding: 75px 25px 35px;
+            text-align: center;
+        }
+
+        .shop-intro h2 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .shop-intro p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 17px;
+        }
+
+        /* ============================= */
+        /* Category Buttons */
+        /* ============================= */
+
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding: 20px 20px 45px;
+        }
+
+        .category-buttons a {
+            padding: 12px 22px;
+            color: #202020;
+            background: white;
+            border: 1px solid #d4d0ca;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .category-buttons a:hover {
+            color: white;
+            background: #b87333;
+            border-color: #b87333;
+            transform: translateY(-2px);
+        }
+
+        /* ============================= */
+        /* Product Grid */
+        /* ============================= */
+
+        .products-section {
+            padding: 35px 7% 90px;
+        }
+
+        .products-section h2 {
+            margin-bottom: 38px;
+            text-align: center;
+            font-size: 34px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 28px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .product-grid:empty::after {
+            content: "No products are listed in this category yet.";
+            grid-column: 1 / -1;
+            padding: 40px;
+            color: #777;
+            background: white;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .product-card {
+            overflow: hidden;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+        }
+
+        .product-card img {
+            display: block;
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 24px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 21px;
+        }
+
+        .product-info p {
+            min-height: 48px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .price {
+            display: block;
+            margin-top: 16px;
+            color: #9d5725;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .product-button {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 12px 22px;
+            color: white;
+            background: #b87333;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .product-button:hover {
+            background: #915524;
+            transform: scale(1.03);
+        }
+
+        /* ============================= */
+        /* Custom Order Banner */
+        /* ============================= */
+
+        .custom-banner {
+            margin: 0 7% 90px;
+            padding: 60px 25px;
+            color: white;
+            background: #202020;
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .custom-banner h2 {
+            margin-bottom: 15px;
+            font-size: 34px;
+        }
+
+        .custom-banner p {
+            max-width: 650px;
+            margin: auto;
+            color: #d8d8d8;
+            line-height: 1.6;
+        }
+
+        .custom-banner a {
+            display: inline-block;
+            margin-top: 26px;
+            padding: 14px 27px;
+            color: white;
+            background: #b87333;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .custom-banner a:hover {
+            background: #d08a50;
+            transform: scale(1.04);
+        }
+
+        /* ============================= */
+        /* Footer */
+        /* ============================= */
+
+        footer {
+            padding: 55px 20px;
+            color: white;
+            background: #111;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        footer p {
+            margin-top: 12px;
+            color: #bbb;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #c9824b;
+        }
+
+        /* ============================= */
+        /* Mobile Styling */
+        /* ============================= */
+
+        @media (max-width: 700px) {
+            nav ul {
+                gap: 20px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            .hero-text h1 {
+                letter-spacing: 2px;
+            }
+
+            .products-section {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .custom-banner {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero and Navigation -->
+
+    <header class="hero">
+
+        <div class="overlay"></div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active" href="shop.html">Shop</a></li>
+                <li><a href="customorders.html">Custom Orders</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero-text">
+            <h1>SHOP</h1>
+
+            <h2>Designed with precision. Made for you.</h2>
+
+            <p>
+                Explore personalized keychains, home decorations,
+                desk accessories, gifts, and unique creations.
+            </p>
+        </div>
+
+    </header>
+
+    <!-- Shop Introduction -->
+
+    <section class="shop-intro">
+        <h2>Explore Our Creations</h2>
+
+        <p>
+            Every item is carefully printed and finished by Fusion & Form.
+            Choose an existing product or request something completely custom.
+        </p>
+    </section>
+
+    <!-- Category Links -->
+
+    <div class="category-buttons">
+        <a href="#keychains" data-category="keychains">Keychains</a>
+        <a href="#decor" data-category="decor">Home Decor</a>
+        <a href="#desk" data-category="desk">Desk Accessories</a>
+        <a href="#candles" data-category="candles">Candles</a>
+        <a href="custom-versions.html">Custom Creations</a>
+    </div>
+
+    <!-- Products -->
+
+    <main class="products-section">
+
+        <h2>Featured Products</h2>
+
+        <div class="product-grid" id="productGrid"></div>
+
+    
+
+    </main>
+
+    <!-- Custom Order Banner -->
+
+    <section class="custom-banner">
+
+        <h2>Have a Different Idea?</h2>
+
+        <p>
+            Describe what you want, choose your colors, and send us any
+            reference pictures. We will review your idea and provide a quote.
+        </p>
+
+        <a href="customorders.html">Start a Custom Order</a>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <h2>Fusion & FORM</h2>
+
+        <p>Where Ideas Take Form.</p>
+
+        <div class="footer-links">
+            <a href="shop.html">Shop</a>
+            <a href="customorders.html">Custom Orders</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+
+        <p>© 2026 Fusion & Form</p>
+
+    </footer>
+
+    <!-- Product Listings + Slideshow -->
+
+    <script>
+        /*
+            EASY PRODUCT LIST
+
+            To add a new listing, copy one product block below,
+            paste it before the final ]; and change the details.
+
+            category choices:
+            "keychains"
+            "decor"
+            "desk"
+            "candles"
+            "custom"
+        */
+
+        const products = [
+            {
+                name: "Custom Name Keychain",
+                image: "./images/slideshows/keychain-portrain.png",
+                alt: "Custom name keychain",
+                description: "Choose your name, preferred color, and font style.",
+                price: "Starting at $6",
+                link: "customkeychain.html",
+                button: "View Keychain",
+                category: "keychains"
+            },
+            {
+                name: "Keychains",
+                image: "./images/slideshows/car-keychain.png",
+                alt: "3D printed keychain",
+                description: "A simple keychain featuring your choice of ready-made design.",
+                price: "Starting at $6",
+                link: "keychain.html",
+                button: "View Keychain",
+                category: "keychains"
+            },
+            {
+                name: "Modern Planter",
+                image: "./images/slideshows/planter-portrait.png",
+                alt: "Modern 3D printed planter",
+                description: "A clean decorative planter available in multiple colors.",
+                price: "Starting at $20",
+                link: "homedecor.html#modern-planter",
+                button: "View Planter",
+                category: "decor"
+            },
+            {
+                name: "Custom Name Sign",
+                image: "./images/slideshows/name-tag.png",
+                alt: "Custom 3D printed name sign",
+                description: "Personalized signs for bedrooms, desks, and gifts.",
+                price: "Starting at $18",
+                link: "custom-name.html",
+                button: "View Name Sign",
+                category: "custom"
+            },
+            {
+                name: "Phone Stand",
+                image: "./images/slideshows/phone-holder.png",
+                alt: "3D printed phone stand",
+                description: "A compact stand designed for desks and nightstands.",
+                price: "Starting at $15",
+                link: "phone-stand.html",
+                button: "View Phone Stand",
+                category: "desk"
+            },
+            {
+                name: "Desk Organizer",
+                image: "./images/slideshows/organizer-portrait.png",
+                alt: "3D printed desk organizer",
+                description: "Keep pens, tools, cables, and small items organized.",
+                price: "Starting at $20",
+                link: "desk-organizers.html",
+                button: "View Organizer",
+                category: "desk"
+            },
+            {
+                name: "Decorative Candle Holder",
+                image: "./images/slideshows/candle.png",
+                alt: "Decorative candle holder",
+                description: "A decorative holder designed to complement your space.",
+                price: "Starting at $16",
+                link: "homedecor.html#candle-holder",
+                button: "View Candle Holder",
+                category: "candles"
+            },
+            {
+                name: "Custom creations",
+                image: "./images/slideshows/custom-creation.png",
+                alt: "Custom 3D printed creation",
+                description: "Submit your idea and receive a personalized quote.",
+                price: "Quote Required",
+                link: "customorders.html",
+                button: "Start a Custom Creation",
+                category: "custom"
+            },
+            {    
+                name: "NFC'S For Comercial Or Personal Use",
+                image: "./images/slideshows/NFC-Stand.png",
+                alt: "Custom 3D printed creation",
+                description: "From custom tap-to-connect stands for social media and Wi-Fi to payments and customer reviews, our NFC products make everyday interactions simple, fast, and seamless. ",
+                price: "Quote Required",
+                link: "nfc.html",
+                button: "Start a Custom NFC",
+                category: "NFC"
+            }
+        ];
+
+        const productGrid = document.getElementById("productGrid");
+
+        function renderProducts(productList) {
+            productGrid.innerHTML = "";
+
+            productList.forEach(function (product) {
+                const card = document.createElement("article");
+                card.className = "product-card";
+                card.dataset.category = product.category;
+
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.alt || product.name}">
+
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <span class="price">${product.price}</span>
+
+                        <a class="product-button" href="${product.link}">
+                            ${product.button || "View Product"}
+                        </a>
+                    </div>
+                `;
+
+                productGrid.appendChild(card);
+            });
+        }
+
+        renderProducts(products);
+
+        /*
+            CATEGORY FILTERS
+
+            Clicking a category shows only those products.
+            Clicking the same category again shows all products.
+        */
+
+        const categoryLinks =
+            document.querySelectorAll(".category-buttons a[data-category]");
+
+        let activeCategory = "all";
+
+        categoryLinks.forEach(function (link) {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+
+                const selectedCategory = link.dataset.category;
+
+                if (activeCategory === selectedCategory) {
+                    activeCategory = "all";
+                    renderProducts(products);
+                } else {
+                    activeCategory = selectedCategory;
+
+                    renderProducts(
+                        products.filter(function (product) {
+                            return product.category === selectedCategory;
+                        })
+                    );
+                }
+
+                document.querySelector(".products-section").scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            });
+        });
+
+        /*
+            SHOP HERO SLIDESHOW
+
+            Add more images here whenever you want.
+        */
+
+        const hero = document.querySelector(".hero");
+
+        const images = [
+            "./images/slideshows/car-keychain.png"
+        ];
+
+        let currentImage = 0;
+
+        function changeHeroImage() {
+            hero.style.backgroundImage =
+                `url("${images[currentImage]}")`;
+
+            currentImage =
+                (currentImage + 1) % images.length;
+        }
+
+        changeHeroImage();
+        setInterval(changeHeroImage, 5000);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NFC Products | Fusion & Form</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#f7f5f1;color:#202020}
+.hero{min-height:88vh;position:relative;background:linear-gradient(rgba(0,0,0,.58),rgba(0,0,0,.58)),url("./images/slideshows/nfc-hero.png");background-size:cover;background-position:center}
+nav{position:relative;z-index:10;width:100%;padding:28px 20px}
+nav ul{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:48px;list-style:none}
+nav a{color:white;text-decoration:none;font-size:17px;font-weight:bold;transition:.3s}
+nav a:hover{color:#c9824b}
+.hero-content{position:relative;z-index:5;min-height:calc(88vh - 90px);display:flex;justify-content:center;align-items:center;flex-direction:column;padding:40px 20px 110px;color:white;text-align:center}
+.hero-content span,.section-intro span,.how-heading span,.use-heading span{color:#d28a50;font-size:14px;font-weight:bold;letter-spacing:3px;text-transform:uppercase}
+.hero-content h1{margin-top:14px;font-size:clamp(52px,8vw,92px);letter-spacing:5px;line-height:1}
+.hero-content h2{margin-top:18px;font-size:clamp(22px,3vw,30px);font-weight:normal}
+.hero-content p{max-width:760px;margin-top:24px;color:#eee;font-size:18px;line-height:1.7}
+.hero-buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;margin-top:35px}
+.primary-button,.secondary-button{display:inline-block;min-width:180px;padding:16px 32px;border-radius:8px;text-decoration:none;font-size:16px;font-weight:bold;transition:.3s}
+.primary-button{color:white;background:#b87333;border:2px solid #b87333}
+.primary-button:hover{background:#915524;border-color:#915524;transform:translateY(-3px)}
+.secondary-button{color:white;background:transparent;border:2px solid white}
+.secondary-button:hover{color:#202020;background:white;transform:translateY(-3px)}
+.scroll-link{position:absolute;z-index:6;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;text-decoration:none;font-size:14px;letter-spacing:1px;text-align:center}
+.scroll-arrow{display:block;width:100%;margin-top:8px;font-size:24px;line-height:1;text-align:center;animation:bounce 1.6s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.breadcrumb{max-width:1200px;margin:auto;padding:28px 25px 0;color:#777;font-size:14px}
+.breadcrumb a{color:#9d5725;text-decoration:none;font-weight:bold}
+.section-intro{max-width:850px;margin:auto;padding:80px 25px 45px;text-align:center}
+.section-intro h2,.how-heading h2,.use-heading h2{margin-top:10px;font-size:40px}
+.section-intro p,.how-heading p,.use-heading p{margin-top:16px;color:#666;font-size:17px;line-height:1.7}
+.products-section{padding:15px 7% 100px}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;max-width:1200px;margin:auto}
+.product-card{overflow:hidden;background:white;border-radius:18px;box-shadow:0 9px 27px rgba(0,0,0,.1);transition:.3s}
+.product-card:hover{transform:translateY(-7px);box-shadow:0 16px 36px rgba(0,0,0,.15)}
+.product-image{position:relative;height:300px;overflow:hidden;background:#ece8e2}
+.product-image img{width:100%;height:100%;display:block;object-fit:cover;transition:.4s}
+.product-card:hover .product-image img{transform:scale(1.06)}
+.product-badge{position:absolute;top:18px;left:18px;padding:8px 13px;color:white;background:#b87333;border-radius:50px;font-size:12px;font-weight:bold;letter-spacing:1px;text-transform:uppercase}
+.product-info{padding:28px}
+.product-info h3{font-size:25px}
+.product-info p{margin-top:13px;color:#666;line-height:1.65}
+.feature-list{margin-top:20px;padding:18px;background:#f3f0eb;border-radius:10px}
+.feature-list ul{padding-left:19px;color:#666;line-height:1.8}
+.price{display:block;margin-top:20px;color:#9d5725;font-size:20px;font-weight:bold}
+.product-button{display:inline-block;width:100%;margin-top:20px;padding:15px 24px;color:white;background:#b87333;border-radius:8px;text-decoration:none;text-align:center;font-weight:bold;transition:.3s}
+.product-button:hover{background:#915524;transform:translateY(-2px)}
+.how-section{padding:90px 7%;color:white;background:#202020}
+.how-heading,.use-heading{max-width:760px;margin:auto;text-align:center}
+.how-heading p{color:#cfcfcf}
+.how-grid,.use-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;max-width:1100px;margin:48px auto 0}
+.how-card{padding:32px 24px;background:#2b2b2b;border:1px solid #3c3c3c;border-radius:14px;text-align:center}
+.how-number{width:54px;height:54px;display:flex;justify-content:center;align-items:center;margin:0 auto 18px;color:white;background:#b87333;border-radius:50%;font-weight:bold}
+.how-card h3,.use-card h3{margin-bottom:10px;font-size:21px}
+.how-card p{color:#cfcfcf;line-height:1.65}
+.use-section{padding:90px 7%}
+.use-card{padding:30px 25px;background:white;border-radius:15px;box-shadow:0 8px 22px rgba(0,0,0,.07)}
+.use-card h3{color:#9d5725}
+.use-card p{color:#666;line-height:1.65}
+.business-banner{margin:90px 7%;padding:70px 25px;color:white;background:#b87333;border-radius:20px;text-align:center}
+.business-banner h2{margin-bottom:16px;font-size:38px}
+.business-banner p{max-width:760px;margin:auto;font-size:17px;line-height:1.7}
+.business-banner a{display:inline-block;margin-top:27px;padding:15px 29px;color:#202020;background:white;border-radius:8px;text-decoration:none;font-weight:bold;transition:.3s}
+.business-banner a:hover{background:#f2eee9;transform:translateY(-3px)}
+footer{padding:58px 20px;color:white;background:#111;text-align:center}
+footer h2{font-size:30px;letter-spacing:2px}
+footer p{margin-top:12px;color:#bbb}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;margin-top:22px}
+.footer-links a{color:white;text-decoration:none}
+.footer-links a:hover{color:#c9824b}
+@media(max-width:700px){
+nav ul{gap:19px}
+nav a{font-size:14px}
+.hero-content h1{letter-spacing:3px}
+.primary-button,.secondary-button{width:min(100%,280px)}
+.section-intro h2,.how-heading h2,.use-heading h2,.business-banner h2{font-size:32px}
+.business-banner{margin-left:20px;margin-right:20px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+<nav>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a href="customorders.html">Custom Orders</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="faq.html">FAQ</a></li>
+</ul>
+</nav>
+
+<div class="hero-content">
+<span>Fusion & Form Smart Products</span>
+<h1>NFC</h1>
+<h2>One Tap. Instant Connection.</h2>
+<p>Custom NFC products that make it easier for customers, guests, and visitors to connect to Wi-Fi, open a website, leave a review, visit social media, or access important information with a simple tap.</p>
+<div class="hero-buttons">
+<a class="primary-button" href="#nfc-products">Explore NFC Products</a>
+<a class="secondary-button" href="contact.html">Business Inquiry</a>
+</div>
+</div>
+
+<a class="scroll-link" href="#nfc-products">Explore<span class="scroll-arrow">↓</span></a>
+</header>
+
+<div class="breadcrumb">
+<a href="index.html">Home</a> &nbsp;/&nbsp; NFC Products
+</div>
+
+<section class="section-intro" id="nfc-products">
+<span>Smart 3D-Printed Products</span>
+<h2>Tap Into Something Easier</h2>
+<p>Fusion & Form combines custom 3D printing with NFC technology to create products that are functional, branded, and easy to use. Each NFC product can be designed around your business, home, event, or personal use.</p>
+</section>
+
+<section class="products-section">
+<div class="product-grid">
+
+<article class="product-card">
+<div class="product-image">
+<img src="./images/slideshows/NFC-Stand.png" alt="Custom NFC Wi-Fi stand">
+<span class="product-badge">Popular</span>
+</div>
+<div class="product-info">
+<h3>Wi-Fi NFC Stand</h3>
+<p>Let guests connect to your Wi-Fi by tapping their phone or scanning a QR code.</p>
+<div class="feature-list"><ul>
+<li>Custom business branding</li>
+<li>NFC tap connection</li>
+<li>Backup QR code</li>
+<li>Custom colors and layout</li>
+</ul></div>
+<span class="price">Custom Pricing</span>
+<a class="product-button" href="contact.html">Request a Wi-Fi Stand</a>
+</div>
+</article>
+
+<article class="product-card">
+<div class="product-image">
+<img src="./images/products/nfc-review-stand.png" alt="NFC review stand">
+<span class="product-badge">Business</span>
+</div>
+<div class="product-info">
+<h3>Review NFC Stand</h3>
+<p>Give customers a simple way to open your business review page with one tap.</p>
+<div class="feature-list"><ul>
+<li>Review-page link</li>
+<li>NFC + QR code</li>
+<li>Business logo</li>
+<li>Countertop display</li>
+</ul></div>
+<span class="price">Custom Pricing</span>
+<a class="product-button" href="contact.html">Request a Review Stand</a>
+</div>
+</article>
+
+<article class="product-card">
+<div class="product-image">
+<img src="./images/products/nfc-social-stand.png" alt="Social media NFC stand">
+<span class="product-badge">Social</span>
+</div>
+<div class="product-info">
+<h3>Social Media NFC Stand</h3>
+<p>Send customers directly to Instagram, TikTok, Facebook, a link page, or your website.</p>
+<div class="feature-list"><ul>
+<li>Social profile link</li>
+<li>Custom branding</li>
+<li>NFC + QR access</li>
+<li>Multiple stand designs</li>
+</ul></div>
+<span class="price">Custom Pricing</span>
+<a class="product-button" href="contact.html">Request a Social Stand</a>
+</div>
+</article>
+
+<article class="product-card">
+<div class="product-image">
+<img src="./images/products/nfc-custom.png" alt="Custom NFC product">
+<span class="product-badge">Your Idea</span>
+</div>
+<div class="product-info">
+<h3>Custom NFC Product</h3>
+<p>Have another idea? We can combine an NFC tag with a custom 3D-printed product designed around your use.</p>
+<div class="feature-list"><ul>
+<li>Menus or digital pages</li>
+<li>Contact information</li>
+<li>Event information</li>
+<li>Custom links and actions</li>
+</ul></div>
+<span class="price">Custom Quote</span>
+<a class="product-button" href="customorders.html">Start a Custom NFC Project</a>
+</div>
+</article>
+
+</div>
+</section>
+
+<section class="how-section">
+<div class="how-heading">
+<span>How It Works</span>
+<h2>Simple for You. Simple for Your Customers.</h2>
+<p>NFC lets compatible phones open programmed information when brought close to the tag. A QR code can also be included as a backup option.</p>
+</div>
+
+<div class="how-grid">
+<article class="how-card">
+<div class="how-number">01</div>
+<h3>Choose the Action</h3>
+<p>Decide what the NFC product should open, such as Wi-Fi, a website, social page, review page, or digital menu.</p>
+</article>
+
+<article class="how-card">
+<div class="how-number">02</div>
+<h3>Customize the Design</h3>
+<p>Choose your logo, colors, wording, stand shape, QR-code placement, and other design details.</p>
+</article>
+
+<article class="how-card">
+<div class="how-number">03</div>
+<h3>We Build It</h3>
+<p>Your product is 3D printed, assembled, programmed, and checked before delivery or pickup.</p>
+</article>
+
+<article class="how-card">
+<div class="how-number">04</div>
+<h3>Tap and Connect</h3>
+<p>Customers tap their compatible phone or scan the QR code to access the programmed destination.</p>
+</article>
+</div>
+</section>
+
+<section class="use-section">
+<div class="use-heading">
+<span>Built for Businesses</span>
+<h2>Useful in Almost Any Customer-Facing Space</h2>
+<p>NFC products can reduce friction and make commonly used information easier for customers to access.</p>
+</div>
+
+<div class="use-grid">
+<article class="use-card">
+<h3>Cafés & Restaurants</h3>
+<p>Offer Wi-Fi access, digital menus, review links, or social-media pages right at the counter or table.</p>
+</article>
+
+<article class="use-card">
+<h3>Salons & Barbers</h3>
+<p>Link customers to booking pages, portfolios, review pages, or guest Wi-Fi.</p>
+</article>
+
+<article class="use-card">
+<h3>Offices & Waiting Rooms</h3>
+<p>Give visitors an easy way to access guest Wi-Fi, company pages, forms, or useful information.</p>
+</article>
+
+<article class="use-card">
+<h3>Events & Vendors</h3>
+<p>Share social profiles, payment pages, portfolios, contact information, or event-specific pages.</p>
+</article>
+</div>
+</section>
+
+<section class="business-banner">
+<h2>Want One Designed for Your Business?</h2>
+<p>Fusion & Form can create an NFC stand using your business name, logo, colors, QR code, and preferred NFC function. We can also build a completely custom layout if you have something different in mind.</p>
+<a href="contact.html">Request a Business NFC Design</a>
+</section>
+
+<footer>
+<h2>FUSION &amp; FORM</h2>
+<p>Where Ideas Take Form.</p>
+<div class="footer-links">
+<a href="shop.html">Shop</a>
+<a href="customorders.html">Custom Orders</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="faq.html">FAQ</a>
+</div>
+<p>© 2026 Fusion & Form</p>
+</footer>
+
+</body>
+</html>
