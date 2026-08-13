@@ -772,7 +772,13 @@
                     "Create a personalized 3D-printed sign using a name, nickname, initials, team name, or short phrase.",
 
                 images: [
-                    "./images/slideshows/name-tag.png"
+                    "./images/slideshows/name-tag.png",
+                    "./images/slideshows/colors.png"
+                ],
+
+                thumbnails: [
+                    "./images/slideshows/examples.png",
+                    "./images/slideshows/color.png"
                 ],
 
                 features: [
@@ -925,14 +931,19 @@
 
             const thumbnails =
                 product.images.map(function (image, imageIndex) {
+                    const thumbnailImage =
+                        product.thumbnails && product.thumbnails[imageIndex]
+                            ? product.thumbnails[imageIndex]
+                            : image;
+
                     return `
                         <button
                             class="thumbnail ${imageIndex === 0 ? "active" : ""}"
                             type="button"
                             data-image="${image}">
                             <img
-                                src="${image}"
-                                alt="${product.name} image ${imageIndex + 1}">
+                                src="${thumbnailImage}"
+                                alt="${product.name} thumbnail ${imageIndex + 1}">
                         </button>
                     `;
                 }).join("");

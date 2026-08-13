@@ -798,7 +798,12 @@
 
                 images: [
                     "./images/slideshows/planter-portrait.png",
-                    "./images/slideshows/planter-portrait.png"
+                    "./images/slideshows/colors.png"
+                ],
+
+                thumbnails: [
+                    "./images/slideshows/examples.png",
+                    "./images/slideshows/color.png"
                 ],
 
                 features: [
@@ -1015,14 +1020,19 @@
 
             const imageButtons =
                 product.images.map(function (image, imageIndex) {
+                    const thumbnailImage =
+                        product.thumbnails && product.thumbnails[imageIndex]
+                            ? product.thumbnails[imageIndex]
+                            : image;
+
                     return `
                         <button
                             class="thumbnail ${imageIndex === 0 ? "active" : ""}"
                             type="button"
                             data-image="${image}">
                             <img
-                                src="${image}"
-                                alt="${product.name} image ${imageIndex + 1}">
+                                src="${thumbnailImage}"
+                                alt="${product.name} thumbnail ${imageIndex + 1}">
                         </button>
                     `;
                 }).join("");
