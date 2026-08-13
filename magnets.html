@@ -1,0 +1,2287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Custom Magnets | Fusion & Form</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #202020;
+            background: #f7f5f1;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        /* ============================= */
+        /* Navigation */
+        /* ============================= */
+
+        .site-header {
+            background: #171717;
+            padding: 24px 20px;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 42px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #c9824b;
+        }
+
+        nav a.active {
+            color: #c9824b;
+            border-bottom: 2px solid #c9824b;
+            padding-bottom: 6px;
+        }
+
+        /* ============================= */
+        /* Breadcrumb */
+        /* ============================= */
+
+        .breadcrumb {
+            max-width: 1250px;
+            margin: auto;
+            padding: 28px 25px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: #9d5725;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================= */
+        /* Product Layout */
+        /* ============================= */
+
+        .product-section {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 55px;
+            max-width: 1250px;
+            margin: auto;
+            padding: 20px 25px 100px;
+        }
+
+        /* ============================= */
+        /* Product Gallery */
+        /* ============================= */
+
+        .gallery {
+            min-width: 0;
+        }
+
+        .main-image-container {
+            position: relative;
+            overflow: hidden;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-image {
+            width: 100%;
+            height: 580px;
+            display: block;
+            object-fit: cover;
+            transition: opacity 0.25s ease;
+        }
+
+        .image-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 9px 15px;
+            color: white;
+            background: #b87333;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .thumbnail {
+            overflow: hidden;
+            padding: 0;
+            background: white;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .thumbnail:hover {
+            transform: translateY(-3px);
+            border-color: #c9824b;
+        }
+
+        .thumbnail.active {
+            border-color: #b87333;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 105px;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* ============================= */
+        /* Product Information */
+        /* ============================= */
+
+        .product-info {
+            align-self: start;
+        }
+
+        .product-label {
+            color: #b87333;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .product-info h1 {
+            margin-top: 10px;
+            font-size: clamp(38px, 5vw, 58px);
+            line-height: 1.05;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 17px;
+        }
+
+        .stars {
+            color: #b87333;
+            font-size: 19px;
+            letter-spacing: 2px;
+        }
+
+        .rating-text {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .price {
+            display: block;
+            margin-top: 22px;
+            color: #9d5725;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .product-description {
+            margin-top: 20px;
+            color: #666;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 25px;
+            padding: 22px;
+            background: #eee9e2;
+            border-radius: 14px;
+        }
+
+        .feature-item {
+            color: #555;
+            font-size: 15px;
+        }
+
+        .feature-item::before {
+            content: "✓";
+            margin-right: 8px;
+            color: #b87333;
+            font-weight: bold;
+        }
+
+        /* ============================= */
+        /* Product Form */
+        /* ============================= */
+
+        .product-form {
+            margin-top: 32px;
+            padding: 30px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .product-form h2 {
+            margin-bottom: 8px;
+            font-size: 27px;
+        }
+
+        .form-description {
+            margin-bottom: 25px;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label,
+        .group-label {
+            display: block;
+            margin-bottom: 9px;
+            font-weight: bold;
+        }
+
+        .required {
+            color: #b87333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            color: #202020;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #b87333;
+            box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.13);
+        }
+
+        .character-count {
+            display: block;
+            margin-top: 7px;
+            color: #888;
+            font-size: 12px;
+            text-align: right;
+        }
+
+        /* ============================= */
+        /* Color Options */
+        /* ============================= */
+
+        .color-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .color-choice input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .color-choice label {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 10px 13px;
+            background: #f6f3ee;
+            border: 2px solid transparent;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .color-choice input:checked + label {
+            border-color: #b87333;
+            background: #fff7f0;
+        }
+
+        .color-circle {
+            width: 23px;
+            height: 23px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+        }
+
+        .black {
+            background: #171717;
+        }
+
+        .white {
+            background: white;
+        }
+
+        .red {
+            background: #c94343;
+        }
+
+        .blue {
+            background: #3677bd;
+        }
+
+        .green {
+            background: #428b58;
+        }
+
+        .purple {
+            background: #774ea1;
+        }
+
+        .pink {
+            background: #db7da4;
+        }
+
+        .orange {
+            background: #df853c;
+        }
+
+        /* ============================= */
+        /* Magnet Style */
+        /* ============================= */
+
+        .style-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .style-choice input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .style-choice label {
+            display: block;
+            padding: 15px;
+            background: #f6f3ee;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            transition: 0.2s ease;
+        }
+
+        .style-choice input:checked + label {
+            color: #9d5725;
+            background: #fff7f0;
+            border-color: #b87333;
+        }
+
+        /* ============================= */
+        /* Quantity Selector */
+        /* ============================= */
+
+        .quantity-control {
+            display: inline-flex;
+            align-items: center;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .quantity-button {
+            width: 46px;
+            height: 46px;
+            color: #202020;
+            background: #eee9e2;
+            border: none;
+            cursor: pointer;
+            font-size: 21px;
+            transition: 0.2s ease;
+        }
+
+        .quantity-button:hover {
+            color: white;
+            background: #b87333;
+        }
+
+        .quantity-input {
+            width: 60px;
+            height: 46px;
+            border: none;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .quantity-input:focus {
+            outline: none;
+        }
+
+        /* ============================= */
+        /* Price Summary */
+        /* ============================= */
+
+        .price-summary {
+            margin-top: 26px;
+            padding: 20px;
+            background: #202020;
+            border-radius: 12px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            color: #ddd;
+        }
+
+        .summary-row + .summary-row {
+            margin-top: 12px;
+        }
+
+        .summary-total {
+            padding-top: 15px;
+            border-top: 1px solid #444;
+            color: white;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        /* ============================= */
+        /* Order Button */
+        /* ============================= */
+
+        .order-button {
+            width: 100%;
+            margin-top: 22px;
+            padding: 17px 25px;
+            color: white;
+            background: #b87333;
+            border: none;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 17px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .order-button:hover {
+            background: #915524;
+            transform: translateY(-2px);
+        }
+
+        .form-note {
+            margin-top: 13px;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+
+        .shipping-only {
+            display: none;
+        }
+
+        .form-status {
+            display: none;
+            margin-top: 16px;
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .form-status.success {
+            display: block;
+            color: #245c35;
+            background: #e8f6ec;
+            border: 1px solid #9dcea9;
+        }
+
+        .form-status.error {
+            display: block;
+            color: #8a2929;
+            background: #fdecec;
+            border: 1px solid #e2aaaa;
+        }
+
+        .order-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+            transform: none;
+        }
+
+        /* ============================= */
+        /* Product Details */
+        /* ============================= */
+
+        .details-section {
+            padding: 90px 7%;
+            color: white;
+            background: #202020;
+        }
+
+        .details-heading {
+            max-width: 750px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .details-heading span {
+            color: #c9824b;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .details-heading h2 {
+            margin-top: 10px;
+            font-size: 40px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 45px auto 0;
+        }
+
+        .detail-card {
+            padding: 32px 25px;
+            background: #2b2b2b;
+            border: 1px solid #3c3c3c;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .detail-icon {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 18px;
+            color: white;
+            background: #b87333;
+            border-radius: 50%;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .detail-card h3 {
+            margin-bottom: 11px;
+            font-size: 21px;
+        }
+
+        .detail-card p {
+            color: #ccc;
+            line-height: 1.65;
+        }
+
+        /* ============================= */
+        /* Product FAQ */
+        /* ============================= */
+
+        .faq-section {
+            max-width: 900px;
+            margin: auto;
+            padding: 90px 25px;
+        }
+
+        .faq-heading {
+            margin-bottom: 38px;
+            text-align: center;
+        }
+
+        .faq-heading span {
+            color: #b87333;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .faq-heading h2 {
+            margin-top: 10px;
+            font-size: 38px;
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .faq-item {
+            overflow: hidden;
+            background: white;
+            border: 1px solid #e1ddd7;
+            border-radius: 12px;
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 22px;
+            color: #202020;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .faq-icon {
+            min-width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background: #b87333;
+            border-radius: 50%;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+
+        .faq-answer p {
+            padding: 0 22px 22px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ============================= */
+        /* Related Products */
+        /* ============================= */
+
+        .related-section {
+            padding: 90px 7%;
+            background: #ece8e2;
+        }
+
+        .related-heading {
+            text-align: center;
+        }
+
+        .related-heading span {
+            color: #b87333;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .related-heading h2 {
+            margin-top: 10px;
+            font-size: 38px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 26px;
+            max-width: 1000px;
+            margin: 42px auto 0;
+        }
+
+        .related-card {
+            overflow: hidden;
+            color: #202020;
+            background: white;
+            border-radius: 15px;
+            text-decoration: none;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: 0.3s ease;
+        }
+
+        .related-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 31px rgba(0, 0, 0, 0.13);
+        }
+
+        .related-card img {
+            width: 100%;
+            height: 235px;
+            display: block;
+            object-fit: cover;
+        }
+
+        .related-info {
+            padding: 23px;
+        }
+
+        .related-info h3 {
+            font-size: 21px;
+        }
+
+        .related-info p {
+            margin-top: 10px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .related-link {
+            display: block;
+            margin-top: 16px;
+            color: #9d5725;
+            font-weight: bold;
+        }
+
+        /* ============================= */
+        /* Footer */
+        /* ============================= */
+
+        footer {
+            padding: 56px 20px;
+            color: white;
+            background: #111;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        footer p {
+            margin-top: 12px;
+            color: #bbb;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 22px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #c9824b;
+        }
+
+        /* ============================= */
+        /* Mobile Styling */
+        /* ============================= */
+
+        @media (max-width: 950px) {
+            .product-section {
+                grid-template-columns: 1fr;
+            }
+
+            .main-image {
+                height: 520px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            nav ul {
+                gap: 19px;
+            }
+
+            nav a {
+                font-size: 14px;
+            }
+
+            .main-image {
+                height: 410px;
+            }
+
+            .thumbnail img {
+                height: 80px;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+            .style-options {
+                grid-template-columns: 1fr;
+            }
+
+            .product-form {
+                padding: 24px 20px;
+            }
+
+            .details-heading h2,
+            .faq-heading h2,
+            .related-heading h2 {
+                font-size: 31px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .thumbnail-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    
+        /* ============================= */
+        /* Reusable Product Page System */
+        /* ============================= */
+
+        .page-intro {
+            max-width: 850px;
+            margin: auto;
+            padding: 45px 25px 30px;
+            text-align: center;
+        }
+
+        .page-intro span {
+            color: #b87333;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .page-intro h2 {
+            margin-top: 10px;
+            font-size: 38px;
+        }
+
+        .page-intro p {
+            margin-top: 15px;
+            color: #666;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .product-navigation {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding: 0 25px 55px;
+        }
+
+        .product-navigation a {
+            padding: 13px 22px;
+            color: #202020;
+            background: white;
+            border: 2px solid #b87333;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.25s ease;
+        }
+
+        .product-navigation a:hover {
+            color: white;
+            background: #b87333;
+            transform: translateY(-2px);
+        }
+
+        #productSections .product-section {
+            padding-top: 75px;
+            padding-bottom: 90px;
+        }
+
+        #productSections .product-section:nth-child(even) {
+            max-width: none;
+            padding-left: max(25px, calc((100% - 1250px) / 2));
+            padding-right: max(25px, calc((100% - 1250px) / 2));
+            background: #ece8e2;
+        }
+
+        #productSections .product-section:nth-child(even) .feature-list {
+            background: white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <header class="site-header">
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+
+                <li>
+                    <a class="active" href="shop.html">Shop</a>
+                </li>
+
+                <li>
+                    <a href="customorders.html">Custom Orders</a>
+                </li>
+
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+
+                <li>
+                    <a href="contact.html">Contact</a>
+                </li>
+
+                <li>
+                    <a href="faq.html">FAQ</a>
+                </li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <!-- Breadcrumb -->
+
+    <div class="breadcrumb">
+
+        <a href="index.html">Home</a>
+        &nbsp;/&nbsp;
+
+        <a href="shop.html">Shop</a>
+        &nbsp;/&nbsp;
+
+        Custom Magnets
+
+    </div>
+
+    <!-- Reusable Product Listings -->
+
+    <section class="page-intro">
+        <span>Choose a Magnet Design</span>
+        <h2>Custom Magnets Made for You</h2>
+        <p>
+            Choose a design, colors, size, and quantity to create a custom magnet made just for you. New magnet styles can be added from one simple product list near the bottom of this file.
+        </p>
+    </section>
+
+    <div class="product-navigation" id="productNavigation"></div>
+
+    <main id="productSections"></main>
+
+    <!-- Product Details -->
+
+    <section class="details-section">
+
+        <div class="details-heading">
+
+            <span>Product Information</span>
+
+            <h2>Made to Stick Out</h2>
+
+        </div>
+
+        <div class="details-grid">
+
+            <article class="detail-card">
+
+                <div class="detail-icon">
+                    PLA+
+                </div>
+
+                <h3>Quality Material</h3>
+
+                <p>
+                    Printed with dependable PLA+ filament for clean detail
+                    and improved strength.
+                </p>
+
+            </article>
+
+            <article class="detail-card">
+
+                <div class="detail-icon">
+                    3–7
+                </div>
+
+                <h3>Production Time</h3>
+
+                <p>
+                    Most magnet orders are completed within three to seven business days.
+                </p>
+
+            </article>
+
+            <article class="detail-card">
+
+                <div class="detail-icon">
+                    100%
+                </div>
+
+                <h3>Personalized</h3>
+
+                <p>
+                    Each magnet is made using the design, colors, size, and details you select.
+                </p>
+
+            </article>
+
+            <article class="detail-card">
+
+                <div class="detail-icon">
+                    QC
+                </div>
+
+                <h3>Quality Checked</h3>
+
+                <p>
+                    Every item is inspected before pickup or shipping.
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- FAQ -->
+
+    <section class="faq-section">
+
+        <div class="faq-heading">
+
+            <span>Questions</span>
+
+            <h2>Custom Magnet FAQ</h2>
+
+        </div>
+
+        <div class="faq-list">
+
+            <article class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button">
+
+                    Can I add a name or wording?
+
+                    <span class="faq-icon">
+                        +
+                    </span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Yes. Names, initials, team names, jersey numbers, or short phrases can be added when the design allows it.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button">
+
+                    Can I add a logo or symbol?
+
+                    <span class="faq-icon">
+                        +
+                    </span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Yes. Mention the symbol or logo in the notes section.
+                        Complex logos may require a custom quote or a reference file.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button">
+
+                    Can each magnet have a different design?
+
+                    <span class="faq-icon">
+                        +
+                    </span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Yes. For multi-magnet orders, enter the total quantity and list the design, colors, or wording for each magnet in the special-notes section.
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button">
+
+                    Is the magnet backing included?
+
+                    <span class="faq-icon">
+                        +
+                    </span>
+
+                </button>
+
+                <div class="faq-answer">
+
+                    <p>
+                        Yes. Each finished piece includes a magnet on the back unless the product listing or final quote states otherwise.
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- Related Products -->
+
+    <section class="related-section">
+
+        <div class="related-heading">
+
+            <span>Explore More</span>
+
+            <h2>You May Also Like</h2>
+
+        </div>
+
+        <div class="related-grid">
+
+            <a
+                class="related-card"
+                href="custom-versions.html">
+
+                <img
+                    src="https://placehold.co/600x500?text=Custom+Name+Sign"
+                    alt="Custom name sign">
+
+                <div class="related-info">
+
+                    <h3>Custom Name Sign</h3>
+
+                    <p>
+                        Personalized signs for rooms, desks, gifts,
+                        businesses, and events.
+                    </p>
+
+                    <span class="related-link">
+                        View Product →
+                    </span>
+
+                </div>
+
+            </a>
+
+            <a
+                class="related-card"
+                href="phone-stand.html">
+
+                <img
+                    src="https://placehold.co/600x500?text=Phone+Stand"
+                    alt="3D printed phone stand">
+
+                <div class="related-info">
+
+                    <h3>Phone Stand</h3>
+
+                    <p>
+                        A practical stand for desks, nightstands, and workspaces.
+                    </p>
+
+                    <span class="related-link">
+                        View Product →
+                    </span>
+
+                </div>
+
+            </a>
+
+            <a
+                class="related-card"
+                href="desk-organizer.html">
+
+                <img
+                    src="https://placehold.co/600x500?text=Desk+Organizer"
+                    alt="3D printed desk organizer">
+
+                <div class="related-info">
+
+                    <h3>Desk Organizer</h3>
+
+                    <p>
+                        Keep pens, accessories, cables, and small items organized.
+                    </p>
+
+                    <span class="related-link">
+                        View Product →
+                    </span>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <h2>FUSION &amp; FORM</h2>
+
+        <p>Where Ideas Take Form.</p>
+
+        <div class="footer-links">
+
+            <a href="shop.html">
+                Shop
+            </a>
+
+            <a href="customorders.html">
+                Custom Orders
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <a href="faq.html">
+                FAQ
+            </a>
+
+        </div>
+
+        <p>© 2026 Fusion & Form</p>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+        /*
+        ==========================================================
+        EASY CUSTOM MAGNET PRODUCT LIST
+        ==========================================================
+
+        ADDING A NEW CUSTOM MAGNET:
+
+        Copy one product block inside customMagnetProducts,
+        paste it before the closing ]; and change its information.
+
+        Each product automatically gets:
+        - a navigation button
+        - its own large scrolling product section
+        - image gallery
+        - name/wording field
+        - font, colors and style options
+        - size pricing
+        - quantity calculator
+        - pickup/shipping
+        - EmailJS order submission
+        - Stripe payment-link message
+
+        IMPORTANT:
+        Use website paths such as:
+        "./images/products/magnet-product.png"
+
+        Do NOT use C:\Users\... paths on GitHub Pages.
+        */
+
+        const customMagnetProducts = [
+            {
+                id: "custom-magnet",
+                name: "Custom Magnet",
+                label: "Fusion & Form Personalized Collection",
+                badge: "Custom Magnet",
+                startingPrice: "$6.00",
+
+                description:
+                    "Create a personalized 3D-printed magnet in a custom shape or theme. Add a name, number, logo, symbol, or short wording, then choose your colors, size, style, and quantity.",
+
+                images: [
+                    "./images/products/custom-magnet.png",
+                    "./images/slideshows/colors.png"
+                ],
+
+                thumbnailImages: [
+                    "./images/products/custom-magnet.png",
+                    "./images/slideshows/color.png"
+                ],
+
+                features: [
+                    "Custom design or wording",
+                    "Multiple colors",
+                    "Durable PLA+",
+                    "Made to order"
+                ],
+
+                sizes: [
+                    { name: "Small", price: 6 },
+                    { name: "Medium", price: 8 },
+                    { name: "Large", price: 10 }
+                ],
+
+                fonts: [
+                    "Bold",
+                    "Modern",
+                    "Rounded",
+                    "Script",
+                    "Block"
+                ],
+
+                styles: [
+                    "Flat Design",
+                    "Raised Design",
+                    "Layered Design",
+                    "Custom Shape"
+                ],
+
+                colors: [
+                    "Black",
+                    "White",
+                    "Red",
+                    "Blue",
+                    "Green",
+                    "Purple"
+                ],
+
+                accentColors: [
+                    "None",
+                    "Black",
+                    "White",
+                    "Red",
+                    "Blue",
+                    "Green",
+                    "Purple",
+                    "Pink",
+                    "Orange"
+                ],
+
+                maxCharacters: 18,
+                quantityMax: 50,
+                unitName: "magnet",
+
+                notesPlaceholder:
+                    "Describe your magnet idea, shape, theme, logo, symbol, colors, or any other requests."
+            }
+
+            /*
+            ======================================================
+            EXAMPLE OF ANOTHER CUSTOM MAGNET PRODUCT
+            ======================================================
+
+            ,
+            {
+                id: "soccer-ball-magnet",
+                name: "Soccer Ball Magnet",
+                label: "Fusion & Form Personalized Collection",
+                badge: "Soccer Magnet",
+                startingPrice: "$8.00",
+
+                description:
+                    "A black-and-white soccer ball magnet that can be personalized with a name, number, team colors, or short wording.",
+
+                images: [
+                    "./images/products/soccer-ball-magnet.png"
+                ],
+
+                thumbnailImages: [
+                    "./images/products/soccer-ball-magnet.png"
+                ],
+
+                features: [
+                    "Custom name or number",
+                    "Team colors",
+                    "Multiple sizes",
+                    "Made to order"
+                ],
+
+                sizes: [
+                    { name: "Small", price: 8 },
+                    { name: "Medium", price: 10 },
+                    { name: "Large", price: 12 }
+                ],
+
+                fonts: [
+                    "Bold",
+                    "Block"
+                ],
+
+                styles: [
+                    "Soccer Ball"
+                ],
+
+                colors: [
+                    "Black",
+                    "White",
+                    "Red",
+                    "Blue"
+                ],
+
+                accentColors: [
+                    "None",
+                    "Black",
+                    "White",
+                    "Red",
+                    "Blue"
+                ],
+
+                maxCharacters: 18,
+                quantityMax: 50,
+                unitName: "magnet",
+
+                notesPlaceholder:
+                    "Add your team, player number, wording, colors, or other requests."
+            }
+            */
+        ];
+
+        const productNavigation =
+            document.getElementById("productNavigation");
+
+        const productSections =
+            document.getElementById("productSections");
+
+        function slugify(text) {
+            return String(text)
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-|-$/g, "");
+        }
+
+        function renderProductNavigation() {
+            customMagnetProducts.forEach(function (product) {
+                const link =
+                    document.createElement("a");
+
+                link.href = "#" + product.id;
+                link.textContent = product.name;
+
+                productNavigation.appendChild(link);
+            });
+        }
+
+        function buildProductSection(product) {
+            const section =
+                document.createElement("section");
+
+            section.className = "product-section";
+            section.id = product.id;
+
+            const thumbnailButtons =
+                product.images.map(function (image, index) {
+                    const thumbnailImage =
+                        product.thumbnailImages &&
+                        product.thumbnailImages[index]
+                            ? product.thumbnailImages[index]
+                            : image;
+
+                    return `
+                        <button
+                            class="thumbnail ${index === 0 ? "active" : ""}"
+                            type="button"
+                            data-image="${image}">
+
+                            <img
+                                src="${thumbnailImage}"
+                                alt="${product.name} image ${index + 1}">
+                        </button>
+                    `;
+                }).join("");
+
+            const features =
+                product.features.map(function (feature) {
+                    return `
+                        <div class="feature-item">
+                            ${feature}
+                        </div>
+                    `;
+                }).join("");
+
+            const sizes =
+                product.sizes.map(function (size) {
+                    return `
+                        <option
+                            value="${size.name}"
+                            data-price="${size.price}">
+                            ${size.name} — $${Number(size.price).toFixed(2)}
+                        </option>
+                    `;
+                }).join("");
+
+            const fonts =
+                product.fonts.map(function (font) {
+                    return `
+                        <option value="${font}">
+                            ${font}
+                        </option>
+                    `;
+                }).join("");
+
+            const styles =
+                product.styles.map(function (style, index) {
+                    const inputId =
+                        product.id + "-style-" + index;
+
+                    return `
+                        <div class="style-choice">
+                            <input
+                                type="radio"
+                                id="${inputId}"
+                                name="${product.id}-style"
+                                value="${style}"
+                                ${index === 0 ? "checked" : ""}>
+
+                            <label for="${inputId}">
+                                ${style}
+                            </label>
+                        </div>
+                    `;
+                }).join("");
+
+            const colors =
+                product.colors.map(function (color, index) {
+                    const inputId =
+                        product.id + "-color-" + index;
+
+                    return `
+                        <div class="color-choice">
+                            <input
+                                type="radio"
+                                id="${inputId}"
+                                name="${product.id}-color"
+                                value="${color}"
+                                ${index === 0 ? "checked" : ""}>
+
+                            <label for="${inputId}">
+                                <span class="color-circle ${slugify(color)}"></span>
+                                ${color}
+                            </label>
+                        </div>
+                    `;
+                }).join("");
+
+            const accentColors =
+                product.accentColors.map(function (color) {
+                    return `
+                        <option value="${color}">
+                            ${color === "None" ? "No accent color" : color}
+                        </option>
+                    `;
+                }).join("");
+
+            section.innerHTML = `
+                <section class="gallery">
+
+                    <div class="main-image-container">
+                        <img
+                            class="main-image"
+                            src="${product.images[0]}"
+                            alt="${product.name}">
+
+                        <span class="image-badge">
+                            ${product.badge}
+                        </span>
+                    </div>
+
+                    <div class="thumbnail-grid">
+                        ${thumbnailButtons}
+                    </div>
+
+                </section>
+
+                <section class="product-info">
+
+                    <span class="product-label">
+                        ${product.label}
+                    </span>
+
+                    <h1>${product.name}</h1>
+
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+
+                        <span class="rating-text">
+                            Made individually for each customer
+                        </span>
+                    </div>
+
+                    <span class="price">
+                        Starting at ${product.startingPrice}
+                    </span>
+
+                    <p class="product-description">
+                        ${product.description}
+                    </p>
+
+                    <div class="feature-list">
+                        ${features}
+                    </div>
+
+                    <form
+                        class="product-form"
+                        data-product-id="${product.id}">
+
+                        <h2>Customize Your ${product.name}</h2>
+
+                        <p class="form-description">
+                            Complete the options below and submit your order request.
+                            We will review it and email you a secure Stripe payment link.
+                        </p>
+
+                        <div class="form-group">
+                            <label>
+                                Design name or wording
+                                <span class="required">*</span>
+                            </label>
+
+                            <input
+                                class="wording-input"
+                                type="text"
+                                maxlength="${product.maxCharacters}"
+                                placeholder="Example: Soccer ball, Matthew, #10"
+                                required>
+
+                            <span class="character-count">
+                                0 / ${product.maxCharacters} characters
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Font style</label>
+
+                            <select class="font-style">
+                                ${fonts}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="group-label">
+                                Primary color
+                            </span>
+
+                            <div class="color-options">
+                                ${colors}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Accent color</label>
+
+                            <select class="accent-color">
+                                ${accentColors}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="group-label">
+                                Magnet style
+                            </span>
+
+                            <div class="style-options">
+                                ${styles}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Size</label>
+
+                            <select class="product-size">
+                                ${sizes}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Full name</label>
+
+                            <input
+                                class="customer-name"
+                                type="text"
+                                placeholder="Enter your full name"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email address</label>
+
+                            <input
+                                class="customer-email"
+                                type="email"
+                                placeholder="Enter your email"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Phone number</label>
+
+                            <input
+                                class="customer-phone"
+                                type="tel"
+                                placeholder="Optional">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Pickup or shipping</label>
+
+                            <select
+                                class="fulfillment"
+                                required>
+                                <option value="Local Pickup">
+                                    Local pickup
+                                </option>
+
+                                <option value="Shipping">
+                                    Shipping
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group shipping-only">
+                            <label>Shipping address</label>
+
+                            <textarea
+                                class="shipping-address"
+                                placeholder="Street, city, state, and ZIP code"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <span class="group-label">
+                                Quantity
+                            </span>
+
+                            <div class="quantity-control">
+                                <button
+                                    class="quantity-button decrease"
+                                    type="button"
+                                    aria-label="Decrease quantity">
+                                    −
+                                </button>
+
+                                <input
+                                    class="quantity-input"
+                                    type="number"
+                                    min="1"
+                                    max="${product.quantityMax}"
+                                    value="1">
+
+                                <button
+                                    class="quantity-button increase"
+                                    type="button"
+                                    aria-label="Increase quantity">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Special notes</label>
+
+                            <textarea
+                                class="special-notes"
+                                placeholder="${product.notesPlaceholder}"></textarea>
+                        </div>
+
+                        <div class="price-summary">
+
+                            <div class="summary-row">
+                                <span>Price per ${product.unitName}</span>
+
+                                <span class="unit-price">
+                                    $${Number(product.sizes[0].price).toFixed(2)}
+                                </span>
+                            </div>
+
+                            <div class="summary-row">
+                                <span>Quantity</span>
+
+                                <span class="summary-quantity">
+                                    1
+                                </span>
+                            </div>
+
+                            <div class="summary-row summary-total">
+                                <span>Estimated total</span>
+
+                                <span class="estimated-total">
+                                    $${Number(product.sizes[0].price).toFixed(2)}
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <button
+                            class="order-button"
+                            type="submit">
+                            Submit ${product.name} Order
+                        </button>
+
+                        <p class="form-note">
+                            Payment is not collected here. We will review your request
+                            and email you a secure Stripe payment link.
+                        </p>
+
+                        <div
+                            class="form-status"
+                            role="status"
+                            aria-live="polite">
+                        </div>
+
+                    </form>
+
+                </section>
+            `;
+
+            productSections.appendChild(section);
+            setupProduct(product, section);
+        }
+
+        function setupProduct(product, section) {
+            const mainImage =
+                section.querySelector(".main-image");
+
+            const thumbnails =
+                section.querySelectorAll(".thumbnail");
+
+            thumbnails.forEach(function (thumbnail) {
+                thumbnail.addEventListener("click", function () {
+                    thumbnails.forEach(function (item) {
+                        item.classList.remove("active");
+                    });
+
+                    thumbnail.classList.add("active");
+                    mainImage.style.opacity = "0.45";
+
+                    setTimeout(function () {
+                        mainImage.src =
+                            thumbnail.dataset.image;
+
+                        mainImage.style.opacity = "1";
+                    }, 180);
+                });
+            });
+
+            const form =
+                section.querySelector(".product-form");
+
+            const wording =
+                form.querySelector(".wording-input");
+
+            const characterCount =
+                form.querySelector(".character-count");
+
+            wording.addEventListener("input", function () {
+                characterCount.textContent =
+                    wording.value.length +
+                    " / " +
+                    product.maxCharacters +
+                    " characters";
+            });
+
+            const sizeSelect =
+                form.querySelector(".product-size");
+
+            const quantityInput =
+                form.querySelector(".quantity-input");
+
+            const unitPrice =
+                form.querySelector(".unit-price");
+
+            const summaryQuantity =
+                form.querySelector(".summary-quantity");
+
+            const estimatedTotal =
+                form.querySelector(".estimated-total");
+
+            function updatePrice() {
+                let quantity =
+                    Number(quantityInput.value);
+
+                if (!Number.isFinite(quantity) || quantity < 1) {
+                    quantity = 1;
+                }
+
+                if (quantity > product.quantityMax) {
+                    quantity = product.quantityMax;
+                }
+
+                quantityInput.value = quantity;
+
+                const selectedSize =
+                    sizeSelect.options[
+                        sizeSelect.selectedIndex
+                    ];
+
+                const currentUnitPrice =
+                    Number(selectedSize.dataset.price);
+
+                unitPrice.textContent =
+                    "$" + currentUnitPrice.toFixed(2);
+
+                summaryQuantity.textContent =
+                    quantity;
+
+                estimatedTotal.textContent =
+                    "$" +
+                    (currentUnitPrice * quantity).toFixed(2);
+            }
+
+            form.querySelector(".decrease")
+                .addEventListener("click", function () {
+                    quantityInput.value =
+                        Math.max(
+                            1,
+                            Number(quantityInput.value) - 1
+                        );
+
+                    updatePrice();
+                });
+
+            form.querySelector(".increase")
+                .addEventListener("click", function () {
+                    quantityInput.value =
+                        Math.min(
+                            product.quantityMax,
+                            Number(quantityInput.value) + 1
+                        );
+
+                    updatePrice();
+                });
+
+            quantityInput.addEventListener(
+                "input",
+                updatePrice
+            );
+
+            sizeSelect.addEventListener(
+                "change",
+                updatePrice
+            );
+
+            const fulfillment =
+                form.querySelector(".fulfillment");
+
+            const shippingGroup =
+                form.querySelector(".shipping-only");
+
+            const shippingAddress =
+                form.querySelector(".shipping-address");
+
+            function updateShipping() {
+                const isShipping =
+                    fulfillment.value === "Shipping";
+
+                shippingGroup.style.display =
+                    isShipping ? "block" : "none";
+
+                shippingAddress.required =
+                    isShipping;
+
+                if (!isShipping) {
+                    shippingAddress.value = "";
+                }
+            }
+
+            fulfillment.addEventListener(
+                "change",
+                updateShipping
+            );
+
+            const orderButton =
+                form.querySelector(".order-button");
+
+            const formStatus =
+                form.querySelector(".form-status");
+
+            form.addEventListener(
+                "submit",
+                async function (event) {
+                    event.preventDefault();
+
+                    updateShipping();
+
+                    if (!form.checkValidity()) {
+                        form.reportValidity();
+                        return;
+                    }
+
+                    const primaryColor =
+                        form.querySelector(
+                            `input[name="${product.id}-color"]:checked`
+                        );
+
+                    const magnetStyle =
+                        form.querySelector(
+                            `input[name="${product.id}-style"]:checked`
+                        );
+
+                    const address =
+                        fulfillment.value === "Shipping"
+                            ? shippingAddress.value.trim()
+                            : "Local pickup";
+
+                    const originalButtonText =
+                        orderButton.textContent;
+
+                    orderButton.disabled = true;
+                    orderButton.textContent = "Sending...";
+
+                    formStatus.className =
+                        "form-status";
+
+                    formStatus.textContent = "";
+
+                    const templateParams = {
+                        customer_name:
+                            form.querySelector(".customer-name").value.trim(),
+
+                        customer_email:
+                            form.querySelector(".customer-email").value.trim(),
+
+                        customer_phone:
+                            form.querySelector(".customer-phone").value.trim() ||
+                            "Not provided",
+
+                        product:
+                            product.name,
+
+                        quantity:
+                            quantityInput.value,
+
+                        color:
+                            primaryColor
+                                ? primaryColor.value
+                                : "Not specified",
+
+                        dimensions:
+                            "Size: " +
+                            sizeSelect.value +
+                            "\nDesign name or wording: " +
+                            wording.value.trim() +
+                            "\nFont: " +
+                            form.querySelector(".font-style").value +
+                            "\nStyle: " +
+                            (magnetStyle
+                                ? magnetStyle.value
+                                : "Not specified"),
+
+                        deadline:
+                            "Not provided",
+
+                        budget:
+                            "Estimated total: " +
+                            estimatedTotal.textContent,
+
+                        reference:
+                            "Not provided",
+
+                        description:
+                            "Accent color: " +
+                            form.querySelector(".accent-color").value +
+                            "\nFulfillment: " +
+                            fulfillment.value +
+                            "\nShipping address: " +
+                            address +
+                            "\nSpecial notes: " +
+                            (form.querySelector(".special-notes").value.trim() ||
+                            "None") +
+                            "\n\nPayment status: Pending — send Stripe payment link after review.",
+
+                        reply_to:
+                            form.querySelector(".customer-email").value.trim()
+                    };
+
+                    try {
+                        if (typeof emailjs === "undefined") {
+                            throw new Error("EmailJS did not load.");
+                        }
+
+                        await emailjs.send(
+                            "service_zkkh9xa",
+                            "template_xblqmbl",
+                            templateParams
+                        );
+
+                        formStatus.className =
+                            "form-status success";
+
+                        formStatus.textContent =
+                            "Your custom magnet order was sent successfully. " +
+                            "We will review it and email you a secure Stripe payment link.";
+
+                        form.reset();
+                        quantityInput.value = 1;
+
+                        characterCount.textContent =
+                            "0 / " +
+                            product.maxCharacters +
+                            " characters";
+
+                        updatePrice();
+                        updateShipping();
+                    } catch (error) {
+                        console.error(
+                            "EmailJS custom magnet submission failed:",
+                            error
+                        );
+
+                        formStatus.className =
+                            "form-status error";
+
+                        formStatus.textContent =
+                            "Your order could not be sent. Please check your connection and try again.";
+                    } finally {
+                        orderButton.disabled = false;
+                        orderButton.textContent =
+                            originalButtonText;
+                    }
+                }
+            );
+
+            updatePrice();
+            updateShipping();
+        }
+
+        /*
+            FAQ accordion
+        */
+
+        const faqItems =
+            document.querySelectorAll(".faq-item");
+
+        faqItems.forEach(function (item) {
+            const question =
+                item.querySelector(".faq-question");
+
+            const answer =
+                item.querySelector(".faq-answer");
+
+            question.addEventListener("click", function () {
+                const isOpen =
+                    item.classList.contains("open");
+
+                faqItems.forEach(function (otherItem) {
+                    otherItem.classList.remove("open");
+
+                    const otherAnswer =
+                        otherItem.querySelector(".faq-answer");
+
+                    otherAnswer.style.maxHeight = null;
+                });
+
+                if (!isOpen) {
+                    item.classList.add("open");
+
+                    answer.style.maxHeight =
+                        answer.scrollHeight + "px";
+                }
+            });
+        });
+
+        if (typeof emailjs !== "undefined") {
+            emailjs.init({
+                publicKey: "pUxVbrlR9HW3QqrTw"
+            });
+        }
+
+        renderProductNavigation();
+
+        customMagnetProducts.forEach(function (product) {
+            buildProductSection(product);
+        });
+    </script>
+
+</body>
+
+</html>
