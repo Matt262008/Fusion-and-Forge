@@ -597,6 +597,130 @@
             font-size: 16px;
         }
 
+
+        /* ============================= */
+        /* Review Form */
+        /* ============================= */
+
+        .review-form-container {
+            max-width: 700px;
+            margin: 55px auto 0;
+            padding: 35px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .review-form-container h3 {
+            margin-bottom: 24px;
+            text-align: center;
+            font-size: 26px;
+        }
+
+        #reviewForm {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #reviewForm input,
+        #reviewForm select,
+        #reviewForm textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #d8d8d8;
+            border-radius: 10px;
+            background: white;
+            color: #202020;
+            font-family: inherit;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        #reviewForm textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        #reviewForm input:focus,
+        #reviewForm select:focus,
+        #reviewForm textarea:focus {
+            outline: none;
+            border-color: #b87333;
+            box-shadow: 0 0 0 2px rgba(184, 115, 51, 0.12);
+        }
+
+        .review-submit {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 9px;
+            color: white;
+            background: #b87333;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .review-submit:hover {
+            background: #915524;
+            transform: translateY(-2px);
+        }
+
+        .review-submit:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #reviewMessage {
+            min-height: 22px;
+            margin-top: 3px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .google-review {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .google-review p {
+            margin-bottom: 8px;
+            color: #666;
+        }
+
+        .google-review a {
+            color: #b87333;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .google-review a:hover {
+            text-decoration: underline;
+        }
+
+        .reviews-loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #666;
+            padding: 20px;
+        }
+
+        .reviews-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #666;
+            padding: 20px;
+        }
+
+        .review-date {
+            margin-top: 8px !important;
+            color: #888 !important;
+            font-size: 13px !important;
+        }
+
         /* ============================= */
         /* Custom Order Banner */
         /* ============================= */
@@ -984,6 +1108,73 @@
     </section>
 
     
+
+    <!-- Customer Reviews -->
+    <section class="reviews-section" id="reviews">
+        <div class="reviews-heading">
+            <span>Customer Reviews</span>
+            <h2>What Our Customers Say</h2>
+            <p>See what our customers have to say about Fusion & Form.</p>
+        </div>
+
+        <div class="reviews-grid" id="reviewsGrid">
+            <div class="reviews-loading">Loading reviews...</div>
+        </div>
+
+        <div class="review-form-container">
+            <h3>Leave a Review</h3>
+
+            <form id="reviewForm">
+                <input
+                    type="text"
+                    id="reviewName"
+                    placeholder="Your Name"
+                    maxlength="60"
+                    required
+                >
+
+                <select id="reviewRating" required>
+                    <option value="">Choose a rating</option>
+                    <option value="5">★★★★★ — 5 Stars</option>
+                    <option value="4">★★★★☆ — 4 Stars</option>
+                    <option value="3">★★★☆☆ — 3 Stars</option>
+                    <option value="2">★★☆☆☆ — 2 Stars</option>
+                    <option value="1">★☆☆☆☆ — 1 Star</option>
+                </select>
+
+                <textarea
+                    id="reviewText"
+                    placeholder="Tell us about your experience..."
+                    maxlength="1000"
+                    required
+                ></textarea>
+
+                <!-- Hidden anti-spam field. Real customers should leave this empty. -->
+                <input
+                    type="text"
+                    id="reviewWebsite"
+                    name="website"
+                    tabindex="-1"
+                    autocomplete="off"
+                    style="position:absolute;left:-9999px;"
+                >
+
+                <button type="submit" class="review-submit" id="reviewSubmit">
+                    Submit Review
+                </button>
+
+                <p id="reviewMessage"></p>
+            </form>
+        </div>
+
+        <div class="google-review">
+            <p>Had a great experience?</p>
+            <a href="#" id="googleReviewLink" target="_blank" rel="noopener noreferrer">
+                Leave us a Google Review
+            </a>
+        </div>
+    </section>
+
     <!-- Custom Order Banner -->
 
     <section class="custom-banner">
@@ -1037,6 +1228,189 @@
         <p>© 2026 Fusion & Form</p>
 
     </footer>
+
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Customer Reviews -->
+    <script>
+        const SUPABASE_URL = "https://antsdraflltubalxxxzb.supabase.co";
+        const SUPABASE_PUBLISHABLE_KEY = "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+
+        const supabaseClient = window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLISHABLE_KEY
+        );
+
+        const reviewForm = document.getElementById("reviewForm");
+        const reviewName = document.getElementById("reviewName");
+        const reviewRating = document.getElementById("reviewRating");
+        const reviewText = document.getElementById("reviewText");
+        const reviewWebsite = document.getElementById("reviewWebsite");
+        const reviewMessage = document.getElementById("reviewMessage");
+        const reviewSubmit = document.getElementById("reviewSubmit");
+        const reviewsGrid = document.getElementById("reviewsGrid");
+
+        function createStars(rating) {
+            const fullStars = "★".repeat(rating);
+            const emptyStars = "☆".repeat(5 - rating);
+            return fullStars + emptyStars;
+        }
+
+        function formatReviewDate(dateString) {
+            const date = new Date(dateString);
+
+            if (Number.isNaN(date.getTime())) {
+                return "";
+            }
+
+            return date.toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            });
+        }
+
+        function displayReviews(reviews) {
+            reviewsGrid.innerHTML = "";
+
+            if (!reviews || reviews.length === 0) {
+                const empty = document.createElement("div");
+                empty.className = "reviews-empty";
+                empty.textContent = "No reviews yet. Be the first to leave one!";
+                reviewsGrid.appendChild(empty);
+                return;
+            }
+
+            reviews.forEach((item) => {
+                const card = document.createElement("article");
+                card.className = "review-card";
+
+                const stars = document.createElement("div");
+                stars.className = "stars";
+                stars.textContent = createStars(item.rating);
+
+                const text = document.createElement("p");
+                text.textContent = item.review;
+
+                const name = document.createElement("h3");
+                name.textContent = item.name;
+
+                const date = document.createElement("p");
+                date.className = "review-date";
+                date.textContent = formatReviewDate(item.created_at);
+
+                card.appendChild(stars);
+                card.appendChild(text);
+                card.appendChild(name);
+
+                if (date.textContent) {
+                    card.appendChild(date);
+                }
+
+                reviewsGrid.appendChild(card);
+            });
+        }
+
+        async function loadReviews() {
+            const { data, error } = await supabaseClient
+                .from("reviews")
+                .select("name, rating, review, created_at")
+                .order("created_at", { ascending: false });
+
+            if (error) {
+                console.error("Could not load reviews:", error);
+                reviewsGrid.innerHTML =
+                    '<div class="reviews-empty">Reviews are temporarily unavailable.</div>';
+                return;
+            }
+
+            displayReviews(data);
+        }
+
+        reviewForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            reviewMessage.textContent = "";
+            reviewMessage.style.color = "#666";
+
+            // Basic honeypot protection against simple bots.
+            if (reviewWebsite.value.trim() !== "") {
+                return;
+            }
+
+            const name = reviewName.value.trim();
+            const rating = Number(reviewRating.value);
+            const review = reviewText.value.trim();
+
+            if (name.length < 2 || name.length > 60) {
+                reviewMessage.textContent = "Please enter a valid name.";
+                reviewMessage.style.color = "#b00020";
+                return;
+            }
+
+            if (!Number.isInteger(rating) || rating < 1 || rating > 5) {
+                reviewMessage.textContent = "Please choose a rating from 1 to 5 stars.";
+                reviewMessage.style.color = "#b00020";
+                return;
+            }
+
+            if (review.length < 10 || review.length > 1000) {
+                reviewMessage.textContent =
+                    "Your review must be between 10 and 1000 characters.";
+                reviewMessage.style.color = "#b00020";
+                return;
+            }
+
+            // Prevent rapid repeat submissions from the same browser.
+            const lastSubmission = Number(
+                localStorage.getItem("fusionFormLastReview") || 0
+            );
+
+            if (Date.now() - lastSubmission < 60000) {
+                reviewMessage.textContent =
+                    "Please wait about a minute before submitting another review.";
+                reviewMessage.style.color = "#b00020";
+                return;
+            }
+
+            reviewSubmit.disabled = true;
+            reviewSubmit.textContent = "Submitting...";
+
+            const { error } = await supabaseClient
+                .from("reviews")
+                .insert([
+                    {
+                        name: name,
+                        rating: rating,
+                        review: review
+                    }
+                ]);
+
+            if (error) {
+                console.error("Could not submit review:", error);
+                reviewMessage.textContent =
+                    "Something went wrong. Please try again.";
+                reviewMessage.style.color = "#b00020";
+            } else {
+                localStorage.setItem("fusionFormLastReview", Date.now());
+
+                reviewForm.reset();
+
+                reviewMessage.textContent =
+                    "Thank you! Your review is now live.";
+                reviewMessage.style.color = "#2e7d32";
+
+                await loadReviews();
+            }
+
+            reviewSubmit.disabled = false;
+            reviewSubmit.textContent = "Submit Review";
+        });
+
+        loadReviews();
+    </script>
 
     <!-- Hero Background Slideshow -->
 
