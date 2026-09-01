@@ -1315,7 +1315,7 @@
 
         async function loadReviews() {
             const { data, error } = await supabaseClient
-                .from("reviews")
+                .from("Reviews")
                 .select("name, rating, review, created_at")
                 .order("created_at", { ascending: false });
 
