@@ -1379,7 +1379,7 @@
             reviewSubmit.textContent = "Submitting...";
 
             const { error } = await supabaseClient
-                .from("reviews")
+                .from("Reviews")
                 .insert([
                     {
                         name: name,
