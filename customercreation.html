@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Creations | Fusion &amp; Form</title>
+<meta name="description" content="Explore custom 3D-printed products, NFC stands, business displays, and personalized creations made by Fusion & Form.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#f7f5f1;color:#202020}
+.hero{min-height:78vh;position:relative;background:linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.62)),url("./images/slideshows/customer-creations-hero.png");background-size:cover;background-position:center}
+nav{position:relative;z-index:10;width:100%;padding:28px 20px}
+nav ul{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:48px;list-style:none}
+nav a{color:white;text-decoration:none;font-size:17px;font-weight:bold;transition:.3s}
+nav a:hover{color:#c9824b}
+.hero-content{position:relative;z-index:5;min-height:calc(78vh - 90px);display:flex;justify-content:center;align-items:center;flex-direction:column;padding:40px 20px 95px;color:white;text-align:center}
+.hero-content span,.section-intro span,.project-heading span,.cta-heading span{color:#d28a50;font-size:14px;font-weight:bold;letter-spacing:3px;text-transform:uppercase}
+.hero-content h1{margin-top:14px;font-size:clamp(44px,7vw,82px);letter-spacing:4px;line-height:1.05}
+.hero-content h2{margin-top:18px;font-size:clamp(21px,3vw,29px);font-weight:normal}
+.hero-content p{max-width:760px;margin-top:24px;color:#eee;font-size:18px;line-height:1.7}
+.hero-buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;margin-top:35px}
+.primary-button,.secondary-button{display:inline-block;min-width:180px;padding:16px 32px;border-radius:8px;text-decoration:none;font-size:16px;font-weight:bold;transition:.3s}
+.primary-button{color:white;background:#b87333;border:2px solid #b87333}
+.primary-button:hover{background:#915524;border-color:#915524;transform:translateY(-3px)}
+.secondary-button{color:white;background:transparent;border:2px solid white}
+.secondary-button:hover{color:#202020;background:white;transform:translateY(-3px)}
+.scroll-link{position:absolute;z-index:6;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;color:white;text-decoration:none;font-size:14px;letter-spacing:1px;text-align:center}
+.scroll-arrow{display:block;width:100%;margin-top:8px;font-size:24px;line-height:1;text-align:center;animation:bounce 1.6s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.breadcrumb{max-width:1200px;margin:auto;padding:28px 25px 0;color:#777;font-size:14px}
+.breadcrumb a{color:#9d5725;text-decoration:none;font-weight:bold}
+.section-intro{max-width:850px;margin:auto;padding:75px 25px 38px;text-align:center}
+.section-intro h2,.cta-heading h2{margin-top:10px;font-size:40px}
+.section-intro p,.cta-heading p{margin-top:16px;color:#666;font-size:17px;line-height:1.7}
+.filter-section{padding:8px 20px 35px}
+.filters{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;max-width:1100px;margin:auto}
+.filter-button{padding:12px 21px;border:1px solid #d8d1c8;border-radius:50px;background:white;color:#555;font-size:14px;font-weight:bold;cursor:pointer;transition:.25s}
+.filter-button:hover,.filter-button.active{background:#b87333;border-color:#b87333;color:white}
+.projects-section{padding:15px 7% 100px}
+.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:28px;max-width:1200px;margin:auto}
+.project-card{overflow:hidden;background:white;border-radius:18px;box-shadow:0 9px 27px rgba(0,0,0,.1);transition:.3s}
+.project-card:hover{transform:translateY(-7px);box-shadow:0 16px 36px rgba(0,0,0,.15)}
+.project-image{position:relative;height:285px;overflow:hidden;background:#ece8e2}
+.project-image img{width:100%;height:100%;display:block;object-fit:cover;transition:.4s}
+.project-card:hover .project-image img{transform:scale(1.06)}
+.project-badge{position:absolute;top:18px;left:18px;padding:8px 13px;color:white;background:#b87333;border-radius:50px;font-size:11px;font-weight:bold;letter-spacing:1px;text-transform:uppercase}
+.project-info{padding:27px}
+.project-info h3{font-size:23px}
+.project-info p{margin-top:12px;color:#666;line-height:1.65}
+.project-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:20px;padding-top:16px;border-top:1px solid #eee;color:#8b592f;font-size:13px;font-weight:bold}
+.project-meta span:last-child{color:#888;font-weight:normal;text-align:right}
+.empty-message{display:none;max-width:700px;margin:20px auto 0;padding:30px;background:white;border-radius:14px;color:#666;text-align:center;line-height:1.6}
+.cta-banner{margin:15px 7% 90px;padding:70px 25px;color:white;background:#202020;border-radius:20px;text-align:center}
+.cta-heading{max-width:780px;margin:auto}
+.cta-heading p{color:#d0d0d0}
+.cta-banner a{display:inline-block;margin-top:27px;padding:15px 29px;color:white;background:#b87333;border-radius:8px;text-decoration:none;font-weight:bold;transition:.3s}
+.cta-banner a:hover{background:#915524;transform:translateY(-3px)}
+footer{padding:58px 20px;color:white;background:#111;text-align:center}
+footer h2{font-size:30px;letter-spacing:2px}
+footer p{margin-top:12px;color:#bbb}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;margin-top:22px}
+.footer-links a{color:white;text-decoration:none}
+.footer-links a:hover{color:#c9824b}
+@media(max-width:700px){
+nav ul{gap:19px}
+nav a{font-size:14px}
+.hero-content h1{letter-spacing:2px}
+.primary-button,.secondary-button{width:min(100%,280px)}
+.section-intro h2,.cta-heading h2{font-size:32px}
+.cta-banner{margin-left:20px;margin-right:20px}
+.project-image{height:250px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+<nav>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="shop.html">Shop</a></li>
+<li><a href="customorders.html">Custom Orders</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="faq.html">FAQ</a></li>
+</ul>
+</nav>
+
+<div class="hero-content">
+<span>Real Projects. Real Creations.</span>
+<h1>CUSTOMER CREATIONS</h1>
+<h2>Made for our customers. Built around their ideas.</h2>
+<p>Take a look at some of the custom products and projects created by Fusion &amp; Form. From personalized pieces to functional business products, every project starts with an idea.</p>
+<div class="hero-buttons">
+<a class="primary-button" href="#customer-projects">Explore Our Work</a>
+<a class="secondary-button" href="customorders.html">Start Your Project</a>
+</div>
+</div>
+
+<a class="scroll-link" href="#customer-projects">Explore<span class="scroll-arrow">↓</span></a>
+</header>
+
+<div class="breadcrumb">
+<a href="index.html">Home</a> &nbsp;/&nbsp; Customer Creations
+</div>
+
+<section class="section-intro" id="customer-projects">
+<span>Our Work</span>
+<h2>Ideas Brought to Life</h2>
+<p>Every order is an opportunity to make something useful, personal, or completely unique. Browse a selection of projects we've made and see what's possible with custom design and 3D printing.</p>
+</section>
+
+<section class="filter-section" aria-label="Filter customer projects">
+<div class="filters" id="project-filters">
+<button class="filter-button active" type="button" data-filter="all">All Projects</button>
+<button class="filter-button" type="button" data-filter="business">Business Orders</button>
+<button class="filter-button" type="button" data-filter="nfc">NFC Products</button>
+<button class="filter-button" type="button" data-filter="personalized">Personalized</button>
+<button class="filter-button" type="button" data-filter="custom">Custom Projects</button>
+</div>
+</section>
+
+<section class="projects-section">
+<div class="project-grid" id="project-grid"></div>
+<div class="empty-message" id="empty-message">There aren't any projects in this category yet. Check back soon to see what we've been making.</div>
+</section>
+
+<section class="cta-banner">
+<div class="cta-heading">
+<span>Your Idea Starts Here</span>
+<h2>Have Something in Mind?</h2>
+<p>Whether you need a personalized gift, a product for your business, or something completely original, Fusion &amp; Form can help turn your idea into something real.</p>
+<a href="customorders.html">Bring Your Idea to Life</a>
+</div>
+</section>
+
+<footer>
+<h2>FUSION &amp; FORM</h2>
+<p>Where Ideas Take Form.</p>
+<div class="footer-links">
+<a href="shop.html">Shop</a>
+<a href="customorders.html">Custom Orders</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="faq.html">FAQ</a>
+</div>
+<p>© 2026 Fusion &amp; Form</p>
+</footer>
+
+<script>
+/*
+=========================================================
+FUSION & FORM - CUSTOMER CREATIONS
+=========================================================
+HOW TO ADD A PROJECT:
+1. Copy one of the example project blocks below.
+2. Paste it inside the projects array, after the opening [.
+3. Remove the comment markers around that block.
+4. Replace the example text and image path with your project info.
+5. Save and upload the page.
+
+CATEGORY OPTIONS:
+"business"      = Business Orders
+"nfc"           = NFC Products
+"personalized"  = Personalized Products
+"custom"        = Custom Projects
+
+Only display a customer or business name if you have permission.
+Put project photos in: ./images/customer-creations/
+=========================================================
+*/
+
+const projects = [
+
+    /*
+    {
+        title: "Custom Business Logo Display",
+        description: "A custom-designed display created around the customer's business logo and branding.",
+        category: "business",
+        type: "Business Order",
+        customer: "Business Name (optional)",
+        image: "./images/customer-creations/business-logo-display.png"
+    },
+    */
+
+    /*
+    {
+        title: "Custom Wi-Fi & Review Stand",
+        description: "A countertop NFC stand that gives customers quick access to Wi-Fi and the business review page.",
+        category: "nfc",
+        type: "NFC Product",
+        customer: "Business Name (optional)",
+        image: "./images/customer-creations/nfc-wifi-review-stand.png"
+    },
+    */
+
+    /*
+    {
+        title: "Personalized Name Keychain",
+        description: "A custom name keychain made with the customer's preferred colors and style.",
+        category: "personalized",
+        type: "Personalized",
+        customer: "",
+        image: "./images/customer-creations/name-keychain.png"
+    },
+    */
+
+    /*
+    {
+        title: "Custom Desk Organizer",
+        description: "A made-to-order organizer designed to fit the customer's space and everyday needs.",
+        category: "custom",
+        type: "Custom Project",
+        customer: "",
+        image: "./images/customer-creations/desk-organizer.png"
+    },
+    */
+
+    // Add your real projects above this line.
+];
+
+const projectGrid = document.getElementById("project-grid");
+const emptyMessage = document.getElementById("empty-message");
+const filterButtons = document.querySelectorAll(".filter-button");
+
+function renderProjects(filter = "all") {
+    const filtered = filter === "all"
+        ? projects
+        : projects.filter(project => project.category === filter);
+
+    projectGrid.innerHTML = "";
+
+    filtered.forEach(project => {
+        const card = document.createElement("article");
+        card.className = "project-card";
+
+        const imageContainer = document.createElement("div");
+        imageContainer.className = "project-image";
+
+        const image = document.createElement("img");
+        image.src = project.image;
+        image.alt = project.title;
+        image.loading = "lazy";
+
+        const badge = document.createElement("span");
+        badge.className = "project-badge";
+        badge.textContent = project.type || "Custom Creation";
+
+        imageContainer.append(image, badge);
+
+        const info = document.createElement("div");
+        info.className = "project-info";
+
+        const title = document.createElement("h3");
+        title.textContent = project.title;
+
+        const description = document.createElement("p");
+        description.textContent = project.description;
+
+        const meta = document.createElement("div");
+        meta.className = "project-meta";
+
+        const category = document.createElement("span");
+        const labels = {
+            business: "Business Order",
+            nfc: "NFC Product",
+            personalized: "Personalized",
+            custom: "Custom Project"
+        };
+        category.textContent = labels[project.category] || "Custom Creation";
+
+        const customer = document.createElement("span");
+        customer.textContent = project.customer || "Fusion & Form";
+
+        meta.append(category, customer);
+        info.append(title, description, meta);
+        card.append(imageContainer, info);
+        projectGrid.appendChild(card);
+    });
+
+    emptyMessage.style.display = filtered.length ? "none" : "block";
+}
+
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        filterButtons.forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        renderProjects(button.dataset.filter);
+    });
+});
+
+renderProjects();
+</script>
+
+</body>
+</html>
