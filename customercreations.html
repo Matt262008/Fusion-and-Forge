@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Customer Creations | Fusion &amp; Form</title>
-
 <meta name="description" content="Explore custom 3D-printed products, NFC stands, business displays, and personalized creations made by Fusion & Form.">
 
 <style>
+
+/* ==========================================
+   1. GLOBAL STYLES
+========================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -26,7 +31,7 @@ body {
 }
 
 /* ==========================================
-   HERO SECTION
+   2. HERO SECTION
 ========================================== */
 
 .hero {
@@ -164,36 +169,25 @@ nav a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     color: white;
     text-decoration: none;
     font-size: 14px;
     letter-spacing: 1px;
-    text-align: center;
 }
 
 .scroll-arrow {
-    display: block;
-    width: 100%;
     margin-top: 8px;
     font-size: 24px;
-    line-height: 1;
-    text-align: center;
     animation: bounce 1.6s infinite;
 }
 
 @keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(8px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
 }
 
 /* ==========================================
-   BREADCRUMB AND INTRO
+   3. BREADCRUMB AND INTRODUCTION
 ========================================== */
 
 .breadcrumb {
@@ -232,7 +226,7 @@ nav a:hover {
 }
 
 /* ==========================================
-   FILTER BUTTONS
+   4. PROJECT FILTERS
 ========================================== */
 
 .filter-section {
@@ -268,7 +262,7 @@ nav a:hover {
 }
 
 /* ==========================================
-   PROJECT GRID AND CARDS
+   5. PROJECT CARDS
 ========================================== */
 
 .projects-section {
@@ -344,7 +338,7 @@ nav a:hover {
 }
 
 /* ==========================================
-   CUSTOMER REVIEWS
+   6. CUSTOMER REVIEWS
 ========================================== */
 
 .project-review {
@@ -368,7 +362,7 @@ nav a:hover {
 }
 
 /* ==========================================
-   PROJECT DETAILS
+   7. PROJECT DETAILS
 ========================================== */
 
 .project-meta {
@@ -391,7 +385,7 @@ nav a:hover {
 }
 
 /* ==========================================
-   EMPTY FILTER MESSAGE
+   8. EMPTY FILTER MESSAGE
 ========================================== */
 
 .empty-message {
@@ -407,7 +401,7 @@ nav a:hover {
 }
 
 /* ==========================================
-   CALL TO ACTION
+   9. CALL TO ACTION
 ========================================== */
 
 .cta-banner {
@@ -446,7 +440,7 @@ nav a:hover {
 }
 
 /* ==========================================
-   FOOTER
+   10. FOOTER
 ========================================== */
 
 footer {
@@ -484,10 +478,11 @@ footer p {
 }
 
 /* ==========================================
-   MOBILE RESPONSIVENESS
+   11. MOBILE RESPONSIVENESS
 ========================================== */
 
 @media(max-width: 700px) {
+
     nav ul {
         gap: 19px;
     }
@@ -519,13 +514,14 @@ footer p {
         height: 250px;
     }
 }
+
 </style>
 </head>
 
 <body>
 
 <!-- ==========================================
-     HEADER
+     HEADER AND NAVIGATION
 ========================================== -->
 
 <header class="hero">
@@ -571,6 +567,7 @@ Explore
 
 </header>
 
+
 <!-- ==========================================
      BREADCRUMB
 ========================================== -->
@@ -578,6 +575,7 @@ Explore
 <div class="breadcrumb">
 <a href="index.html">Home</a> &nbsp;/&nbsp; Customer Creations
 </div>
+
 
 <!-- ==========================================
      INTRODUCTION
@@ -597,8 +595,9 @@ and see what's possible with custom design and 3D printing.
 
 </section>
 
+
 <!-- ==========================================
-     PROJECT FILTERS
+     PROJECT FILTER BUTTONS
 ========================================== -->
 
 <section class="filter-section" aria-label="Filter customer projects">
@@ -626,7 +625,9 @@ Custom Projects
 </button>
 
 </div>
+
 </section>
+
 
 <!-- ==========================================
      PROJECT GALLERY
@@ -642,6 +643,7 @@ Check back soon to see what we've been making.
 </div>
 
 </section>
+
 
 <!-- ==========================================
      CALL TO ACTION
@@ -664,7 +666,9 @@ your idea into something real.
 <a href="customorders.html">Bring Your Idea to Life</a>
 
 </div>
+
 </section>
+
 
 <!-- ==========================================
      FOOTER
@@ -691,42 +695,55 @@ your idea into something real.
 
 </footer>
 
+
 <script>
 
 /*
 =========================================================
-FUSION & FORM - CUSTOMER CREATIONS
+FUSION & FORM
+CUSTOMER CREATIONS PROJECT DATABASE
 
 HOW TO ADD A PROJECT:
 
-1. Copy one of the project blocks below.
+1. Copy a project template.
 2. Paste it inside the projects array.
-3. Replace the title, description, and review.
-4. Choose the correct lowercase category.
-5. Upload your project photo.
-6. Make sure the image path matches the filename.
+3. Change the title and description.
+4. Add the categories you want.
+5. Add the customer name or "Valued Customer".
+6. Add the correct image path.
 
-CATEGORY OPTIONS:
+MULTIPLE CATEGORIES:
+
+categories: ["business", "nfc"]
+
+A project can have as many categories as needed.
+
+AVAILABLE CATEGORIES:
 
 "business"      = Business Orders
 "nfc"           = NFC Products
 "personalized"  = Personalized Products
 "custom"        = Custom Projects
 
-Only display customer/business names if you have permission.
-
-PROJECT PHOTO FOLDER:
+PROJECT PHOTOS:
 images/Customer Creations/
 
 =========================================================
 */
 
 
+// ==========================================
+// 1. PROJECT DATABASE
+// ADD NEW PROJECTS INSIDE THIS ARRAY
+// ==========================================
+
 const projects = [
 
-    // ==========================================
-    // CENTURY 21 GALVEZ - WALL LOGO
-    // ==========================================
+
+    // ------------------------------------------
+    // CENTURY 21 GALVEZ
+    // CUSTOM BUSINESS LOGO
+    // ------------------------------------------
 
     {
         title: "Custom Business Logo Display",
@@ -735,7 +752,7 @@ const projects = [
 
         review: "Amazing work, precisely the way I wanted! I recommend Matthew Gálvez for your 3D art. The product is great and was delivered on time. I will definitely use him again!",
 
-        category: "business",
+        categories: ["business"],
 
         type: "Business Order",
 
@@ -745,9 +762,10 @@ const projects = [
     },
 
 
-    // ==========================================
-    // FIXUP SERVICES - SOCIAL TAP DISPLAY
-    // ==========================================
+    // ------------------------------------------
+    // FIXUP SERVICES
+    // SOCIAL MEDIA TAP DISPLAY
+    // ------------------------------------------
 
     {
         title: "Custom Social Media Tap Display",
@@ -756,7 +774,7 @@ const projects = [
 
         review: "It's a very practical way for our clients to access our social media. The quality, the details and delivery time were excellent. If you want to take your business to the next level, I highly recommend it!!! Thank you very much!!!",
 
-        category: "business",
+        categories: ["business", "nfc"],
 
         type: "Business Order",
 
@@ -766,9 +784,10 @@ const projects = [
     },
 
 
-    // ==========================================
-    // CENTURY 21 GALVEZ - WIFI TAP DISPLAY
-    // ==========================================
+    // ------------------------------------------
+    // CENTURY 21 GALVEZ
+    // WIFI TAP DISPLAY
+    // ------------------------------------------
 
     {
         title: "Custom WiFi Tap Display",
@@ -777,7 +796,7 @@ const projects = [
 
         review: "Amazing work, precisely the way I wanted! I recommend Matthew Gálvez for your 3D arts. The product is good and delivered on time. I will definitely use him again!",
 
-        category: "business",
+        categories: ["business", "nfc"],
 
         type: "Business Order",
 
@@ -787,16 +806,17 @@ const projects = [
     },
 
 
-    // ==========================================
-    // IRON MAN HELMET DISPLAY
-    // ==========================================
+    // ------------------------------------------
+    // IRON MAN
+    // LIGHT-UP HELMET DISPLAY STAND
+    // ------------------------------------------
 
     {
         title: "Light-Up Iron Man Helmet Display Stand",
 
         description: "A custom Light-Up Iron Man Helmet Display Stand made for a customer! Featuring built-in LED lighting, this stand was designed to showcase their helmet while adding a unique touch to their collection. Another custom project brought to life by Fusion & Form!",
 
-        category: "custom",
+        categories: ["custom"],
 
         type: "Custom Project",
 
@@ -806,10 +826,10 @@ const projects = [
     },
 
 
-    // ==========================================
+    // ------------------------------------------
     // MILES MORALES SPIDER-MAN KEYCHAIN
     // CUSTOMER ORDER 1
-    // ==========================================
+    // ------------------------------------------
 
     {
         title: "Miles Morales Spider-Man Keychain",
@@ -818,7 +838,7 @@ const projects = [
 
         review: "My experience with contacting Matt and him really paying attention to the details of what I requested was definitely a quick and easy process which I really applaud him for and appreciate. The Spiderman keychain was beautifully executed and I couldn’t recommend a better 3D printing artist than Matt Galvez even if I wanted to. That’s why he deserves these 5 stars.",
 
-        category: "custom",
+        categories: ["custom"],
 
         type: "Custom Project",
 
@@ -828,10 +848,10 @@ const projects = [
     },
 
 
-    // ==========================================
+    // ------------------------------------------
     // MILES MORALES SPIDER-MAN KEYCHAIN
     // CUSTOMER ORDER 2
-    // ==========================================
+    // ------------------------------------------
 
     {
         title: "Miles Morales Spider-Man Keychain",
@@ -840,7 +860,7 @@ const projects = [
 
         review: "AMAZING quality. I got a miles morales keychain and its holding up real nice and its super glossy and shiny and i always get compliments i highly recommend it!!",
 
-        category: "custom",
+        categories: ["custom"],
 
         type: "Custom Project",
 
@@ -850,9 +870,10 @@ const projects = [
     },
 
 
-    // ==========================================
-    // STUDIO 466 - BUSINESS DISPLAY SET
-    // ==========================================
+    // ------------------------------------------
+    // STUDIO 466
+    // CUSTOM BUSINESS NFC DISPLAY SET
+    // ------------------------------------------
 
     {
         title: "Custom Business NFC Display Set",
@@ -861,7 +882,7 @@ const projects = [
 
         review: "Matthew had great ideas for 3D printing for my business with links to google reviews and WiFi. He also custom made a case and stand for my tablet. He is very quick with the work and professional to work with.",
 
-        category: "business",
+        categories: ["business", "nfc"],
 
         type: "Business Order",
 
@@ -871,9 +892,9 @@ const projects = [
     },
 
 
-    // ==========================================
-    // CUSTOM VINYL RECORD WALL MOUNTS
-    // ==========================================
+    // ------------------------------------------
+    // VINYL RECORD WALL MOUNTS
+    // ------------------------------------------
 
     {
         title: "Custom Vinyl Record Wall Mounts",
@@ -882,21 +903,22 @@ const projects = [
 
         review: "Ordered the vinyl holder and it looks great on my wall, Has held up great and incredibly easy to install. I recommend ordering from Matt because you will get great quality.",
 
-        category: "custom",
+        categories: ["custom"],
 
         type: "Custom Project",
 
         customer: "Valued Customer",
 
-        // CHANGE THIS TO YOUR ACTUAL VINYL PHOTO FILENAME
-        image: "images/Customer Creations/vinyl-mount.jpeg"
+        // CHANGE THIS TO YOUR ACTUAL PHOTO FILENAME
+        image: "images/Customer Creations/vinyl-record-wall-mount.jpeg"
     },
 
 
     // ==========================================
-    // FUTURE PROJECT EXAMPLES
-    // COPY AND ACTIVATE WHEN READY
+    // FUTURE PROJECT TEMPLATES
+    // COPY AND UNCOMMENT WHEN NEEDED
     // ==========================================
+
 
     /*
     {
@@ -904,9 +926,9 @@ const projects = [
 
         description: "A countertop NFC stand that gives customers quick access to Wi-Fi and the business review page.",
 
-        category: "nfc",
+        categories: ["business", "nfc"],
 
-        type: "NFC Product",
+        type: "Business Order",
 
         customer: "Business Name",
 
@@ -921,7 +943,7 @@ const projects = [
 
         description: "A custom name keychain made with the customer's preferred colors and style.",
 
-        category: "personalized",
+        categories: ["personalized", "custom"],
 
         type: "Personalized Product",
 
@@ -938,7 +960,7 @@ const projects = [
 
         description: "A made-to-order organizer designed to fit the customer's space and everyday needs.",
 
-        category: "custom",
+        categories: ["custom", "personalized"],
 
         type: "Custom Project",
 
@@ -949,13 +971,30 @@ const projects = [
     */
 
 
-    // ADD YOUR REAL PROJECTS ABOVE THIS LINE
+    // ADD NEW CUSTOMER PROJECTS ABOVE THIS LINE
 
 ];
 
 
 // ==========================================
-// PAGE ELEMENTS
+// 2. CATEGORY LABELS
+// ==========================================
+
+const categoryLabels = {
+
+    business: "Business Order",
+
+    nfc: "NFC Product",
+
+    personalized: "Personalized",
+
+    custom: "Custom Project"
+
+};
+
+
+// ==========================================
+// 3. PAGE ELEMENTS
 // ==========================================
 
 const projectGrid = document.getElementById("project-grid");
@@ -966,16 +1005,48 @@ const filterButtons = document.querySelectorAll(".filter-button");
 
 
 // ==========================================
-// DISPLAY PROJECTS
+// 4. GET PROJECT CATEGORIES
+// SUPPORTS MULTIPLE CATEGORIES
+// ==========================================
+
+function getProjectCategories(project) {
+
+    // New multiple-category format
+    if (Array.isArray(project.categories)) {
+        return project.categories;
+    }
+
+    // Supports older projects using category
+    if (project.category) {
+        return [project.category];
+    }
+
+    return [];
+
+}
+
+
+// ==========================================
+// 5. DISPLAY PROJECTS
 // ==========================================
 
 function renderProjects(filter = "all") {
 
+    // FILTER PROJECTS
+
     const filtered = filter === "all"
         ? projects
-        : projects.filter(project => project.category === filter);
+        : projects.filter(project =>
+            getProjectCategories(project).includes(filter)
+        );
+
+
+    // CLEAR OLD PROJECTS
 
     projectGrid.innerHTML = "";
+
+
+    // CREATE EACH PROJECT CARD
 
     filtered.forEach(project => {
 
@@ -984,7 +1055,9 @@ function renderProjects(filter = "all") {
         card.className = "project-card";
 
 
+        // --------------------------------------
         // PROJECT IMAGE
+        // --------------------------------------
 
         const imageContainer = document.createElement("div");
 
@@ -998,12 +1071,15 @@ function renderProjects(filter = "all") {
 
         image.loading = "lazy";
 
+        // Hide broken images if a filename is incorrect
         image.onerror = function() {
             this.style.display = "none";
         };
 
 
-        // PROJECT CATEGORY BADGE
+        // --------------------------------------
+        // CATEGORY BADGE
+        // --------------------------------------
 
         const badge = document.createElement("span");
 
@@ -1014,7 +1090,9 @@ function renderProjects(filter = "all") {
         imageContainer.append(image, badge);
 
 
+        // --------------------------------------
         // PROJECT INFORMATION
+        // --------------------------------------
 
         const info = document.createElement("div");
 
@@ -1033,8 +1111,10 @@ function renderProjects(filter = "all") {
         info.append(title, description);
 
 
+        // --------------------------------------
         // CUSTOMER REVIEW
-        // ONLY APPEARS IF A REVIEW EXISTS
+        // ONLY SHOW IF REVIEW EXISTS
+        // --------------------------------------
 
         if (project.review) {
 
@@ -1056,7 +1136,10 @@ function renderProjects(filter = "all") {
         }
 
 
+        // --------------------------------------
         // PROJECT DETAILS
+        // DISPLAY ALL CATEGORIES
+        // --------------------------------------
 
         const meta = document.createElement("div");
 
@@ -1065,28 +1148,16 @@ function renderProjects(filter = "all") {
 
         const category = document.createElement("span");
 
+        const categories = getProjectCategories(project);
 
-        const labels = {
-
-            business: "Business Order",
-
-            nfc: "NFC Product",
-
-            personalized: "Personalized",
-
-            custom: "Custom Project"
-
-        };
-
-
-        category.textContent =
-            labels[project.category] || "Custom Creation";
+        category.textContent = categories
+            .map(item => categoryLabels[item] || "Custom Creation")
+            .join(" • ");
 
 
         const customer = document.createElement("span");
 
-        customer.textContent =
-            project.customer || "Fusion & Form";
+        customer.textContent = project.customer || "Fusion & Form";
 
 
         meta.append(category, customer);
@@ -1094,7 +1165,9 @@ function renderProjects(filter = "all") {
         info.appendChild(meta);
 
 
-        // ADD EVERYTHING TO THE PAGE
+        // --------------------------------------
+        // ADD CARD TO GALLERY
+        // --------------------------------------
 
         card.append(imageContainer, info);
 
@@ -1103,7 +1176,9 @@ function renderProjects(filter = "all") {
     });
 
 
-    // SHOW EMPTY MESSAGE IF CATEGORY HAS NO PROJECTS
+    // --------------------------------------
+    // EMPTY CATEGORY MESSAGE
+    // --------------------------------------
 
     emptyMessage.style.display =
         filtered.length ? "none" : "block";
@@ -1112,18 +1187,26 @@ function renderProjects(filter = "all") {
 
 
 // ==========================================
-// FILTER BUTTONS
+// 6. FILTER BUTTON FUNCTIONALITY
 // ==========================================
 
 filterButtons.forEach(button => {
 
     button.addEventListener("click", () => {
 
-        filterButtons.forEach(item =>
-            item.classList.remove("active")
-        );
+        // REMOVE ACTIVE STATE FROM ALL BUTTONS
+
+        filterButtons.forEach(item => {
+            item.classList.remove("active");
+        });
+
+
+        // ACTIVATE SELECTED BUTTON
 
         button.classList.add("active");
+
+
+        // DISPLAY SELECTED CATEGORY
 
         renderProjects(button.dataset.filter);
 
@@ -1133,7 +1216,7 @@ filterButtons.forEach(button => {
 
 
 // ==========================================
-// LOAD ALL PROJECTS
+// 7. INITIALIZE GALLERY
 // ==========================================
 
 renderProjects();
