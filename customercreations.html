@@ -30,6 +30,10 @@ body {
     color: #202020;
 }
 
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 /* ==========================================
    2. HERO SECTION
 ========================================== */
@@ -65,11 +69,19 @@ nav a {
     text-decoration: none;
     font-size: 17px;
     font-weight: bold;
-    transition: .3s;
+    transition: color .3s ease;
 }
 
 nav a:hover {
     color: #c9824b;
+}
+
+/* CURRENT PAGE HIGHLIGHT */
+
+nav a.active {
+    color: #c9824b;
+    border-bottom: 2px solid #c9824b;
+    padding-bottom: 6px;
 }
 
 .hero-content {
@@ -481,10 +493,18 @@ footer p {
    11. MOBILE RESPONSIVENESS
 ========================================== */
 
+@media(max-width: 1050px) {
+
+    nav ul {
+        gap: 25px;
+    }
+
+}
+
 @media(max-width: 700px) {
 
     nav ul {
-        gap: 19px;
+        gap: 18px;
     }
 
     nav a {
@@ -513,6 +533,7 @@ footer p {
     .project-image {
         height: 250px;
     }
+
 }
 
 </style>
@@ -535,7 +556,7 @@ footer p {
 <li><a href="contact.html">Contact</a></li>
 <li><a href="faq.html">FAQ</a></li>
 <li><a href="review.html">Reviews</a></li>
-<li><a class="active" href="customercreations.html">Customer Creations</a></li>
+<li><a class="active" href="customercreations.html" aria-current="page">Customer Creations</a></li>
 </ul>
 </nav>
 
@@ -567,7 +588,6 @@ Explore
 
 </header>
 
-
 <!-- ==========================================
      BREADCRUMB
 ========================================== -->
@@ -575,7 +595,6 @@ Explore
 <div class="breadcrumb">
 <a href="index.html">Home</a> &nbsp;/&nbsp; Customer Creations
 </div>
-
 
 <!-- ==========================================
      INTRODUCTION
@@ -594,7 +613,6 @@ and see what's possible with custom design and 3D printing.
 </p>
 
 </section>
-
 
 <!-- ==========================================
      PROJECT FILTER BUTTONS
@@ -628,7 +646,6 @@ Custom Projects
 
 </section>
 
-
 <!-- ==========================================
      PROJECT GALLERY
 ========================================== -->
@@ -643,7 +660,6 @@ Check back soon to see what we've been making.
 </div>
 
 </section>
-
 
 <!-- ==========================================
      CALL TO ACTION
@@ -669,7 +685,6 @@ your idea into something real.
 
 </section>
 
-
 <!-- ==========================================
      FOOTER
 ========================================== -->
@@ -694,7 +709,6 @@ your idea into something real.
 <p>© 2026 Fusion &amp; Form</p>
 
 </footer>
-
 
 <script>
 
@@ -731,14 +745,12 @@ images/Customer Creations/
 =========================================================
 */
 
-
 // ==========================================
 // 1. PROJECT DATABASE
 // ADD NEW PROJECTS INSIDE THIS ARRAY
 // ==========================================
 
 const projects = [
-
 
     // ------------------------------------------
     // CENTURY 21 GALVEZ
@@ -761,7 +773,6 @@ const projects = [
         image: "images/Customer Creations/century21-wall.jpeg"
     },
 
-
     // ------------------------------------------
     // FIXUP SERVICES
     // SOCIAL MEDIA TAP DISPLAY
@@ -782,7 +793,6 @@ const projects = [
 
         image: "images/Customer Creations/fix-it-up-nfc.png"
     },
-
 
     // ------------------------------------------
     // CENTURY 21 GALVEZ
@@ -805,7 +815,6 @@ const projects = [
         image: "images/Customer Creations/Century-21-nfc.jpeg"
     },
 
-
     // ------------------------------------------
     // IRON MAN
     // LIGHT-UP HELMET DISPLAY STAND
@@ -824,7 +833,6 @@ const projects = [
 
         image: "images/Customer Creations/ironman-lightup.jpeg"
     },
-
 
     // ------------------------------------------
     // MILES MORALES SPIDER-MAN KEYCHAIN
@@ -847,7 +855,6 @@ const projects = [
         image: "images/Customer Creations/spiderman-1.jpeg"
     },
 
-
     // ------------------------------------------
     // MILES MORALES SPIDER-MAN KEYCHAIN
     // CUSTOMER ORDER 2
@@ -868,7 +875,6 @@ const projects = [
 
         image: "images/Customer Creations/spiderman-2.jpeg"
     },
-
 
     // ------------------------------------------
     // STUDIO 466
@@ -891,7 +897,6 @@ const projects = [
         image: "images/Customer Creations/studio466-products.jpeg"
     },
 
-
     // ------------------------------------------
     // VINYL RECORD WALL MOUNTS
     // ------------------------------------------
@@ -912,12 +917,10 @@ const projects = [
         image: "images/Customer Creations/vinyl-mount.jpeg"
     },
 
-
     // ==========================================
     // FUTURE PROJECT TEMPLATES
     // COPY AND UNCOMMENT WHEN NEEDED
     // ==========================================
-
 
     /*
     {
@@ -935,7 +938,6 @@ const projects = [
     },
     */
 
-
     /*
     {
         title: "Personalized Name Keychain",
@@ -952,7 +954,6 @@ const projects = [
     },
     */
 
-
     /*
     {
         title: "Custom Desk Organizer",
@@ -968,7 +969,6 @@ const projects = [
         image: "images/Customer Creations/desk-organizer.png"
     },
     */
-
 
     // ADD NEW CUSTOMER PROJECTS ABOVE THIS LINE
 
@@ -1039,11 +1039,9 @@ function renderProjects(filter = "all") {
             getProjectCategories(project).includes(filter)
         );
 
-
     // CLEAR OLD PROJECTS
 
     projectGrid.innerHTML = "";
-
 
     // CREATE EACH PROJECT CARD
 
@@ -1053,10 +1051,7 @@ function renderProjects(filter = "all") {
 
         card.className = "project-card";
 
-
-        // --------------------------------------
         // PROJECT IMAGE
-        // --------------------------------------
 
         const imageContainer = document.createElement("div");
 
@@ -1075,10 +1070,7 @@ function renderProjects(filter = "all") {
             this.style.display = "none";
         };
 
-
-        // --------------------------------------
         // CATEGORY BADGE
-        // --------------------------------------
 
         const badge = document.createElement("span");
 
@@ -1088,20 +1080,15 @@ function renderProjects(filter = "all") {
 
         imageContainer.append(image, badge);
 
-
-        // --------------------------------------
         // PROJECT INFORMATION
-        // --------------------------------------
 
         const info = document.createElement("div");
 
         info.className = "project-info";
 
-
         const title = document.createElement("h3");
 
         title.textContent = project.title;
-
 
         const description = document.createElement("p");
 
@@ -1109,11 +1096,8 @@ function renderProjects(filter = "all") {
 
         info.append(title, description);
 
-
-        // --------------------------------------
         // CUSTOMER REVIEW
         // ONLY SHOW IF REVIEW EXISTS
-        // --------------------------------------
 
         if (project.review) {
 
@@ -1122,7 +1106,6 @@ function renderProjects(filter = "all") {
             review.className = "project-review";
 
             review.textContent = `"${project.review}"`;
-
 
             const attribution = document.createElement("strong");
 
@@ -1134,16 +1117,12 @@ function renderProjects(filter = "all") {
 
         }
 
-
-        // --------------------------------------
         // PROJECT DETAILS
         // DISPLAY ALL CATEGORIES
-        // --------------------------------------
 
         const meta = document.createElement("div");
 
         meta.className = "project-meta";
-
 
         const category = document.createElement("span");
 
@@ -1153,20 +1132,15 @@ function renderProjects(filter = "all") {
             .map(item => categoryLabels[item] || "Custom Creation")
             .join(" • ");
 
-
         const customer = document.createElement("span");
 
         customer.textContent = project.customer || "Fusion & Form";
-
 
         meta.append(category, customer);
 
         info.appendChild(meta);
 
-
-        // --------------------------------------
         // ADD CARD TO GALLERY
-        // --------------------------------------
 
         card.append(imageContainer, info);
 
@@ -1174,10 +1148,7 @@ function renderProjects(filter = "all") {
 
     });
 
-
-    // --------------------------------------
     // EMPTY CATEGORY MESSAGE
-    // --------------------------------------
 
     emptyMessage.style.display =
         filtered.length ? "none" : "block";
@@ -1199,11 +1170,9 @@ filterButtons.forEach(button => {
             item.classList.remove("active");
         });
 
-
         // ACTIVATE SELECTED BUTTON
 
         button.classList.add("active");
-
 
         // DISPLAY SELECTED CATEGORY
 
