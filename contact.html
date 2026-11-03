@@ -6,23 +6,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Contact | Fusion & Form</title>
+    <title>Contact | Fusion &amp; Form</title>
+
+    <meta name="description" content="Contact Fusion & Form for custom 3D prints, personalized products, business projects, and order inquiries.">
+
+    <meta name="theme-color" content="#f7f5f1">
 
     <style>
+        /* ============================= */
+        /* GLOBAL STYLING */
+        /* ============================= */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: Arial, Helvetica, sans-serif;
             background-color: #f7f5f1;
             color: #202020;
+            overflow-x: hidden;
+        }
+
+        a {
+            -webkit-tap-highlight-color: transparent;
         }
 
         /* ============================= */
-        /* Hero Section */
+        /* HERO SECTION */
         /* ============================= */
 
         .hero {
@@ -41,7 +58,7 @@
         }
 
         /* ============================= */
-        /* Navigation */
+        /* NAVIGATION */
         /* ============================= */
 
         nav {
@@ -79,7 +96,7 @@
         }
 
         /* ============================= */
-        /* Hero Text */
+        /* HERO TEXT */
         /* ============================= */
 
         .hero-text {
@@ -114,7 +131,7 @@
         }
 
         /* ============================= */
-        /* Contact Introduction */
+        /* CONTACT INTRODUCTION */
         /* ============================= */
 
         .contact-intro {
@@ -136,44 +153,30 @@
         }
 
         /* ============================= */
-        /* Contact Cards */
+        /* CONTACT CARDS */
         /* ============================= */
 
         .contact-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 24px;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: auto;
-            padding: 25px 25px 70px;
+            padding: 25px 25px 80px;
         }
 
         .contact-card {
-            padding: 35px 25px;
+            padding: 35px 20px;
             background: white;
             border-radius: 16px;
             text-align: center;
             box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-            transition: 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .contact-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 14px 30px rgba(0, 0, 0, 0.13);
-        }
-
-        .contact-icon {
-            width: 55px;
-            height: 55px;
-            margin: 0 auto 18px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            background: #b87333;
-            border-radius: 50%;
-            font-size: 18px;
-            font-weight: bold;
         }
 
         .contact-card h3 {
@@ -184,22 +187,72 @@
         .contact-card p {
             color: #666;
             line-height: 1.6;
+            font-size: 15px;
         }
 
-        .contact-card a {
+        .contact-card a:not(.contact-icon) {
             display: inline-block;
             margin-top: 14px;
             color: #9d5725;
             text-decoration: none;
             font-weight: bold;
+            overflow-wrap: anywhere;
         }
 
-        .contact-card a:hover {
+        .contact-card a:not(.contact-icon):hover {
             text-decoration: underline;
         }
 
         /* ============================= */
-        /* Main Contact Section */
+        /* UPLOADED CONTACT IMAGES */
+        /* ============================= */
+
+        .contact-icon {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ffffff;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .social-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        /* Clickable Instagram and TikTok Images */
+
+        .contact-icon.social-icon {
+            padding: 8px;
+            border: 1px solid #e5e5e5;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-icon.social-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .contact-icon.social-icon:hover .social-logo {
+            transform: scale(1.08);
+        }
+
+        .contact-icon.social-icon:focus-visible {
+            outline: 3px solid #c9824b;
+            outline-offset: 4px;
+        }
+
+        /* ============================= */
+        /* MAIN CONTACT SECTION */
         /* ============================= */
 
         .contact-section {
@@ -254,7 +307,7 @@
         }
 
         /* ============================= */
-        /* Contact Form */
+        /* CONTACT FORM */
         /* ============================= */
 
         .form-container {
@@ -300,6 +353,8 @@
             border-radius: 7px;
             font-family: inherit;
             font-size: 15px;
+            background: #fff;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .form-group textarea {
@@ -333,13 +388,18 @@
             transform: translateY(-2px);
         }
 
+        .submit-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+            transform: none;
+        }
+
         .form-note {
             margin-top: 15px;
             color: #777;
             font-size: 13px;
             text-align: center;
         }
-
 
         .form-status {
             display: none;
@@ -366,14 +426,8 @@
             border: 1px solid #e2aaaa;
         }
 
-        .submit-button:disabled {
-            cursor: not-allowed;
-            opacity: 0.7;
-            transform: none;
-        }
-
         /* ============================= */
-        /* FAQ Banner */
+        /* FAQ BANNER */
         /* ============================= */
 
         .faq-banner {
@@ -415,7 +469,7 @@
         }
 
         /* ============================= */
-        /* Footer */
+        /* FOOTER */
         /* ============================= */
 
         footer {
@@ -437,10 +491,13 @@
 
         .footer-links {
             margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px 20px;
         }
 
         .footer-links a {
-            margin: 0 10px;
             color: white;
             text-decoration: none;
         }
@@ -450,27 +507,96 @@
         }
 
         /* ============================= */
-        /* Mobile Styling */
+        /* TABLET */
+        /* ============================= */
+
+        @media (max-width: 1050px) {
+
+            .contact-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav ul {
+                gap: 25px;
+            }
+
+        }
+
+        /* ============================= */
+        /* SMALLER SCREENS */
         /* ============================= */
 
         @media (max-width: 850px) {
+
             .contact-section {
                 grid-template-columns: 1fr;
             }
+
         }
 
+        /* ============================= */
+        /* MOBILE */
+        /* ============================= */
+
         @media (max-width: 700px) {
+
             nav ul {
-                gap: 20px;
+                gap: 18px;
             }
 
             nav a {
                 font-size: 14px;
             }
 
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 0;
+            .hero {
+                min-height: 60vh;
+            }
+
+            .hero-text {
+                min-height: 42vh;
+            }
+
+            .hero-text h2 {
+                font-size: 21px;
+            }
+
+            .hero-text p {
+                font-size: 16px;
+            }
+
+            .contact-intro {
+                padding: 60px 22px 30px;
+            }
+
+            .contact-intro h2 {
+                font-size: 30px;
+            }
+
+            .contact-cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+                padding: 20px 15px 60px;
+            }
+
+            .contact-card {
+                padding: 28px 13px;
+            }
+
+            .contact-card h3 {
+                font-size: 19px;
+            }
+
+            .contact-card p {
+                font-size: 14px;
+            }
+
+            .contact-card a:not(.contact-icon) {
+                font-size: 13px;
+            }
+
+            .contact-icon {
+                width: 55px;
+                height: 55px;
             }
 
             .contact-info,
@@ -478,17 +604,44 @@
                 padding: 28px 22px;
             }
 
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
             .faq-banner {
                 margin-left: 20px;
                 margin-right: 20px;
             }
+
+            .faq-banner h2 {
+                font-size: 27px;
+            }
+
+            .footer-links {
+                gap: 15px;
+            }
+
         }
+
+        /* Extra Small Phones */
+
+        @media (max-width: 380px) {
+
+            .contact-cards {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
     </style>
 </head>
 
 <body>
 
-    <!-- Hero and Navigation -->
+    <!-- ============================= -->
+    <!-- HERO AND NAVIGATION -->
+    <!-- ============================= -->
 
     <header class="hero">
 
@@ -508,19 +661,23 @@
         </nav>
 
         <div class="hero-text">
+
             <h1>CONTACT US</h1>
 
             <h2>Questions, ideas, or custom requests?</h2>
 
             <p>
-                Reach out to Fusion & Form and we will help you find the
+                Reach out to Fusion &amp; Form and we will help you find the
                 right product or bring your custom idea to life.
             </p>
+
         </div>
 
     </header>
 
-    <!-- Contact Introduction -->
+    <!-- ============================= -->
+    <!-- CONTACT INTRODUCTION -->
+    <!-- ============================= -->
 
     <section class="contact-intro">
 
@@ -533,13 +690,27 @@
 
     </section>
 
-    <!-- Contact Cards -->
+    <!-- ============================= -->
+    <!-- CONTACT CARDS -->
+    <!-- ============================= -->
 
     <section class="contact-cards">
 
+        <!-- EMAIL CARD -->
+
         <article class="contact-card">
 
-            <div class="contact-icon">@</div>
+            <a
+                href="mailto:fusion.forge2026@gmail.com"
+                class="contact-icon social-icon"
+                aria-label="Email Fusion and Form"
+            >
+                <img
+                    src="images/logo/emaillogo.png"
+                    alt="Email"
+                    class="social-logo"
+                >
+            </a>
 
             <h3>Email</h3>
 
@@ -547,15 +718,29 @@
                 Send us a message and we will respond as soon as possible.
             </p>
 
-            <a href="mailto:your-email@example.com">
-            fusion.forge2026@gmail.com
+            <a href="mailto:fusion.forge2026@gmail.com">
+                fusion.forge2026@gmail.com
             </a>
 
         </article>
 
+        <!-- INSTAGRAM CARD -->
+
         <article class="contact-card">
 
-            <div class="contact-icon">IG</div>
+            <a
+                href="https://www.instagram.com/fusion.form2026?xtok=ano1MGJoM3ZlYnJh&utm_source=qr"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-icon social-icon"
+                aria-label="Visit Fusion and Form on Instagram"
+            >
+                <img
+                    src="images/logo/instalogo.jpg"
+                    alt="Instagram Logo"
+                    class="social-logo"
+                >
+            </a>
 
             <h3>Instagram</h3>
 
@@ -563,15 +748,33 @@
                 Follow our work, recent prints, and product updates.
             </p>
 
-            <a href="https://www.instagram.com/fusion.forge2026/" target="_blank">
+            <a
+                href="https://www.instagram.com/fusion.forge2026/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
                 @fusion.form2026
             </a>
 
         </article>
 
+        <!-- TIKTOK CARD -->
+
         <article class="contact-card">
 
-            <div class="contact-icon">TT</div>
+            <a
+                href="https://www.tiktok.com/@fusion.form2026"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-icon social-icon"
+                aria-label="Visit Fusion and Form on TikTok"
+            >
+                <img
+                    src="images/logo/tiktoklogo.jpg"
+                    alt="TikTok Logo"
+                    class="social-logo"
+                >
+            </a>
 
             <h3>TikTok</h3>
 
@@ -579,15 +782,29 @@
                 Watch behind-the-scenes printing and design videos.
             </p>
 
-            <a href="https://www.tiktok.com/@fusion.form2026" target="_blank">
+            <a
+                href="https://www.tiktok.com/@fusion.form2026"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
                 @fusion.form2026
             </a>
 
         </article>
 
+        <!-- RESPONSE TIME CARD -->
+
         <article class="contact-card">
 
-            <div class="contact-icon">HRS</div>
+            <div class="contact-icon">
+
+                <img
+                    src="images/logo/hourslogo.jpg"
+                    alt="Response Time"
+                    class="social-logo"
+                >
+
+            </div>
 
             <h3>Response Time</h3>
 
@@ -599,7 +816,9 @@
 
     </section>
 
-    <!-- Contact Information and Form -->
+    <!-- ============================= -->
+    <!-- CONTACT INFORMATION AND FORM -->
+    <!-- ============================= -->
 
     <section class="contact-section">
 
@@ -608,25 +827,28 @@
             <h2>Contact Information</h2>
 
             <p>
-                Use the form or contact us directly through email, messages or social media.
+                Use the form or contact us directly through email,
+                messages or social media.
             </p>
+
             <div class="info-item">
 
                 <h3>Phone</h3>
 
                 <p>
-                    929-436-6755
+                    <a href="tel:9294366755">929-436-6755</a>
                 </p>
 
             </div>
+
             <div class="info-item">
 
                 <h3>Email</h3>
 
                 <p>
-                    
+                    <a href="mailto:fusion.forge2026@gmail.com">
                         fusion.forge2026@gmail.com
-                    
+                    </a>
                 </p>
 
             </div>
@@ -640,7 +862,7 @@
                 </p>
 
                 <p>
-                    Saturday–Sunday: 3:00 PM- 8:00 PM
+                    Saturday–Sunday: 3:00 PM–8:00 PM
                 </p>
 
             </div>
@@ -669,6 +891,8 @@
 
         </aside>
 
+        <!-- CONTACT FORM -->
+
         <div class="form-container">
 
             <h2>Send Us a Message</h2>
@@ -682,6 +906,7 @@
                 <div class="form-row">
 
                     <div class="form-group">
+
                         <label for="name">Full Name</label>
 
                         <input
@@ -689,10 +914,13 @@
                             id="name"
                             name="name"
                             placeholder="Enter your name"
-                            required>
+                            required
+                        >
+
                     </div>
 
                     <div class="form-group">
+
                         <label for="email">Email Address</label>
 
                         <input
@@ -700,7 +928,9 @@
                             id="email"
                             name="email"
                             placeholder="Enter your email"
-                            required>
+                            required
+                        >
+
                     </div>
 
                 </div>
@@ -708,46 +938,58 @@
                 <div class="form-row">
 
                     <div class="form-group">
+
                         <label for="phone">Phone Number</label>
 
                         <input
                             type="tel"
                             id="phone"
                             name="phone"
-                            placeholder="Optional">
+                            placeholder="Optional"
+                        >
+
                     </div>
 
                     <div class="form-group">
+
                         <label for="topic">Message Topic</label>
 
                         <select id="topic" name="topic" required>
 
                             <option value="">Select a topic</option>
+
                             <option value="general-question">
                                 General Question
                             </option>
+
                             <option value="product-question">
                                 Product Question
                             </option>
+
                             <option value="custom-order">
                                 Custom Order
                             </option>
+
                             <option value="order-update">
                                 Order Update
                             </option>
+
                             <option value="bulk-order">
                                 Bulk or Business Order
                             </option>
+
                             <option value="other">
                                 Other
                             </option>
 
                         </select>
+
                     </div>
 
                 </div>
 
                 <div class="form-group">
+
                     <label for="subject">Subject</label>
 
                     <input
@@ -755,17 +997,22 @@
                         id="subject"
                         name="subject"
                         placeholder="What is your message about?"
-                        required>
+                        required
+                    >
+
                 </div>
 
                 <div class="form-group">
+
                     <label for="message">Message</label>
 
                     <textarea
                         id="message"
                         name="message"
                         placeholder="Type your message here..."
-                        required></textarea>
+                        required
+                    ></textarea>
+
                 </div>
 
                 <button class="submit-button" type="submit">
@@ -781,8 +1028,8 @@
                     id="formStatus"
                     class="form-status"
                     role="status"
-                    aria-live="polite">
-                </div>
+                    aria-live="polite"
+                ></div>
 
             </form>
 
@@ -790,7 +1037,9 @@
 
     </section>
 
-    <!-- FAQ Banner -->
+    <!-- ============================= -->
+    <!-- FAQ BANNER -->
+    <!-- ============================= -->
 
     <section class="faq-banner">
 
@@ -801,11 +1050,15 @@
             materials, turnaround times, shipping, and product care.
         </p>
 
-        <a href="faq.html">View Frequently Asked Questions</a>
+        <a href="faq.html">
+            View Frequently Asked Questions
+        </a>
 
     </section>
 
-    <!-- Footer -->
+    <!-- ============================= -->
+    <!-- FOOTER -->
+    <!-- ============================= -->
 
     <footer>
 
@@ -814,6 +1067,7 @@
         <p>Where Ideas Take Form.</p>
 
         <div class="footer-links">
+
             <a href="index.html">Home</a>
             <a href="shop.html">Shop</a>
             <a href="customorders.html">Custom Orders</a>
@@ -822,18 +1076,21 @@
             <a href="faq.html">FAQ</a>
             <a href="review.html">Reviews</a>
             <a href="customercreations.html">Customer Creations</a>
+
         </div>
 
-        <p>© 2026 Fusion & Form</p>
+        <p>© 2026 Fusion &amp; Form</p>
 
     </footer>
 
-
-    <!-- EmailJS Browser SDK -->
+    <!-- ============================= -->
+    <!-- EMAILJS -->
+    <!-- ============================= -->
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <script>
+
         const EMAILJS_SERVICE_ID = "service_zkkh9xa";
         const EMAILJS_TEMPLATE_ID = "template_xblqmbl";
         const EMAILJS_PUBLIC_KEY = "pUxVbrlR9HW3QqrTw";
@@ -854,6 +1111,7 @@
         contactForm.addEventListener(
             "submit",
             async function (event) {
+
                 event.preventDefault();
 
                 if (!contactForm.checkValidity()) {
@@ -884,12 +1142,16 @@
                 const message =
                     document.getElementById("message").value.trim();
 
+                const customerEmail =
+                    document.getElementById("email").value.trim();
+
                 const templateParams = {
+
                     customer_name:
                         document.getElementById("name").value.trim(),
 
                     customer_email:
-                        document.getElementById("email").value.trim(),
+                        customerEmail,
 
                     customer_phone:
                         document.getElementById("phone").value.trim() ||
@@ -922,10 +1184,12 @@
                         "Message:\n" + message,
 
                     reply_to:
-                        document.getElementById("email").value.trim()
+                        customerEmail
+
                 };
 
                 try {
+
                     await emailjs.send(
                         EMAILJS_SERVICE_ID,
                         EMAILJS_TEMPLATE_ID,
@@ -945,7 +1209,9 @@
                         behavior: "smooth",
                         block: "center"
                     });
+
                 } catch (error) {
+
                     console.error(
                         "EmailJS contact submission failed:",
                         error
@@ -957,29 +1223,43 @@
                     formStatus.textContent =
                         "Your message could not be sent. Please check your " +
                         "connection and try again.";
+
                 } finally {
+
                     submitButton.disabled = false;
+
                     submitButton.textContent =
                         originalButtonText;
+
                 }
+
             }
         );
+
     </script>
 
-    <!-- Background Slideshow -->
+    <!-- ============================= -->
+    <!-- BACKGROUND SLIDESHOW -->
+    <!-- ============================= -->
 
     <script>
+
         const hero = document.querySelector(".hero");
 
         const images = [
+
             "https://images.unsplash.com/photo-1581092160607-ee22731d8c4f?w=1600",
+
             "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1600",
+
             "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600"
+
         ];
 
         let currentImage = 0;
 
         setInterval(function () {
+
             currentImage++;
 
             if (currentImage >= images.length) {
@@ -988,10 +1268,11 @@
 
             hero.style.backgroundImage =
                 "url('" + images[currentImage] + "')";
+
         }, 10000);
+
     </script>
 
 </body>
 
 </html>
-
